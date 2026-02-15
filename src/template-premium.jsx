@@ -188,14 +188,14 @@ function Navbar() {
   const scrollTo = (id) => { scrollToSection(id, () => setMenuOpen(false)); };
 
   return (
-    <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000, background: "rgba(255,255,255,0.95)", backdropFilter: "blur(20px)", borderBottom: "1px solid rgba(14,165,233,0.2)", padding: "0 36px", height: 68, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+    <nav className="nav-ecf" style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000, background: "rgba(255,255,255,0.95)", backdropFilter: "blur(20px)", borderBottom: "1px solid rgba(14,165,233,0.2)", height: 68, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
       <ECFLogo />
       <div style={{ display: "flex", gap: 6, alignItems: "center" }} className="desktop-nav-p">
         {SECTIONS.map(id => (
           <button key={id} onClick={() => scrollTo(id)} className="btn-nav" style={{ background: "transparent", border: "none", cursor: "pointer", padding: "8px 13px", fontFamily: FONT_INTER, fontSize: 11, fontWeight: active === id ? 600 : 400, color: active === id ? ACCENT : "rgba(0,0,0,0.5)", transition: "transform 0.2s ease, color 0.2s ease", textTransform: "uppercase", letterSpacing: 1.5 }}>{NAV_LABELS[id]}</button>
         ))}
       </div>
-      <button onClick={() => setMenuOpen(!menuOpen)} className="hamburger-p btn-tap" style={{ display: "none", background: "none", border: "none", cursor: "pointer", flexDirection: "column", gap: 6, padding: 8, zIndex: 1001, transition: "transform 0.2s ease" }}>
+      <button onClick={() => setMenuOpen(!menuOpen)} className="hamburger-p hamburger-btn btn-tap" style={{ display: "none", background: "none", border: "none", cursor: "pointer", flexDirection: "column", gap: 6, padding: 10, zIndex: 1001, transition: "transform 0.2s ease", alignItems: "center", justifyContent: "center" }}>
         <span style={{ width: 26, height: 1.5, background: ACCENT, transition: "all .3s", transform: menuOpen ? "rotate(45deg) translate(6px, 6px)" : "none" }} />
         <span style={{ width: 26, height: 1.5, background: ACCENT, transition: "all .3s", opacity: menuOpen ? 0 : 1 }} />
         <span style={{ width: 26, height: 1.5, background: ACCENT, transition: "all .3s", transform: menuOpen ? "rotate(-45deg) translate(6px, -6px)" : "none" }} />
@@ -214,6 +214,9 @@ function Navbar() {
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
         .hamburger-p { display: none !important; }
         @media (max-width: 900px) { .desktop-nav-p { display: none !important; } .hamburger-p { display: flex !important; } }
+        .nav-ecf { padding-left: max(36px, env(safe-area-inset-left)); padding-right: max(36px, env(safe-area-inset-right)); }
+        .hamburger-btn { min-width: 44px; min-height: 44px; }
+        @media (max-width: 480px) { .nav-ecf { padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right)); } }
       `}</style>
     </nav>
   );
@@ -234,7 +237,7 @@ function Hero() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
   return (
-    <section id="home" style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "#ffffff", padding: "100px 36px 60px", position: "relative", overflow: "hidden" }}>
+    <section id="home" className="hero-section" style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "#ffffff", position: "relative", overflow: "hidden" }}>
       <div ref={meshRef} className="hero-mesh hero-mesh-parallax" aria-hidden="true">
         <div className="hero-blob hero-blob-1" style={{ background: "rgba(14,165,233,0.12)" }} />
         <div className="hero-blob hero-blob-2" style={{ background: "rgba(56,189,248,0.1)" }} />
@@ -242,8 +245,8 @@ function Hero() {
         <div className="hero-blob hero-blob-4 hero-blob-mobile-hide" style={{ background: "rgba(186,230,253,0.12)" }} />
       </div>
       <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: 600, height: 600, borderRadius: "50%", background: `radial-gradient(circle, ${ACCENT_RGBA(0.04)} 0%, transparent 70%)`, pointerEvents: "none" }} />
-      <div style={{ position: "absolute", top: 120, right: "10%", width: 1, height: 120, background: `linear-gradient(to bottom, transparent, ${ACCENT_RGBA(0.2)}, transparent)` }} />
-      <div style={{ position: "absolute", bottom: 120, left: "10%", width: 1, height: 120, background: `linear-gradient(to bottom, transparent, ${ACCENT_RGBA(0.2)}, transparent)` }} />
+      <div className="hero-line-mobile-hide" style={{ position: "absolute", top: 120, right: "10%", width: 1, height: 120, background: `linear-gradient(to bottom, transparent, ${ACCENT_RGBA(0.2)}, transparent)` }} />
+      <div className="hero-line-mobile-hide" style={{ position: "absolute", bottom: 120, left: "10%", width: 1, height: 120, background: `linear-gradient(to bottom, transparent, ${ACCENT_RGBA(0.2)}, transparent)` }} />
 
       <div style={{ maxWidth: "min(1100px, 92vw)", width: "100%", textAlign: "center", position: "relative", zIndex: 1 }}>
         <div style={{ fontFamily: FONT_INTER, fontSize: 11, fontWeight: 600, color: ACCENT, textTransform: "uppercase", letterSpacing: 5, marginBottom: 32 }}>WEB AGENCY — ITALIA</div>
@@ -264,7 +267,7 @@ function Hero() {
           <button onClick={() => scrollToSection("risultati")} className="btn-outline" style={{ background: "transparent", color: ACCENT, border: `1px solid ${ACCENT}`, padding: "16px 44px", fontFamily: FONT_INTER, fontSize: 12, fontWeight: 600, cursor: "pointer", textTransform: "uppercase", letterSpacing: 3, transition: "transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease", minWidth: 200 }}>Vedi Portfolio</button>
         </div>
         <div style={{ width: 1, height: 60, background: `linear-gradient(to bottom, transparent, ${ACCENT_RGBA(0.3)})`, margin: "56px auto 0" }} />
-        <div style={{ display: "flex", gap: 56, justifyContent: "center", marginTop: 32, flexWrap: "wrap" }}>
+        <div className="hero-stats-wrap" style={{ display: "flex", gap: 56, justifyContent: "center", marginTop: 32, flexWrap: "wrap" }}>
           {[["50+", "Progetti"], ["4.9", "Rating"], ["100%", "Soddisfazione"]].map(([num, label]) => (
             <div key={label} style={{ textAlign: "center" }}>
               <CountUp value={num} duration={2000} style={{ fontFamily: FONT_INTER, fontSize: 32, fontWeight: 800, color: ACCENT }} />
@@ -290,7 +293,7 @@ function Problem() {
     { title: "Immagine Non Professionale", desc: "Il tuo sito è il tuo biglietto da visita online. Se sembra datato o amatoriale, i clienti scelgono chi appare più affidabile." }
   ];
   return (
-    <section id="problema" style={{ padding: "110px 36px", background: "#ffffff" }}>
+    <section id="problema" className="section-padding" style={{ background: "#ffffff" }}>
       <div style={{ maxWidth: "min(1200px, 92vw)", width: "100%", margin: "0 auto", padding: "0 24px" }}>
         <div style={{ textAlign: "center", marginBottom: 64 }}>
           <div style={{ fontFamily: FONT_INTER, fontSize: 10, fontWeight: 600, color: ACCENT, textTransform: "uppercase", letterSpacing: 5, marginBottom: 20 }}>IL PROBLEMA</div>
@@ -321,7 +324,7 @@ function Solution() {
     { title: "Performance Reali", desc: "Siti veloci, ottimizzati per mobile e SEO. Perché un sito bello che nessuno trova non serve a niente." }
   ];
   return (
-    <section id="soluzione" style={{ padding: "110px 36px", background: "#fafafa" }}>
+    <section id="soluzione" className="section-padding" style={{ background: "#fafafa" }}>
       <div style={{ maxWidth: "min(1200px, 92vw)", width: "100%", margin: "0 auto", padding: "0 24px" }}>
         <div style={{ textAlign: "center", marginBottom: 64 }}>
           <div style={{ fontFamily: FONT_INTER, fontSize: 10, fontWeight: 600, color: ACCENT, textTransform: "uppercase", letterSpacing: 5, marginBottom: 20 }}>LA SOLUZIONE</div>
@@ -352,7 +355,7 @@ function SocialProof() {
     { name: "Giuseppe M.", role: "Artigiano", text: "In 3 mesi il sito ha generato più contatti di 2 anni di passaparola. Un investimento che si è ripagato in poche settimane." }
   ];
   return (
-    <section id="risultati" style={{ padding: "110px 36px", background: "#ffffff" }}>
+    <section id="risultati" className="section-padding" style={{ background: "#ffffff" }}>
       <div style={{ maxWidth: "min(1200px, 92vw)", width: "100%", margin: "0 auto", padding: "0 24px" }}>
         <div style={{ textAlign: "center", marginBottom: 64 }}>
           <div style={{ fontFamily: FONT_INTER, fontSize: 10, fontWeight: 600, color: ACCENT, textTransform: "uppercase", letterSpacing: 5, marginBottom: 20 }}>RISULTATI</div>
@@ -387,13 +390,13 @@ function Loghi() {
     { name: "Client E", placeholder: "E" },
   ];
   return (
-    <section id="loghi" style={{ padding: "72px 36px", background: "#fafafa" }}>
+    <section id="loghi" className="section-padding-tight" style={{ background: "#fafafa" }}>
       <div style={{ maxWidth: "min(1000px, 92vw)", width: "100%", margin: "0 auto", padding: "0 24px" }}>
         <div style={{ textAlign: "center", marginBottom: 44 }}>
           <div style={{ fontFamily: FONT_INTER, fontSize: 10, fontWeight: 600, color: ACCENT, textTransform: "uppercase", letterSpacing: 5, marginBottom: 16 }}>CHI SI FIDA DI NOI</div>
           <div style={{ width: 40, height: 1, background: ACCENT, margin: "0 auto" }} />
         </div>
-        <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems: "center", gap: 48 }}>
+        <div className="loghi-wrap" style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems: "center", gap: 48 }}>
           {clients.map((c, i) => (
             <ScrollReveal key={i} delay={i * 60}>
               <div className="logo-item" style={{ width: 100, height: 48, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: FONT_INTER, fontSize: 24, fontWeight: 800, color: "rgba(0,0,0,0.25)", transition: "color 0.25s ease, transform 0.25s ease" }} title={c.name}>
@@ -416,7 +419,7 @@ function Services() {
     { name: "Manutenzione", desc: "Aggiornamenti, modifiche e supporto continuo. Il tuo sito resta sempre al massimo." },
   ];
   return (
-    <section id="servizi" style={{ padding: "110px 36px", background: "#fafafa" }}>
+    <section id="servizi" className="section-padding" style={{ background: "#fafafa" }}>
       <div style={{ maxWidth: "min(1200px, 92vw)", width: "100%", margin: "0 auto", padding: "0 24px" }}>
         <div style={{ textAlign: "center", marginBottom: 64 }}>
           <div style={{ fontFamily: FONT_INTER, fontSize: 10, fontWeight: 600, color: ACCENT, textTransform: "uppercase", letterSpacing: 5, marginBottom: 20 }}>SERVIZI</div>
@@ -447,7 +450,7 @@ function Process() {
     { title: "Consegna e Risultati", desc: "Costruiamo, testiamo e lanciamo. Tu vedi il progresso in tempo reale e ricevi un sito pronto a generare clienti." }
   ];
   return (
-    <section id="processo" style={{ padding: "110px 36px", background: "#ffffff" }}>
+    <section id="processo" className="section-padding" style={{ background: "#ffffff" }}>
       <div style={{ maxWidth: "min(1000px, 92vw)", width: "100%", margin: "0 auto", padding: "0 24px" }}>
         <div style={{ textAlign: "center", marginBottom: 64 }}>
           <div style={{ fontFamily: FONT_INTER, fontSize: 10, fontWeight: 600, color: ACCENT, textTransform: "uppercase", letterSpacing: 5, marginBottom: 20 }}>PROCESSO</div>
@@ -457,8 +460,8 @@ function Process() {
         <div style={{ display: "flex", flexDirection: "column" }}>
           {steps.map((s, i) => (
             <ScrollReveal key={i} delay={i * 100}>
-              <div style={{ display: "flex", gap: 40, alignItems: "flex-start", padding: "40px 0", borderBottom: i < 2 ? "1px solid rgba(14,165,233,0.15)" : "none" }}>
-              <div style={{ fontFamily: FONT_INTER, fontSize: 52, fontWeight: 800, color: ACCENT_RGBA(0.15), lineHeight: 1, minWidth: 60, textAlign: "center" }}>{i + 1}</div>
+              <div className="process-step" style={{ display: "flex", gap: 40, alignItems: "flex-start", padding: "40px 0", borderBottom: i < 2 ? "1px solid rgba(14,165,233,0.15)" : "none" }}>
+              <div className="process-step-num" style={{ fontFamily: FONT_INTER, fontSize: 52, fontWeight: 800, color: ACCENT_RGBA(0.15), lineHeight: 1, minWidth: 60, textAlign: "center" }}>{i + 1}</div>
               <div>
                 <h3 style={{ fontFamily: FONT_INTER, fontSize: 24, fontWeight: 800, color: "#111", margin: "0 0 10px" }}>{s.title}</h3>
                 <p style={{ fontFamily: FONT_INTER, fontSize: 13.5, color: "rgba(0,0,0,0.55)", lineHeight: 1.85, margin: 0, fontWeight: 400 }}>{s.desc}</p>
@@ -484,7 +487,7 @@ function Pricing() {
     "30 giorni di supporto post-lancio"
   ];
   return (
-    <section id="pricing" style={{ padding: "110px 36px", background: "#fafafa" }}>
+    <section id="pricing" className="section-padding" style={{ background: "#fafafa" }}>
       <div style={{ maxWidth: "min(640px, 92vw)", width: "100%", margin: "0 auto", padding: "0 24px", textAlign: "center" }}>
         <div style={{ fontFamily: FONT_INTER, fontSize: 10, fontWeight: 600, color: ACCENT, textTransform: "uppercase", letterSpacing: 5, marginBottom: 20 }}>INVESTIMENTO</div>
         <TextReveal text="Quanto Costa un Sito che Funziona" style={{ fontFamily: FONT_INTER, fontSize: "clamp(28px, 4.5vw, 46px)", fontWeight: 800, color: "#111", marginBottom: 16 }} />
@@ -492,7 +495,7 @@ function Pricing() {
         <ScrollReveal delay={100}>
           <div className="card-pricing" style={{ border: `1px solid ${ACCENT_RGBA(0.25)}`, padding: "52px 40px", background: "#ffffff", boxShadow: "0 2px 8px rgba(0,0,0,0.06)", transition: "transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease" }}>
           <div style={{ fontFamily: FONT_INTER, fontSize: 10, fontWeight: 600, color: ACCENT, textTransform: "uppercase", letterSpacing: 4, marginBottom: 12 }}>Sito Completo</div>
-          <div style={{ fontFamily: FONT_INTER, fontSize: 56, fontWeight: 800, color: "#111", marginBottom: 32 }}>Da €997<span style={{ fontSize: 16, color: "rgba(0,0,0,0.5)", fontWeight: 400 }}> /progetto</span></div>
+          <div className="card-pricing-price" style={{ fontFamily: FONT_INTER, fontSize: 56, fontWeight: 800, color: "#111", marginBottom: 32 }}>Da €997<span style={{ fontSize: 16, color: "rgba(0,0,0,0.5)", fontWeight: 400 }}> /progetto</span></div>
           {features.map((f, i) => (
             <div key={i} style={{ fontFamily: FONT_INTER, fontSize: 13, color: "rgba(0,0,0,0.6)", padding: "14px 0", borderBottom: i < 6 ? "1px solid rgba(0,0,0,0.06)" : "none", textAlign: "left", display: "flex", alignItems: "center", gap: 14, fontWeight: 400 }}>
               <span style={{ color: ACCENT, fontSize: 10 }}>◆</span> {f}
@@ -515,7 +518,7 @@ function Team() {
     { name: "Nome Cognome", role: "Marketing & Strategia", placeholder: "N" },
   ];
   return (
-    <section id="team" style={{ padding: "110px 36px", background: "#ffffff" }}>
+    <section id="team" className="section-padding" style={{ background: "#ffffff" }}>
       <div style={{ maxWidth: "min(1000px, 92vw)", width: "100%", margin: "0 auto", padding: "0 24px" }}>
         <div style={{ textAlign: "center", marginBottom: 64 }}>
           <div style={{ fontFamily: FONT_INTER, fontSize: 10, fontWeight: 600, color: ACCENT, textTransform: "uppercase", letterSpacing: 5, marginBottom: 20 }}>IL TEAM</div>
@@ -549,7 +552,7 @@ function FAQ() {
     { q: "Cosa succede dopo la consegna?", a: "Hai 30 giorni di supporto incluso per qualsiasi modifica o problema. Dopo, offriamo pacchetti di manutenzione mensile a partire da €97/mese." }
   ];
   return (
-    <section id="faq" style={{ padding: "110px 36px", background: "#ffffff" }}>
+    <section id="faq" className="section-padding" style={{ background: "#ffffff" }}>
       <div style={{ maxWidth: "min(900px, 92vw)", width: "100%", margin: "0 auto", padding: "0 24px" }}>
         <div style={{ textAlign: "center", marginBottom: 56 }}>
           <div style={{ fontFamily: FONT_INTER, fontSize: 10, fontWeight: 600, color: ACCENT, textTransform: "uppercase", letterSpacing: 5, marginBottom: 20 }}>FAQ</div>
@@ -559,7 +562,7 @@ function FAQ() {
         {faqs.map((f, i) => (
           <div key={i} style={{ borderBottom: "1px solid rgba(14,165,233,0.12)" }}>
             <button onClick={() => setOpen(open === i ? null : i)} className="btn-faq btn-tap" style={{ width: "100%", background: "none", border: "none", cursor: "pointer", display: "flex", justifyContent: "space-between", alignItems: "center", padding: "24px 0", textAlign: "left", transition: "transform 0.2s ease" }}>
-              <span style={{ fontFamily: FONT_INTER, fontSize: 19, fontWeight: 600, color: "#111" }}>{f.q}</span>
+              <span className="faq-question" style={{ fontFamily: FONT_INTER, fontSize: 19, fontWeight: 600, color: "#111" }}>{f.q}</span>
               <span style={{ fontSize: 16, color: ACCENT, transition: "transform .3s", transform: open === i ? "rotate(45deg)" : "none", flexShrink: 0, marginLeft: 20, fontFamily: FONT_INTER, fontWeight: 400 }}>+</span>
             </button>
             {open === i && <div style={{ padding: "0 0 24px", fontFamily: FONT_INTER, fontSize: 13.5, color: "rgba(0,0,0,0.55)", lineHeight: 1.85, fontWeight: 400 }}>{f.a}</div>}
@@ -573,18 +576,15 @@ function FAQ() {
 /* ───────── FOOTER CTA ───────── */
 function FooterCTA() {
   return (
-    <section id="contatti" style={{ padding: "120px 36px", background: "#fafafa", textAlign: "center", position: "relative" }}>
+    <section id="contatti" className="section-padding-footer" style={{ background: "#fafafa", textAlign: "center", position: "relative" }}>
       <div style={{ position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)", width: 1, height: 80, background: `linear-gradient(to bottom, ${ACCENT_RGBA(0.3)}, transparent)` }} />
       <div style={{ maxWidth: "min(900px, 92vw)", width: "100%", margin: "0 auto", padding: "0 24px" }}>
-        <div style={{ marginBottom: 24 }}>
-          <ECFLogo />
-        </div>
         <div style={{ fontFamily: FONT_INTER, fontSize: 10, fontWeight: 600, color: ACCENT, textTransform: "uppercase", letterSpacing: 5, marginBottom: 24 }}>CONTATTI</div>
         <h2 style={{ fontFamily: FONT_INTER, fontSize: "clamp(28px, 4.5vw, 46px)", fontWeight: 800, color: "#111", marginBottom: 20 }}>Pronto a Far Crescere il Tuo Business?</h2>
         <div style={{ width: 40, height: 1, background: ACCENT, margin: "0 auto 28px" }} />
         <p style={{ fontFamily: FONT_INTER, fontSize: 14, color: "rgba(0,0,0,0.55)", marginBottom: 44, lineHeight: 1.9, fontWeight: 400 }}>Prenota una consulenza gratuita di 15 minuti. Analizziamo il tuo sito e ti mostriamo come migliorarlo.</p>
         <button onClick={() => scrollToSection("contatti")} className="btn-primary cta-footer-btn" style={{ background: ACCENT, color: "#0C0C0C", border: "none", padding: "18px 52px", fontFamily: FONT_INTER, fontSize: 12, fontWeight: 600, cursor: "pointer", textTransform: "uppercase", letterSpacing: 3, transition: "transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease", maxWidth: 360, margin: "0 auto" }}>Prenota Consulenza Gratuita</button>
-        <div style={{ marginTop: 64, display: "flex", gap: 56, justifyContent: "center", flexWrap: "wrap" }}>
+        <div className="footer-contacts-wrap" style={{ marginTop: 64, display: "flex", gap: 56, justifyContent: "center", flexWrap: "wrap" }}>
           {[["Telefono", "+39 XXX XXX XXXX"], ["Email", "info@ecfmedia.it"], ["Zona", "Italia"]].map(([label, text]) => (
             <div key={text} style={{ textAlign: "center" }}>
               <div style={{ fontFamily: FONT_INTER, fontSize: 9, fontWeight: 600, color: ACCENT_RGBA(0.5), textTransform: "uppercase", letterSpacing: 3, marginBottom: 8 }}>{label}</div>
@@ -606,6 +606,19 @@ export default function PremiumTemplate() {
       <style>{`
         .ecf-media-site section[id] { scroll-margin-top: ${SCROLL_OFFSET}px; }
         html { scroll-behavior: smooth; }
+        .ecf-media-site section.section-padding { padding: 110px 36px; }
+        .ecf-media-site section.section-padding-tight { padding: 72px 36px; }
+        .ecf-media-site section.section-padding-footer { padding: 120px 36px; }
+        @media (max-width: 768px) {
+          .ecf-media-site section.section-padding { padding: 72px 24px !important; }
+          .ecf-media-site section.section-padding-tight { padding: 56px 24px !important; }
+          .ecf-media-site section.section-padding-footer { padding: 80px 24px !important; }
+        }
+        @media (max-width: 480px) {
+          .ecf-media-site section.section-padding { padding: 56px 16px !important; }
+          .ecf-media-site section.section-padding-tight { padding: 48px 16px !important; }
+          .ecf-media-site section.section-padding-footer { padding: 72px 16px !important; }
+        }
         @keyframes heroReveal {
           from { opacity: 0; transform: translateY(12px); }
           to { opacity: 1; transform: translateY(0); }
@@ -671,9 +684,39 @@ export default function PremiumTemplate() {
           0%, 100% { transform: translate(0, 0) scale(1); }
           50% { transform: translate(-40px, -25px) scale(1.06); }
         }
+        .ecf-media-site .hero-section { padding: 100px 36px 60px; }
         @media (max-width: 768px) {
+          .ecf-media-site .hero-section { padding: 80px 24px 48px; }
           .ecf-media-site .hero-blob-mobile-hide { display: none; }
           .ecf-media-site .hero-blob { filter: blur(120px); }
+        }
+        @media (max-width: 480px) {
+          .ecf-media-site .hero-section { padding: 72px 16px 40px; }
+          .ecf-media-site .hero-line-mobile-hide { display: none; }
+        }
+        @media (max-width: 640px) {
+          .ecf-media-site .hero-stats-wrap { gap: 32 !important; }
+        }
+        @media (max-width: 640px) {
+          .ecf-media-site .process-step { flex-direction: column !important; align-items: flex-start !important; gap: 12 !important; }
+          .ecf-media-site .process-step-num { font-size: 40px !important; min-width: unset !important; }
+        }
+        @media (max-width: 768px) {
+          .ecf-media-site .card-pricing { padding: 32px 24px !important; }
+          .ecf-media-site .card-pricing-price { font-size: 44px !important; }
+        }
+        @media (max-width: 480px) {
+          .ecf-media-site .card-pricing { padding: 28px 20px !important; }
+        }
+        @media (max-width: 480px) {
+          .ecf-media-site .faq-question { font-size: 16px !important; }
+          .ecf-media-site .btn-faq { min-height: 44px; padding: 20px 0 !important; }
+        }
+        @media (max-width: 640px) {
+          .ecf-media-site .footer-contacts-wrap { gap: 28 !important; }
+        }
+        @media (max-width: 480px) {
+          .ecf-media-site .loghi-wrap { gap: 24 !important; }
         }
         .ecf-media-site .hero-mesh-parallax { transition: none; will-change: transform; }
         /* Scroll Reveal */
@@ -692,6 +735,12 @@ export default function PremiumTemplate() {
           .ecf-media-site .logo-item:hover { color: #0EA5E9 !important; transform: scale(1.08); }
           .ecf-media-site .card-team:hover { transform: translateY(-6px); }
         }
+        .ecf-media-site .btn-primary,
+        .ecf-media-site .btn-outline,
+        .ecf-media-site .btn-nav,
+        .ecf-media-site .btn-nav-mobile,
+        .ecf-media-site .btn-faq,
+        .ecf-media-site .btn-tap { -webkit-tap-highlight-color: transparent; }
         .ecf-media-site .btn-primary:active,
         .ecf-media-site .btn-outline:active,
         .ecf-media-site .btn-nav:active,
