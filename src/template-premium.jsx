@@ -72,11 +72,14 @@ function TextReveal({ text, tag: Tag = "h2", style = {}, className = "" }) {
     obs.observe(el);
     return () => obs.disconnect();
   }, []);
-  const words = text.split(/\s+/);
+  const words = text.split(/\s+/).filter(Boolean);
   return (
     <Tag ref={ref} className={`text-reveal ${visible ? "text-reveal-visible" : ""} ${className}`.trim()} style={style}>
       {words.map((w, i) => (
-        <span key={i} className="text-reveal-word" style={{ animationDelay: visible ? `${i * 60}ms` : undefined }}>{w} </span>
+        <span key={i}>
+          {i > 0 && " "}
+          <span className="text-reveal-word" style={{ animationDelay: visible ? `${i * 60}ms` : undefined }}>{w}</span>
+        </span>
       ))}
     </Tag>
   );
@@ -188,11 +191,12 @@ function Navbar() {
   const scrollTo = (id) => { scrollToSection(id, () => setMenuOpen(false)); };
 
   return (
-    <nav className="nav-ecf" style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000, background: "rgba(255,255,255,0.95)", backdropFilter: "blur(20px)", borderBottom: "1px solid rgba(14,165,233,0.2)", height: 68, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+    <nav className="nav-ecf" style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000, background: "rgba(255,255,255,0.95)", backdropFilter: "blur(20px)", borderBottom: "1px solid rgba(14,165,233,0.2)", height: 68, display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <div className="nav-inner" style={{ width: "100%", maxWidth: 1440, margin: "0 auto", height: "100%", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
       <ECFLogo />
       <div style={{ display: "flex", gap: 6, alignItems: "center" }} className="desktop-nav-p">
         {SECTIONS.map(id => (
-          <button key={id} onClick={() => scrollTo(id)} className="btn-nav" style={{ background: "transparent", border: "none", cursor: "pointer", padding: "8px 13px", fontFamily: FONT_INTER, fontSize: 11, fontWeight: active === id ? 600 : 400, color: active === id ? ACCENT : "rgba(0,0,0,0.5)", transition: "transform 0.2s ease, color 0.2s ease", textTransform: "uppercase", letterSpacing: 1.5 }}>{NAV_LABELS[id]}</button>
+          <button key={id} onClick={() => scrollTo(id)} className={`btn-nav ${id === "contatti" ? "btn-nav-cta" : ""}`} style={id === "contatti" ? { background: ACCENT, color: "#ffffff", border: "none", cursor: "pointer", padding: "10px 18px", fontFamily: FONT_INTER, fontSize: 11, fontWeight: 600, transition: "transform 0.2s ease, color 0.2s ease, background-color 0.2s ease", textTransform: "uppercase", letterSpacing: 1.5, borderRadius: 9999 } : { background: "transparent", border: "none", cursor: "pointer", padding: "8px 13px", fontFamily: FONT_INTER, fontSize: 11, fontWeight: active === id ? 600 : 400, color: active === id ? ACCENT : "rgba(0,0,0,0.5)", transition: "transform 0.2s ease, color 0.2s ease", textTransform: "uppercase", letterSpacing: 1.5 }}>{NAV_LABELS[id]}</button>
         ))}
       </div>
       <button onClick={() => setMenuOpen(!menuOpen)} className="hamburger-p hamburger-btn btn-tap" style={{ display: "none", background: "none", border: "none", cursor: "pointer", flexDirection: "column", gap: 6, padding: 10, zIndex: 1001, transition: "transform 0.2s ease", alignItems: "center", justifyContent: "center" }}>
@@ -200,23 +204,37 @@ function Navbar() {
         <span style={{ width: 26, height: 1.5, background: ACCENT, transition: "all .3s", opacity: menuOpen ? 0 : 1 }} />
         <span style={{ width: 26, height: 1.5, background: ACCENT, transition: "all .3s", transform: menuOpen ? "rotate(-45deg) translate(6px, -6px)" : "none" }} />
       </button>
+      </div>
       {menuOpen && (
-        <div style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0, width: "100%", minHeight: "100vh", zIndex: 9999, backgroundColor: "#ffffff", background: "#ffffff", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 24 }}>
-          <div style={{ marginBottom: 20 }}>
+        <div className="mobile-menu-overlay" style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0, width: "100%", minHeight: "100vh", minHeight: "100dvh", zIndex: 9999, backgroundColor: "#ffffff", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "80px 24px 40px", boxSizing: "border-box", overflowY: "auto", WebkitOverflowScrolling: "touch" }}>
+          <div style={{ marginBottom: 32, flexShrink: 0 }}>
             <ECFLogo />
           </div>
-          {SECTIONS.map(id => (
-            <button key={id} onClick={() => scrollTo(id)} className="btn-nav-mobile btn-tap" style={{ background: "transparent", border: "none", cursor: "pointer", padding: "18px 32px", fontFamily: FONT_INTER, fontSize: 26, fontWeight: active === id ? 600 : 400, color: active === id ? ACCENT : "rgba(0,0,0,0.5)", width: "80%", textAlign: "center", letterSpacing: 1, transition: "transform 0.2s ease" }}>{NAV_LABELS[id]}</button>
-          ))}
+          <nav className="mobile-menu-nav" style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8, width: "100%", maxWidth: 320 }}>
+            {SECTIONS.map(id => (
+              <button key={id} onClick={() => scrollTo(id)} className={`btn-nav-mobile btn-tap ${id === "contatti" ? "btn-nav-mobile-cta" : ""}`} style={id === "contatti" ? { background: ACCENT, color: "#ffffff", border: "none", cursor: "pointer", padding: "16px 28px", fontFamily: FONT_INTER, fontSize: 18, fontWeight: 600, width: "100%", maxWidth: 280, textAlign: "center", letterSpacing: 1, transition: "transform 0.2s ease, background-color 0.2s ease", borderRadius: 9999 } : { background: "transparent", border: "none", cursor: "pointer", padding: "16px 28px", fontFamily: FONT_INTER, fontSize: 18, fontWeight: active === id ? 600 : 500, color: active === id ? ACCENT : "#111", width: "100%", maxWidth: 280, textAlign: "center", letterSpacing: 0.5, transition: "transform 0.2s ease, color 0.2s ease" }}>{NAV_LABELS[id]}</button>
+            ))}
+          </nav>
         </div>
       )}
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
         .hamburger-p { display: none !important; }
         @media (max-width: 900px) { .desktop-nav-p { display: none !important; } .hamburger-p { display: flex !important; } }
-        .nav-ecf { padding-left: max(36px, env(safe-area-inset-left)); padding-right: max(36px, env(safe-area-inset-right)); }
+        .nav-ecf .nav-inner { padding-left: max(36px, env(safe-area-inset-left)); padding-right: max(36px, env(safe-area-inset-right)); }
         .hamburger-btn { min-width: 44px; min-height: 44px; }
-        @media (max-width: 480px) { .nav-ecf { padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right)); } }
+        @media (max-width: 480px) { .nav-ecf .nav-inner { padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right)); } }
+        .mobile-menu-overlay {
+          padding-top: max(80px, env(safe-area-inset-top));
+          padding-left: max(24px, env(safe-area-inset-left));
+          padding-right: max(24px, env(safe-area-inset-right));
+          padding-bottom: max(40px, env(safe-area-inset-bottom));
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+        }
+        .mobile-menu-overlay::-webkit-scrollbar { display: none; }
+        .mobile-menu-overlay .btn-nav-mobile { white-space: nowrap; }
+        .mobile-menu-overlay .btn-nav-mobile:not(.btn-nav-mobile-cta):hover { color: #0EA5E9 !important; }
       `}</style>
     </nav>
   );
@@ -252,12 +270,18 @@ function Hero() {
         <div style={{ fontFamily: FONT_INTER, fontSize: 11, fontWeight: 600, color: ACCENT, textTransform: "uppercase", letterSpacing: 5, marginBottom: 32 }}>WEB AGENCY — ITALIA</div>
         <h1 style={{ fontFamily: FONT_INTER, fontSize: "clamp(38px, 6vw, 72px)", fontWeight: 800, color: "#111", lineHeight: 1.1, margin: "0 0 28px", letterSpacing: -0.5 }}>
           {["Il", "Tuo", "Sito", "Non", "Converte?"].map((word, i) => (
-            <span key={i} className="hero-word" style={{ animationDelay: `${300 + i * 80}ms` }}>{word} </span>
+            <span key={i}>
+              {i > 0 && " "}
+              <span className="hero-word" style={{ animationDelay: `${300 + i * 80}ms` }}>{word}</span>
+            </span>
           ))}
           <br />
           <span style={{ color: ACCENT, fontStyle: "italic" }}>
-            {["Noi", "Lo", "Sistemiamo."].map((word, i) => (
-              <span key={i} className="hero-word" style={{ animationDelay: `${300 + (5 + i) * 80}ms` }}>{word} </span>
+            {["Noi", "Lo", "Risolviamo."].map((word, i) => (
+              <span key={i}>
+                {i > 0 && " "}
+                <span className="hero-word" style={{ animationDelay: `${300 + (5 + i) * 80}ms` }}>{word}</span>
+              </span>
             ))}
           </span>
         </h1>
@@ -288,7 +312,7 @@ function BlueLine() {
 /* ───────── PROBLEM ───────── */
 function Problem() {
   const problems = [
-    { title: "Sito Non Ottimizzato", desc: "Il 70% dei tuoi clienti ti cerca dal telefono. Se il tuo sito non è perfetto su mobile, li stai mandando alla concorrenza." },
+    { title: "Sito Non Ottimizzato", desc: "Il 70% dei tuoi clienti ti cerca dal telefono. Se il tuo sito non è ottimizzato per mobile, li indirizzi verso la concorrenza." },
     { title: "Zero Conversioni", desc: "Hai visite ma nessuno ti contatta? Il problema non è il traffico — è il sito che non guida il visitatore verso l'azione." },
     { title: "Immagine Non Professionale", desc: "Il tuo sito è il tuo biglietto da visita online. Se sembra datato o amatoriale, i clienti scelgono chi appare più affidabile." }
   ];
@@ -319,9 +343,9 @@ function Problem() {
 /* ───────── SOLUTION ───────── */
 function Solution() {
   const benefits = [
-    { title: "Design che Converte", desc: "Ogni elemento del sito è progettato con un obiettivo: trasformare il visitatore in cliente. Niente fronzoli, solo risultati." },
+    { title: "Design che Converte", desc: "Ogni elemento del sito è progettato con un obiettivo: trasformare il visitatore in cliente. Nessun elemento superfluo, solo risultati concreti." },
     { title: "Su Misura per Te", desc: "Nessun template. Ogni sito è costruito da zero sulle esigenze specifiche del tuo business e dei tuoi clienti." },
-    { title: "Performance Reali", desc: "Siti veloci, ottimizzati per mobile e SEO. Perché un sito bello che nessuno trova non serve a niente." }
+    { title: "Performance Reali", desc: "Siti veloci, ottimizzati per mobile e SEO. Un sito che non viene trovato non genera risultati." }
   ];
   return (
     <section id="soluzione" className="section-padding" style={{ background: "#fafafa" }}>
@@ -414,9 +438,9 @@ function Loghi() {
 function Services() {
   const services = [
     { name: "Siti Web", desc: "Landing page e siti multi-pagina ottimizzati per convertire. Da zero o rifacimento del sito esistente." },
-    { name: "Ottimizzazione", desc: "Audit completo del tuo sito attuale con fix specifici per migliorare conversioni e performance." },
-    { name: "SEO & Velocità", desc: "Ottimizzazione tecnica per farti trovare su Google e caricare in meno di 3 secondi." },
-    { name: "Manutenzione", desc: "Aggiornamenti, modifiche e supporto continuo. Il tuo sito resta sempre al massimo." },
+    { name: "Ottimizzazione", desc: "Audit completo del tuo sito attuale con interventi specifici per migliorare conversioni e performance." },
+    { name: "SEO & Velocità", desc: "Ottimizzazione tecnica per posizionarti su Google e far caricare il sito in meno di 3 secondi." },
+    { name: "Manutenzione", desc: "Aggiornamenti, modifiche e supporto continuo. Il tuo sito rimane sempre performante." },
   ];
   return (
     <section id="servizi" className="section-padding" style={{ background: "#fafafa" }}>
@@ -445,7 +469,7 @@ function Services() {
 /* ───────── PROCESS ───────── */
 function Process() {
   const steps = [
-    { title: "Analisi Gratuita", desc: "Analizziamo il tuo sito attuale (o la tua presenza online) e ti mostriamo esattamente cosa non funziona e cosa si può migliorare. Zero costi, zero impegno." },
+    { title: "Analisi Gratuita", desc: "Analizziamo il tuo sito attuale (o la tua presenza online) e ti mostriamo esattamente cosa non funziona e cosa si può migliorare. Senza costi né impegno." },
     { title: "Proposta Su Misura", desc: "Ti presentiamo una proposta con obiettivi chiari, tempistiche definite e prezzo trasparente. Nessuna sorpresa." },
     { title: "Consegna e Risultati", desc: "Costruiamo, testiamo e lanciamo. Tu vedi il progresso in tempo reale e ricevi un sito pronto a generare clienti." }
   ];
@@ -483,7 +507,7 @@ function Pricing() {
     "Sviluppo responsive (mobile-first)",
     "Ottimizzazione SEO base",
     "Form contatto funzionale",
-    "Deploy e configurazione dominio",
+    "Pubblicazione e configurazione dominio",
     "30 giorni di supporto post-lancio"
   ];
   return (
@@ -495,7 +519,7 @@ function Pricing() {
         <ScrollReveal delay={100}>
           <div className="card-pricing" style={{ border: `1px solid ${ACCENT_RGBA(0.25)}`, padding: "52px 40px", background: "#ffffff", boxShadow: "0 2px 8px rgba(0,0,0,0.06)", transition: "transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease" }}>
           <div style={{ fontFamily: FONT_INTER, fontSize: 10, fontWeight: 600, color: ACCENT, textTransform: "uppercase", letterSpacing: 4, marginBottom: 12 }}>Sito Completo</div>
-          <div className="card-pricing-price" style={{ fontFamily: FONT_INTER, fontSize: 56, fontWeight: 800, color: "#111", marginBottom: 32 }}>Da €997<span style={{ fontSize: 16, color: "rgba(0,0,0,0.5)", fontWeight: 400 }}> /progetto</span></div>
+          <div className="card-pricing-price" style={{ fontFamily: FONT_INTER, fontSize: 56, fontWeight: 800, color: "#111", marginBottom: 32 }}>Da €997{" "}<span style={{ fontSize: 16, color: "rgba(0,0,0,0.5)", fontWeight: 400 }}>/ progetto</span></div>
           {features.map((f, i) => (
             <div key={i} style={{ fontFamily: FONT_INTER, fontSize: 13, color: "rgba(0,0,0,0.6)", padding: "14px 0", borderBottom: i < 6 ? "1px solid rgba(0,0,0,0.06)" : "none", textAlign: "left", display: "flex", alignItems: "center", gap: 14, fontWeight: 400 }}>
               <span style={{ color: ACCENT, fontSize: 10 }}>◆</span> {f}
@@ -513,9 +537,9 @@ function Pricing() {
 /* ───────── TEAM ───────── */
 function Team() {
   const members = [
-    { name: "Nome Cognome", role: "Fondatore & Lead Developer", placeholder: "N" },
-    { name: "Nome Cognome", role: "Design & UX", placeholder: "N" },
-    { name: "Nome Cognome", role: "Marketing & Strategia", placeholder: "N" },
+    { name: "Nome Cognome", role: "Fondatore e Sviluppatore", placeholder: "N" },
+    { name: "Nome Cognome", role: "Design e UX", placeholder: "N" },
+    { name: "Nome Cognome", role: "Marketing e Strategia", placeholder: "N" },
   ];
   return (
     <section id="team" className="section-padding" style={{ background: "#ffffff" }}>
@@ -545,11 +569,11 @@ function Team() {
 function FAQ() {
   const [open, setOpen] = useState(null);
   const faqs = [
-    { q: "Quanto tempo ci vuole?", a: "Dipende dalla complessità del progetto. Un sito landing page è pronto in 5-7 giorni. Un sito multi-pagina in 2-3 settimane. Definiamo le tempistiche insieme prima di iniziare." },
-    { q: "E se non sono soddisfatto del risultato?", a: "Lavoriamo con revisioni incluse fino alla tua completa soddisfazione. Non consegniamo un progetto finché non sei felice al 100%." },
-    { q: "Ho già un sito, potete migliorarlo senza rifarlo da zero?", a: "Assolutamente sì. Facciamo un audit gratuito e ti diciamo cosa si può migliorare. A volte bastano pochi interventi mirati per trasformare le performance." },
-    { q: "Come funziona il pagamento?", a: "50% all'inizio, 50% alla consegna. Per progetti più grandi offriamo pagamento in 3 rate. Nessun pagamento nascosto." },
-    { q: "Cosa succede dopo la consegna?", a: "Hai 30 giorni di supporto incluso per qualsiasi modifica o problema. Dopo, offriamo pacchetti di manutenzione mensile a partire da €97/mese." }
+    { q: "Quali sono i tempi di realizzazione?", a: "Dipende dalla complessità del progetto. Un sito landing page è pronto in 5-7 giorni lavorativi. Un sito multi-pagina in 2-3 settimane. Le tempistiche vengono definite insieme prima dell'avvio." },
+    { q: "E qualora non fossi soddisfatto del risultato?", a: "Lavoriamo con revisioni incluse fino alla tua completa soddisfazione. Non consegniamo un progetto finché non sei soddisfatto al 100%." },
+    { q: "Avendo già un sito, è possibile migliorarlo senza rifarlo da zero?", a: "Certamente. Effettuiamo un audit gratuito e ti indichiamo gli interventi possibili. Spesso bastano interventi mirati per migliorare le performance." },
+    { q: "Come funziona il pagamento?", a: "50% all'avvio del progetto, 50% alla consegna. Per progetti di maggiore entità offriamo pagamento in 3 rate. Nessun costo nascosto." },
+    { q: "Cosa include il supporto post-consegna?", a: "Sono inclusi 30 giorni di supporto per modifiche o problematiche. Successivamente offriamo pacchetti di manutenzione mensile a partire da €97/mese." }
   ];
   return (
     <section id="faq" className="section-padding" style={{ background: "#ffffff" }}>
@@ -583,7 +607,7 @@ function FooterCTA() {
         <h2 style={{ fontFamily: FONT_INTER, fontSize: "clamp(28px, 4.5vw, 46px)", fontWeight: 800, color: "#111", marginBottom: 20 }}>Pronto a Far Crescere il Tuo Business?</h2>
         <div style={{ width: 40, height: 1, background: ACCENT, margin: "0 auto 28px" }} />
         <p style={{ fontFamily: FONT_INTER, fontSize: 14, color: "rgba(0,0,0,0.55)", marginBottom: 44, lineHeight: 1.9, fontWeight: 400 }}>Prenota una consulenza gratuita di 15 minuti. Analizziamo il tuo sito e ti mostriamo come migliorarlo.</p>
-        <button onClick={() => scrollToSection("contatti")} className="btn-primary cta-footer-btn" style={{ background: ACCENT, color: "#0C0C0C", border: "none", padding: "18px 52px", fontFamily: FONT_INTER, fontSize: 12, fontWeight: 600, cursor: "pointer", textTransform: "uppercase", letterSpacing: 3, transition: "transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease", maxWidth: 360, margin: "0 auto" }}>Prenota Consulenza Gratuita</button>
+        <button onClick={() => scrollToSection("contatti")} className="btn-primary cta-footer-btn" style={{ background: ACCENT, color: "#ffffff", border: "none", padding: "18px 52px", fontFamily: FONT_INTER, fontSize: 12, fontWeight: 600, cursor: "pointer", textTransform: "uppercase", letterSpacing: 3, transition: "transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease", maxWidth: 360, margin: "0 auto" }}>Prenota Consulenza Gratuita</button>
         <div className="footer-contacts-wrap" style={{ marginTop: 64, display: "flex", gap: 56, justifyContent: "center", flexWrap: "wrap" }}>
           {[["Telefono", "+39 XXX XXX XXXX"], ["Email", "info@ecfmedia.it"], ["Zona", "Italia"]].map(([label, text]) => (
             <div key={text} style={{ textAlign: "center" }}>
@@ -604,6 +628,12 @@ export default function PremiumTemplate() {
     <div style={{ margin: 0, padding: 0, background: "#ffffff" }} className="ecf-media-site">
       <NoiseOverlay />
       <style>{`
+        .ecf-media-site { max-width: 1440px; margin-left: auto; margin-right: auto; width: 100%; overflow-x: hidden; }
+        @media (max-width: 768px) {
+          .ecf-media-site { max-width: 100%; }
+          .ecf-media-site .hero-section { display: flex !important; justify-content: center !important; align-items: center !important; }
+          .ecf-media-site .hero-section > div:last-of-type { margin-left: auto !important; margin-right: auto !important; width: 100% !important; max-width: 100% !important; box-sizing: border-box !important; }
+        }
         .ecf-media-site section[id] { scroll-margin-top: ${SCROLL_OFFSET}px; }
         html { scroll-behavior: smooth; }
         .ecf-media-site section.section-padding { padding: 110px 36px; }
@@ -686,7 +716,7 @@ export default function PremiumTemplate() {
         }
         .ecf-media-site .hero-section { padding: 100px 36px 60px; }
         @media (max-width: 768px) {
-          .ecf-media-site .hero-section { padding: 80px 24px 48px; }
+          .ecf-media-site .hero-section { padding: 80px 24px 48px; overflow-x: hidden; }
           .ecf-media-site .hero-blob-mobile-hide { display: none; }
           .ecf-media-site .hero-blob { filter: blur(120px); }
         }
@@ -764,7 +794,17 @@ export default function PremiumTemplate() {
             transform: scale(1.02);
             color: #0EA5E9 !important;
           }
-          .ecf-media-site .btn-nav:hover:active { transform: scale(0.98); }
+          .ecf-media-site .btn-nav-cta:hover {
+            transform: scale(1.02);
+            background-color: #0284C7 !important;
+            color: #ffffff !important;
+          }
+          .ecf-media-site .btn-nav-mobile-cta:hover {
+            background-color: #0284C7 !important;
+            color: #ffffff !important;
+          }
+          .ecf-media-site .btn-nav:hover:active,
+          .ecf-media-site .btn-nav-cta:hover:active { transform: scale(0.98); }
           .ecf-media-site .card-problema:hover {
             transform: translateY(-4px);
             box-shadow: 0 4px 12px rgba(0,0,0,0.06);
