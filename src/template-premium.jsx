@@ -715,7 +715,11 @@ export default function PremiumTemplate() {
           .ecf-media-site .hero-line-mobile-hide { display: none; }
         }
         @media (max-width: 640px) {
-          .ecf-media-site .hero-stats-wrap { gap: 32 !important; }
+          .ecf-media-site .hero-stats-wrap { gap: 24px !important; flex-wrap: nowrap !important; }
+        }
+        @media (max-width: 480px) {
+          .ecf-media-site .hero-stats-wrap { gap: 16px !important; flex-wrap: nowrap !important; }
+          .ecf-media-site .hero-stats-wrap > div { min-width: 0; flex: 1; }
         }
         @media (max-width: 640px) {
           .ecf-media-site .process-step { flex-direction: column !important; align-items: flex-start !important; gap: 12 !important; }
