@@ -383,7 +383,7 @@ function Services() {
     { name: "Manutenzione", desc: "Aggiornamenti, modifiche e supporto continuo. Il tuo sito rimane sempre performante." },
   ];
   return (
-    <section id="servizi" className="section-padding" style={{ background: "#fafafa" }}>
+    <section id="servizi" className="section-padding" style={{ background: "#ffffff" }}>
       <div style={{ maxWidth: "min(1200px, 92vw)", width: "100%", margin: "0 auto", padding: "0 24px" }}>
         <div style={{ textAlign: "center", marginBottom: 64 }}>
           <div style={{ fontFamily: FONT_INTER, fontSize: 10, fontWeight: 600, color: ACCENT, textTransform: "uppercase", letterSpacing: 5, marginBottom: 20 }}>SERVIZI</div>
@@ -441,34 +441,113 @@ function Process() {
 
 /* ───────── PRICING ───────── */
 function Pricing() {
-  const features = [
-    "Analisi e consulenza iniziale",
-    "Design personalizzato",
-    "Sviluppo responsive (mobile-first)",
-    "Ottimizzazione SEO base",
-    "Form contatto funzionale",
-    "Pubblicazione e configurazione dominio",
-    "30 giorni di supporto post-lancio"
+  const starterFeatures = [
+    "Sito one-page professionale",
+    "Design responsive (mobile-first)",
+    "Struttura ottimizzata per conversione",
+    "Sezione servizi/menù/orari",
+    "Mappa e contatti integrati",
+    "Bottone WhatsApp / chiama",
+    "Deploy e messa online",
+    "15 giorni di supporto"
   ];
+  
+  const rifacimentoFeatures = [
+    "Tutto quello dello Starter, più:",
+    "Sito multi-pagina completo",
+    "Copy professionale per ogni sezione",
+    "Ottimizzazione SEO base",
+    "Form contatto avanzato",
+    "Sezione testimonianze/social proof",
+    "Integrazione Google Analytics",
+    "Dominio e hosting setup",
+    "30 giorni di supporto"
+  ];
+  
+  const premiumFeatures = [
+    "Tutto quello del Rifacimento, più:",
+    "Design premium personalizzato",
+    "Animazioni e micro-interazioni",
+    "Strategia di conversione avanzata",
+    "Ottimizzazione velocità avanzata (<2s)",
+    "Blog/news section",
+    "Supporto prioritario WhatsApp",
+    "Manutenzione 60 giorni inclusa",
+    "Report performance mensile"
+  ];
+  
   return (
-    <section id="pricing" className="section-padding" style={{ background: "#fafafa" }}>
-      <div style={{ maxWidth: "min(640px, 92vw)", width: "100%", margin: "0 auto", padding: "0 24px", textAlign: "center" }}>
+    <section id="pricing" className="section-padding pricing-section-dark" style={{ background: "#ffffff" }}>
+      <div style={{ maxWidth: "min(1200px, 92vw)", width: "100%", margin: "0 auto", padding: "0 24px", textAlign: "center" }}>
         <div style={{ fontFamily: FONT_INTER, fontSize: 10, fontWeight: 600, color: ACCENT, textTransform: "uppercase", letterSpacing: 5, marginBottom: 20 }}>INVESTIMENTO</div>
-        <TextReveal text="Quanto Costa un Sito che Funziona" style={{ fontFamily: FONT_INTER, fontSize: "clamp(28px, 4.5vw, 46px)", fontWeight: 800, color: "#111", marginBottom: 16 }} />
-        <div style={{ width: 40, height: 1, background: ACCENT, margin: "0 auto 48px" }} />
-        <ScrollReveal delay={100}>
-          <div className="card-pricing" style={{ border: `1px solid ${ACCENT_RGBA(0.25)}`, padding: "52px 40px", background: "#ffffff", boxShadow: "0 2px 8px rgba(0,0,0,0.06)", transition: "transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease" }}>
-          <div style={{ fontFamily: FONT_INTER, fontSize: 10, fontWeight: 600, color: ACCENT, textTransform: "uppercase", letterSpacing: 4, marginBottom: 12 }}>Sito Completo</div>
-          <div className="card-pricing-price" style={{ fontFamily: FONT_INTER, fontSize: 56, fontWeight: 800, color: "#111", marginBottom: 32 }}>Da €997{" "}<span style={{ fontSize: 16, color: "rgba(0,0,0,0.5)", fontWeight: 400 }}>/ progetto</span></div>
-          {features.map((f, i) => (
-            <div key={i} style={{ fontFamily: FONT_INTER, fontSize: 13, color: "rgba(0,0,0,0.6)", padding: "14px 0", borderBottom: i < 6 ? "1px solid rgba(0,0,0,0.06)" : "none", textAlign: "left", display: "flex", alignItems: "center", gap: 14, fontWeight: 400 }}>
-              <span style={{ color: ACCENT, fontSize: 10 }}>◆</span> {f}
+        <TextReveal text="Scegli il Piano Giusto per Te" style={{ fontFamily: FONT_INTER, fontSize: "clamp(28px, 4.5vw, 46px)", fontWeight: 800, color: "#111", marginBottom: 16 }} />
+        <div style={{ width: 40, height: 1, background: ACCENT, margin: "0 auto 16px" }} />
+        <p style={{ fontFamily: FONT_INTER, fontSize: 14, color: "rgba(0,0,0,0.6)", marginBottom: 48, fontWeight: 400 }}>Ogni piano include consulenza iniziale gratuita e design ottimizzato per convertire.</p>
+        
+        <div className="pricing-cards-wrapper" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24, alignItems: "stretch", marginBottom: 36 }}>
+          {/* CARD 1 - Starter */}
+          <ScrollReveal delay={0}>
+            <div className="card-pricing-starter" style={{ position: "relative", background: "#ffffff", border: "1px solid rgba(14,165,233,0.2)", padding: "44px 32px", borderRadius: 12, display: "flex", flexDirection: "column", transition: "transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease", boxShadow: "0 2px 8px rgba(0,0,0,0.06)" }}>
+              <div style={{ fontFamily: FONT_INTER, fontSize: 10, fontWeight: 600, color: ACCENT, textTransform: "uppercase", letterSpacing: 4, marginBottom: 8 }}>Starter</div>
+              <div style={{ fontFamily: FONT_INTER, fontSize: 12, color: "rgba(0,0,0,0.5)", marginBottom: 24, fontWeight: 400 }}>Non hai un sito? Ti mettiamo online.</div>
+              <div className="card-pricing-price" style={{ fontFamily: FONT_INTER, fontSize: 48, fontWeight: 300, color: "#111", marginBottom: 32, lineHeight: 1 }}>
+                €197<span style={{ fontSize: 14, color: "rgba(0,0,0,0.4)", fontWeight: 300, marginLeft: 4 }}>/una tantum</span>
+              </div>
+              <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
+                {starterFeatures.map((f, i) => (
+                  <div key={i} style={{ fontFamily: FONT_INTER, fontSize: 13, color: "rgba(0,0,0,0.6)", padding: "12px 0", borderBottom: i < starterFeatures.length - 1 ? "1px solid rgba(0,0,0,0.08)" : "none", textAlign: "left", display: "flex", alignItems: "flex-start", gap: 14, fontWeight: 300 }}>
+                    <span style={{ color: ACCENT, fontSize: 10, flexShrink: 0, marginTop: 2 }}>◆</span> <span>{f}</span>
+                  </div>
+                ))}
+              </div>
+              <button onClick={() => window.open(WHATSAPP_URL, "_blank", "noopener,noreferrer")} className="btn-pricing-outline" style={{ marginTop: 32, width: "100%", background: "transparent", color: ACCENT, border: "1px solid rgba(14,165,233,0.3)", padding: "17px", fontFamily: FONT_INTER, fontSize: 12, fontWeight: 600, cursor: "pointer", textTransform: "uppercase", letterSpacing: 3, transition: "all 0.3s ease", borderRadius: 8 }}>Vai Online Ora</button>
+              <div style={{ fontFamily: FONT_INTER, fontSize: 11, color: "rgba(0,0,0,0.4)", marginTop: 12, fontWeight: 400 }}>Perfetto per bar, ristoranti e attività locali</div>
             </div>
-          ))}
-          <button onClick={() => window.open(WHATSAPP_URL, "_blank", "noopener,noreferrer")} className="btn-outline" style={{ marginTop: 36, width: "100%", background: "transparent", color: ACCENT, border: `1px solid ${ACCENT}`, padding: "17px", fontFamily: FONT_INTER, fontSize: 12, fontWeight: 600, cursor: "pointer", textTransform: "uppercase", letterSpacing: 3, transition: "transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease" }}>Prenota Consulenza Gratuita</button>
-          <div style={{ fontFamily: FONT_INTER, fontSize: 11, color: "rgba(0,0,0,0.5)", marginTop: 16, fontWeight: 400 }}>Consulenza gratuita · Preventivo personalizzato · Pagamento rateizzabile</div>
-          </div>
-        </ScrollReveal>
+          </ScrollReveal>
+          
+          {/* CARD 2 - Rifacimento (HIGHLIGHT) */}
+          <ScrollReveal delay={100}>
+            <div className="card-pricing-rifacimento" style={{ position: "relative", background: "#ffffff", border: "1.5px solid #0EA5E9", padding: "44px 32px", borderRadius: 12, display: "flex", flexDirection: "column", transition: "transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease", boxShadow: "0 4px 20px rgba(14,165,233,0.15)", overflow: "visible" }}>
+              <div style={{ position: "absolute", top: -14, left: "50%", transform: "translateX(-50%)", background: ACCENT, color: "#ffffff", fontFamily: FONT_INTER, fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: 2, padding: "6px 16px", borderRadius: 6 }}>Più Scelto</div>
+              <div style={{ fontFamily: FONT_INTER, fontSize: 10, fontWeight: 600, color: ACCENT, textTransform: "uppercase", letterSpacing: 4, marginBottom: 8, marginTop: 8 }}>Rifacimento</div>
+              <div style={{ fontFamily: FONT_INTER, fontSize: 12, color: "rgba(0,0,0,0.5)", marginBottom: 24, fontWeight: 400 }}>Il tuo sito non converte? Lo ricostruiamo.</div>
+              <div className="card-pricing-price" style={{ fontFamily: FONT_INTER, fontSize: 48, fontWeight: 300, color: "#111", marginBottom: 32, lineHeight: 1 }}>
+                €497<span style={{ fontSize: 14, color: "rgba(0,0,0,0.4)", fontWeight: 300, marginLeft: 4 }}>/progetto</span>
+              </div>
+              <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
+                {rifacimentoFeatures.map((f, i) => (
+                  <div key={i} style={{ fontFamily: FONT_INTER, fontSize: 13, color: i === 0 ? ACCENT : "rgba(0,0,0,0.6)", padding: "12px 0", borderBottom: i < rifacimentoFeatures.length - 1 ? "1px solid rgba(0,0,0,0.08)" : "none", textAlign: "left", display: "flex", alignItems: "flex-start", gap: 14, fontWeight: i === 0 ? 500 : 300, marginBottom: i === 0 ? 8 : 0 }}>
+                    {i > 0 && <span style={{ color: ACCENT, fontSize: 10, flexShrink: 0, marginTop: 2 }}>◆</span>} <span>{f}</span>
+                  </div>
+                ))}
+              </div>
+              <button onClick={() => window.open(WHATSAPP_URL, "_blank", "noopener,noreferrer")} className="btn-pricing-filled" style={{ marginTop: 32, width: "100%", background: ACCENT, color: "#ffffff", border: "none", padding: "17px", fontFamily: FONT_INTER, fontSize: 12, fontWeight: 600, cursor: "pointer", textTransform: "uppercase", letterSpacing: 3, transition: "all 0.3s ease", borderRadius: 8 }}>Rifai il Tuo Sito</button>
+              <div style={{ fontFamily: FONT_INTER, fontSize: 11, color: "rgba(0,0,0,0.4)", marginTop: 12, fontWeight: 400 }}>Per chi ha un sito che non porta risultati</div>
+            </div>
+          </ScrollReveal>
+          
+          {/* CARD 3 - Premium */}
+          <ScrollReveal delay={200}>
+            <div className="card-pricing-premium" style={{ position: "relative", background: "#ffffff", border: "1px solid rgba(14,165,233,0.2)", padding: "44px 32px", borderRadius: 12, display: "flex", flexDirection: "column", transition: "transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease", boxShadow: "0 2px 8px rgba(0,0,0,0.06)" }}>
+              <div style={{ fontFamily: FONT_INTER, fontSize: 10, fontWeight: 600, color: ACCENT, textTransform: "uppercase", letterSpacing: 4, marginBottom: 8 }}>Premium</div>
+              <div style={{ fontFamily: FONT_INTER, fontSize: 12, color: "rgba(0,0,0,0.5)", marginBottom: 24, fontWeight: 400 }}>Esperienza completa. Risultati garantiti.</div>
+              <div className="card-pricing-price" style={{ fontFamily: FONT_INTER, fontSize: 48, fontWeight: 300, color: "#111", marginBottom: 32, lineHeight: 1 }}>
+                €999<span style={{ fontSize: 14, color: "rgba(0,0,0,0.4)", fontWeight: 300, marginLeft: 4 }}>/progetto</span>
+              </div>
+              <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
+                {premiumFeatures.map((f, i) => (
+                  <div key={i} style={{ fontFamily: FONT_INTER, fontSize: 13, color: i === 0 ? ACCENT : "rgba(0,0,0,0.6)", padding: "12px 0", borderBottom: i < premiumFeatures.length - 1 ? "1px solid rgba(0,0,0,0.08)" : "none", textAlign: "left", display: "flex", alignItems: "flex-start", gap: 14, fontWeight: i === 0 ? 500 : 300, marginBottom: i === 0 ? 8 : 0 }}>
+                    {i > 0 && <span style={{ color: ACCENT, fontSize: 10, flexShrink: 0, marginTop: 2 }}>◆</span>} <span>{f}</span>
+                  </div>
+                ))}
+              </div>
+              <button onClick={() => window.open(WHATSAPP_URL, "_blank", "noopener,noreferrer")} className="btn-pricing-outline" style={{ marginTop: 32, width: "100%", background: "transparent", color: ACCENT, border: "1px solid rgba(14,165,233,0.3)", padding: "17px", fontFamily: FONT_INTER, fontSize: 12, fontWeight: 600, cursor: "pointer", textTransform: "uppercase", letterSpacing: 3, transition: "all 0.3s ease", borderRadius: 8 }}>Scegli Premium</button>
+              <div style={{ fontFamily: FONT_INTER, fontSize: 11, color: "rgba(0,0,0,0.4)", marginTop: 12, fontWeight: 400 }}>Per chi vuole il massimo dal proprio sito</div>
+            </div>
+          </ScrollReveal>
+        </div>
+        
+        <div style={{ fontFamily: FONT_INTER, fontSize: 12, color: "rgba(0,0,0,0.5)", marginTop: 36, fontWeight: 400 }}>Tutti i piani includono consulenza gratuita · Preventivo personalizzato · Pagamento rateizzabile</div>
       </div>
     </section>
   );
@@ -642,12 +721,22 @@ export default function PremiumTemplate() {
           .ecf-media-site .process-step { flex-direction: column !important; align-items: flex-start !important; gap: 12 !important; }
           .ecf-media-site .process-step-num { font-size: 40px !important; min-width: unset !important; }
         }
+        .pricing-section-dark { overflow: visible; }
+        .pricing-cards-wrapper { overflow: visible; }
+        @media (max-width: 900px) {
+          .pricing-cards-wrapper { grid-template-columns: repeat(3, 1fr) !important; gap: 20px !important; }
+        }
         @media (max-width: 768px) {
-          .ecf-media-site .card-pricing { padding: 32px 24px !important; }
-          .ecf-media-site .card-pricing-price { font-size: 44px !important; }
+          .pricing-cards-wrapper { grid-template-columns: 1fr !important; gap: 20px !important; }
+          .ecf-media-site .card-pricing-starter,
+          .ecf-media-site .card-pricing-rifacimento,
+          .ecf-media-site .card-pricing-premium { padding: 36px 24px !important; }
+          .ecf-media-site .card-pricing-price { font-size: 40px !important; }
         }
         @media (max-width: 480px) {
-          .ecf-media-site .card-pricing { padding: 28px 20px !important; }
+          .ecf-media-site .card-pricing-starter,
+          .ecf-media-site .card-pricing-rifacimento,
+          .ecf-media-site .card-pricing-premium { padding: 32px 20px !important; }
         }
         @media (max-width: 480px) {
           .ecf-media-site .faq-question { font-size: 16px !important; }
@@ -723,11 +812,25 @@ export default function PremiumTemplate() {
             box-shadow: 0 8px 24px rgba(0,0,0,0.08) !important;
             border-color: rgba(14,165,233,0.35) !important;
           }
-          .ecf-media-site .card-pricing:hover {
+          .ecf-media-site .card-pricing-starter:hover,
+          .ecf-media-site .card-pricing-premium:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 28px rgba(0,0,0,0.1) !important;
-            border-color: rgba(14,165,233,0.4) !important;
+            border-color: rgba(14,165,233,0.3) !important;
           }
+          .ecf-media-site .card-pricing-rifacimento:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 0 50px rgba(14,165,233,0.12) !important;
+          }
+          .ecf-media-site .btn-pricing-outline:hover {
+            border-color: #0EA5E9 !important;
+            color: #0EA5E9 !important;
+          }
+          .ecf-media-site .btn-pricing-filled:hover {
+            background-color: #0284C7 !important;
+            transform: scale(1.02);
+          }
+          .ecf-media-site .btn-pricing-outline:hover:active,
+          .ecf-media-site .btn-pricing-filled:hover:active { transform: scale(0.98); }
         }
         @media (max-width: 640px) {
           .ecf-media-site .cta-hero-wrap { flex-direction: column !important; width: 100% !important; }
