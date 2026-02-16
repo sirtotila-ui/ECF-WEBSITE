@@ -1,12 +1,15 @@
 import { useState, useEffect, useRef } from "react";
 
-const SECTIONS = ["home", "problema", "soluzione", "risultati", "loghi", "servizi", "processo", "pricing", "team", "faq", "contatti"];
-const NAV_LABELS = { home: "Home", problema: "Problema", soluzione: "Soluzione", risultati: "Risultati", loghi: "Clienti", servizi: "Servizi", processo: "Come Funziona", pricing: "Prezzi", team: "Team", faq: "FAQ", contatti: "Contatti" };
+const SECTIONS = ["home", "problema", "soluzione", "servizi", "processo", "pricing", "faq", "contatti"];
+const NAV_LABELS = { home: "Home", problema: "Problema", soluzione: "Soluzione", servizi: "Servizi", processo: "Come Funziona", pricing: "Prezzi", faq: "FAQ", contatti: "Contatti" };
 
 const FONT_INTER = "'Inter', sans-serif";
 const ACCENT = "#0EA5E9";
 const ACCENT_RGBA = (o) => `rgba(14,165,233,${o})`;
 const SCROLL_OFFSET = 80;
+const WHATSAPP_NUMBER = "393664400722";
+const WHATSAPP_PRENOTA_MSG = "Buongiorno, vorrei prenotare una consulenza gratuita.";
+const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_PRENOTA_MSG)}`;
 
 /* ───────── SMOOTH SCROLL ───────── */
 function scrollToSection(id, onAfterScroll) {
@@ -287,8 +290,8 @@ function Hero() {
         </h1>
         <p className="hero-subtitle" style={{ fontFamily: FONT_INTER, fontSize: "clamp(14px, 2vw, 16px)", color: "rgba(0,0,0,0.5)", maxWidth: 480, margin: "0 auto 44px", lineHeight: 1.9, fontWeight: 400, letterSpacing: 0.3 }}>Creiamo siti web che trasformano visitatori in clienti. Design premium, performance reali, risultati misurabili.</p>
         <div className="cta-hero-wrap" style={{ display: "flex", gap: 20, justifyContent: "center", flexWrap: "wrap" }}>
-          <button onClick={() => scrollToSection("contatti")} className="btn-primary" style={{ background: ACCENT, color: "#ffffff", border: "none", padding: "16px 44px", fontFamily: FONT_INTER, fontSize: 12, fontWeight: 600, cursor: "pointer", textTransform: "uppercase", letterSpacing: 3, transition: "transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease", minWidth: 200 }}>Prenota Consulenza Gratuita</button>
-          <button onClick={() => scrollToSection("risultati")} className="btn-outline" style={{ background: "transparent", color: ACCENT, border: `1px solid ${ACCENT}`, padding: "16px 44px", fontFamily: FONT_INTER, fontSize: 12, fontWeight: 600, cursor: "pointer", textTransform: "uppercase", letterSpacing: 3, transition: "transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease", minWidth: 200 }}>Vedi Portfolio</button>
+          <button onClick={() => window.open(WHATSAPP_URL, "_blank", "noopener,noreferrer")} className="btn-primary" style={{ background: ACCENT, color: "#ffffff", border: "none", padding: "16px 44px", fontFamily: FONT_INTER, fontSize: 12, fontWeight: 600, cursor: "pointer", textTransform: "uppercase", letterSpacing: 3, transition: "transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease", minWidth: 200 }}>Prenota Consulenza Gratuita</button>
+          <button onClick={() => scrollToSection("servizi")} className="btn-outline" style={{ background: "transparent", color: ACCENT, border: `1px solid ${ACCENT}`, padding: "16px 44px", fontFamily: FONT_INTER, fontSize: 12, fontWeight: 600, cursor: "pointer", textTransform: "uppercase", letterSpacing: 3, transition: "transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease", minWidth: 200 }}>Vedi Servizi</button>
         </div>
         <div style={{ width: 1, height: 60, background: `linear-gradient(to bottom, transparent, ${ACCENT_RGBA(0.3)})`, margin: "56px auto 0" }} />
         <div className="hero-stats-wrap" style={{ display: "flex", gap: 56, justifyContent: "center", marginTop: 32, flexWrap: "wrap" }}>
@@ -362,69 +365,6 @@ function Solution() {
               <div style={{ width: 48, height: 48, border: `1px solid ${ACCENT_RGBA(0.3)}`, display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 24px", fontFamily: FONT_INTER, fontSize: 20, color: ACCENT, fontWeight: 800 }}>{i + 1}</div>
               <h3 style={{ fontFamily: FONT_INTER, fontSize: 22, fontWeight: 800, color: "#111", marginBottom: 12 }}>{b.title}</h3>
               <p style={{ fontFamily: FONT_INTER, fontSize: 13.5, color: "rgba(0,0,0,0.55)", lineHeight: 1.85, margin: 0, fontWeight: 400 }}>{b.desc}</p>
-              </div>
-            </ScrollReveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ───────── SOCIAL PROOF ───────── */
-function SocialProof() {
-  const testimonials = [
-    { name: "Marco R.", role: "Imprenditore", text: "Da quando abbiamo il nuovo sito, le richieste di preventivo sono triplicate nel primo mese." },
-    { name: "Laura B.", role: "Titolare Ristorante", text: "Finalmente un sito che rappresenta la qualità del nostro lavoro. I clienti ci dicono sempre che ci hanno scelto per come ci presentiamo online." },
-    { name: "Giuseppe M.", role: "Artigiano", text: "In 3 mesi il sito ha generato più contatti di 2 anni di passaparola. Un investimento che si è ripagato in poche settimane." }
-  ];
-  return (
-    <section id="risultati" className="section-padding" style={{ background: "#ffffff" }}>
-      <div style={{ maxWidth: "min(1200px, 92vw)", width: "100%", margin: "0 auto", padding: "0 24px" }}>
-        <div style={{ textAlign: "center", marginBottom: 64 }}>
-          <div style={{ fontFamily: FONT_INTER, fontSize: 10, fontWeight: 600, color: ACCENT, textTransform: "uppercase", letterSpacing: 5, marginBottom: 20 }}>RISULTATI</div>
-          <TextReveal text="Cosa Ottengono i Nostri Clienti" style={{ fontFamily: FONT_INTER, fontSize: "clamp(28px, 4.5vw, 46px)", fontWeight: 800, color: "#111" }} />
-          <div style={{ width: 40, height: 1, background: ACCENT, margin: "20px auto 0" }} />
-        </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 28 }}>
-          {testimonials.map((t, i) => (
-            <ScrollReveal key={i} delay={i * 80}>
-              <div className="card-testimonial" style={{ padding: "40px 28px", borderLeft: `2px solid ${ACCENT}`, transition: "transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease" }}>
-              <div style={{ fontFamily: FONT_INTER, fontSize: 48, color: ACCENT_RGBA(0.3), lineHeight: 1, marginBottom: 16 }}>"</div>
-              <p style={{ fontFamily: FONT_INTER, fontSize: 13.5, color: "rgba(0,0,0,0.6)", lineHeight: 1.9, margin: "0 0 28px", fontWeight: 400, fontStyle: "italic" }}>{t.text}</p>
-              <div style={{ width: 24, height: 1, background: ACCENT, marginBottom: 16 }} />
-              <div style={{ fontFamily: FONT_INTER, fontWeight: 600, fontSize: 12, color: "#111", letterSpacing: 1, textTransform: "uppercase" }}>{t.name}</div>
-              <div style={{ fontFamily: FONT_INTER, fontSize: 11, color: "rgba(0,0,0,0.45)", marginTop: 4, letterSpacing: 0.5 }}>{t.role}</div>
-              </div>
-            </ScrollReveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ───────── LOGHI (Clienti) ───────── */
-function Loghi() {
-  const clients = [
-    { name: "Client A", placeholder: "A" },
-    { name: "Client B", placeholder: "B" },
-    { name: "Client C", placeholder: "C" },
-    { name: "Client D", placeholder: "D" },
-    { name: "Client E", placeholder: "E" },
-  ];
-  return (
-    <section id="loghi" className="section-padding-tight" style={{ background: "#fafafa" }}>
-      <div style={{ maxWidth: "min(1000px, 92vw)", width: "100%", margin: "0 auto", padding: "0 24px" }}>
-        <div style={{ textAlign: "center", marginBottom: 44 }}>
-          <div style={{ fontFamily: FONT_INTER, fontSize: 10, fontWeight: 600, color: ACCENT, textTransform: "uppercase", letterSpacing: 5, marginBottom: 16 }}>CHI SI FIDA DI NOI</div>
-          <div style={{ width: 40, height: 1, background: ACCENT, margin: "0 auto" }} />
-        </div>
-        <div className="loghi-wrap" style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems: "center", gap: 48 }}>
-          {clients.map((c, i) => (
-            <ScrollReveal key={i} delay={i * 60}>
-              <div className="logo-item" style={{ width: 100, height: 48, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: FONT_INTER, fontSize: 24, fontWeight: 800, color: "rgba(0,0,0,0.25)", transition: "color 0.25s ease, transform 0.25s ease" }} title={c.name}>
-                {c.placeholder}
               </div>
             </ScrollReveal>
           ))}
@@ -525,41 +465,10 @@ function Pricing() {
               <span style={{ color: ACCENT, fontSize: 10 }}>◆</span> {f}
             </div>
           ))}
-          <button onClick={() => scrollToSection("contatti")} className="btn-outline" style={{ marginTop: 36, width: "100%", background: "transparent", color: ACCENT, border: `1px solid ${ACCENT}`, padding: "17px", fontFamily: FONT_INTER, fontSize: 12, fontWeight: 600, cursor: "pointer", textTransform: "uppercase", letterSpacing: 3, transition: "transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease" }}>Prenota Consulenza Gratuita</button>
+          <button onClick={() => window.open(WHATSAPP_URL, "_blank", "noopener,noreferrer")} className="btn-outline" style={{ marginTop: 36, width: "100%", background: "transparent", color: ACCENT, border: `1px solid ${ACCENT}`, padding: "17px", fontFamily: FONT_INTER, fontSize: 12, fontWeight: 600, cursor: "pointer", textTransform: "uppercase", letterSpacing: 3, transition: "transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease" }}>Prenota Consulenza Gratuita</button>
           <div style={{ fontFamily: FONT_INTER, fontSize: 11, color: "rgba(0,0,0,0.5)", marginTop: 16, fontWeight: 400 }}>Consulenza gratuita · Preventivo personalizzato · Pagamento rateizzabile</div>
           </div>
         </ScrollReveal>
-      </div>
-    </section>
-  );
-}
-
-/* ───────── TEAM ───────── */
-function Team() {
-  const members = [
-    { name: "Nome Cognome", role: "Fondatore e Sviluppatore", placeholder: "N" },
-    { name: "Nome Cognome", role: "Design e UX", placeholder: "N" },
-    { name: "Nome Cognome", role: "Marketing e Strategia", placeholder: "N" },
-  ];
-  return (
-    <section id="team" className="section-padding" style={{ background: "#ffffff" }}>
-      <div style={{ maxWidth: "min(1000px, 92vw)", width: "100%", margin: "0 auto", padding: "0 24px" }}>
-        <div style={{ textAlign: "center", marginBottom: 64 }}>
-          <div style={{ fontFamily: FONT_INTER, fontSize: 10, fontWeight: 600, color: ACCENT, textTransform: "uppercase", letterSpacing: 5, marginBottom: 20 }}>IL TEAM</div>
-          <TextReveal text="Chi Lavora per Te" style={{ fontFamily: FONT_INTER, fontSize: "clamp(28px, 4.5vw, 46px)", fontWeight: 800, color: "#111" }} />
-          <div style={{ width: 40, height: 1, background: ACCENT, margin: "20px auto 0" }} />
-        </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 36 }}>
-          {members.map((m, i) => (
-            <ScrollReveal key={i} delay={i * 100}>
-              <div className="card-team" style={{ textAlign: "center", transition: "transform 0.25s ease, box-shadow 0.25s ease" }}>
-              <div style={{ width: 120, height: 120, borderRadius: "50%", background: ACCENT_RGBA(0.12), display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 24px", fontFamily: FONT_INTER, fontSize: 40, fontWeight: 800, color: ACCENT_RGBA(0.5) }}>{m.placeholder}</div>
-              <h3 style={{ fontFamily: FONT_INTER, fontSize: 18, fontWeight: 800, color: "#111", marginBottom: 8 }}>{m.name}</h3>
-              <div style={{ fontFamily: FONT_INTER, fontSize: 12, color: ACCENT, fontWeight: 600, letterSpacing: 1 }}>{m.role}</div>
-              </div>
-            </ScrollReveal>
-          ))}
-        </div>
       </div>
     </section>
   );
@@ -607,12 +516,14 @@ function FooterCTA() {
         <h2 style={{ fontFamily: FONT_INTER, fontSize: "clamp(28px, 4.5vw, 46px)", fontWeight: 800, color: "#111", marginBottom: 20 }}>Pronto a Far Crescere il Tuo Business?</h2>
         <div style={{ width: 40, height: 1, background: ACCENT, margin: "0 auto 28px" }} />
         <p style={{ fontFamily: FONT_INTER, fontSize: 14, color: "rgba(0,0,0,0.55)", marginBottom: 44, lineHeight: 1.9, fontWeight: 400 }}>Prenota una consulenza gratuita di 15 minuti. Analizziamo il tuo sito e ti mostriamo come migliorarlo.</p>
-        <button onClick={() => scrollToSection("contatti")} className="btn-primary cta-footer-btn" style={{ background: ACCENT, color: "#ffffff", border: "none", padding: "18px 52px", fontFamily: FONT_INTER, fontSize: 12, fontWeight: 600, cursor: "pointer", textTransform: "uppercase", letterSpacing: 3, transition: "transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease", maxWidth: 360, margin: "0 auto" }}>Prenota Consulenza Gratuita</button>
+        <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn-primary cta-footer-btn" style={{ display: "inline-block", background: ACCENT, color: "#ffffff", border: "none", padding: "18px 52px", fontFamily: FONT_INTER, fontSize: 12, fontWeight: 600, cursor: "pointer", textTransform: "uppercase", letterSpacing: 3, transition: "transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease", maxWidth: 360, margin: "0 auto", textDecoration: "none" }}>Prenota Consulenza Gratuita</a>
         <div className="footer-contacts-wrap" style={{ marginTop: 64, display: "flex", gap: 56, justifyContent: "center", flexWrap: "wrap" }}>
-          {[["Telefono", "+39 XXX XXX XXXX"], ["Email", "info@ecfmedia.it"], ["Zona", "Italia"]].map(([label, text]) => (
+          {[["Telefono", "+39 366 440 0722"], ["Email", "info@ecfmedia.it"], ["Zona", "Italia"]].map(([label, text]) => (
             <div key={text} style={{ textAlign: "center" }}>
               <div style={{ fontFamily: FONT_INTER, fontSize: 9, fontWeight: 600, color: ACCENT_RGBA(0.5), textTransform: "uppercase", letterSpacing: 3, marginBottom: 8 }}>{label}</div>
-              <div style={{ fontFamily: FONT_INTER, fontSize: 13, color: "rgba(0,0,0,0.6)", fontWeight: 400 }}>{text}</div>
+              <div style={{ fontFamily: FONT_INTER, fontSize: 13, color: "rgba(0,0,0,0.6)", fontWeight: 400 }}>
+                {label === "Telefono" ? <a href="tel:+393664400722" style={{ color: "inherit", textDecoration: "none" }}>{text}</a> : text}
+              </div>
             </div>
           ))}
         </div>
@@ -745,9 +656,6 @@ export default function PremiumTemplate() {
         @media (max-width: 640px) {
           .ecf-media-site .footer-contacts-wrap { gap: 28 !important; }
         }
-        @media (max-width: 480px) {
-          .ecf-media-site .loghi-wrap { gap: 24 !important; }
-        }
         .ecf-media-site .hero-mesh-parallax { transition: none; will-change: transform; }
         /* Scroll Reveal */
         @keyframes scrollRevealIn {
@@ -760,11 +668,6 @@ export default function PremiumTemplate() {
         .ecf-media-site .text-reveal-word { display: inline-block; opacity: 0; transform: translateY(12px); }
         .ecf-media-site .text-reveal-visible .text-reveal-word { animation: scrollRevealIn 0.5s ease forwards; }
         .ecf-media-site .text-reveal-accent-last .text-reveal-word:last-child { font-style: italic; color: #0EA5E9; }
-        /* Logo hover */
-        @media (hover: hover) {
-          .ecf-media-site .logo-item:hover { color: #0EA5E9 !important; transform: scale(1.08); }
-          .ecf-media-site .card-team:hover { transform: translateY(-6px); }
-        }
         .ecf-media-site .btn-primary,
         .ecf-media-site .btn-outline,
         .ecf-media-site .btn-nav,
@@ -815,11 +718,6 @@ export default function PremiumTemplate() {
             box-shadow: 0 8px 24px rgba(0,0,0,0.1);
             border-color: rgba(14,165,233,0.4) !important;
           }
-          .ecf-media-site .card-testimonial:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-            border-left-color: #0EA5E9 !important;
-          }
           .ecf-media-site .card-servizi:hover {
             transform: translateY(-4px);
             box-shadow: 0 8px 24px rgba(0,0,0,0.08) !important;
@@ -844,17 +742,11 @@ export default function PremiumTemplate() {
       <BlueLine />
       <Solution />
       <BlueLine />
-      <SocialProof />
-      <BlueLine />
-      <Loghi />
-      <BlueLine />
       <Services />
       <BlueLine />
       <Process />
       <BlueLine />
       <Pricing />
-      <BlueLine />
-      <Team />
       <BlueLine />
       <FAQ />
       <BlueLine />
