@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 
 const SECTIONS = ["home", "problema", "soluzione", "risultati", "portfolio", "servizi", "processo", "pricing", "faq", "contatti"];
 const NAV_LABELS = { home: "Home", problema: "Problema", soluzione: "Soluzione", risultati: "Risultati", portfolio: "Portfolio", servizi: "Servizi", processo: "Come Funziona", pricing: "Prezzi", faq: "FAQ", contatti: "Contatti" };
@@ -269,7 +270,7 @@ function Hero() {
       <div className="hero-line-mobile-hide" style={{ position: "absolute", top: 120, right: "10%", width: 1, height: 120, background: `linear-gradient(to bottom, transparent, ${ACCENT_RGBA(0.2)}, transparent)` }} />
       <div className="hero-line-mobile-hide" style={{ position: "absolute", bottom: 120, left: "10%", width: 1, height: 120, background: `linear-gradient(to bottom, transparent, ${ACCENT_RGBA(0.2)}, transparent)` }} />
 
-      <div style={{ maxWidth: "min(1100px, 92vw)", width: "100%", textAlign: "center", position: "relative", zIndex: 1 }}>
+      <div className="hero-content-inner" style={{ maxWidth: "min(1100px, 92vw)", width: "100%", marginLeft: "auto", marginRight: "auto", textAlign: "center", position: "relative", zIndex: 1, boxSizing: "border-box" }}>
         <div style={{ fontFamily: FONT_INTER, fontSize: 11, fontWeight: 600, color: ACCENT, textTransform: "uppercase", letterSpacing: 5, marginBottom: 32 }}>L'AGENZIA WEB PER PIZZERIE</div>
         <h1 style={{ fontFamily: FONT_INTER, fontSize: "clamp(38px, 6vw, 72px)", fontWeight: 800, color: "#ffffff", lineHeight: 1.1, margin: "0 0 28px", letterSpacing: -0.5 }}>
           {["La", "Tua", "Pizzeria", "Merita"].map((word, i) => (
@@ -389,11 +390,11 @@ function Results() {
           <TextReveal text="Cosa Ottengono le Nostre Pizzerie" style={{ fontFamily: FONT_INTER, fontSize: "clamp(28px, 4.5vw, 46px)", fontWeight: 800, color: "#ffffff" }} />
           <div style={{ width: 40, height: 1, background: ACCENT, margin: "20px auto 0" }} />
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 28 }}>
+        <div className="results-cards-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 28, alignItems: "stretch" }}>
           {testimonials.map((t, i) => (
-            <ScrollReveal key={i} delay={i * 80}>
-              <div className="card-testimonial" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(14,165,233,0.2)", padding: "32px 28px", borderRadius: 12, transition: "transform 0.25s ease, border-color 0.25s ease" }}>
-                <p style={{ fontFamily: FONT_INTER, fontSize: 14, color: "rgba(255,255,255,0.85)", lineHeight: 1.8, margin: "0 0 20px", fontWeight: 400, fontStyle: "italic" }}>"{t.quote}"</p>
+            <ScrollReveal key={i} delay={i * 80} style={{ display: "flex" }}>
+              <div className="card-testimonial" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(14,165,233,0.2)", padding: "32px 28px", borderRadius: 12, transition: "transform 0.25s ease, border-color 0.25s ease", flex: 1, display: "flex", flexDirection: "column" }}>
+                <p style={{ fontFamily: FONT_INTER, fontSize: 14, color: "rgba(255,255,255,0.85)", lineHeight: 1.8, margin: "0 0 20px", fontWeight: 400, fontStyle: "italic", flex: 1 }}>"{t.quote}"</p>
                 <div style={{ fontFamily: FONT_INTER, fontSize: 13, fontWeight: 600, color: ACCENT }}>{t.author}</div>
                 <div style={{ fontFamily: FONT_INTER, fontSize: 12, color: "rgba(255,255,255,0.45)", marginTop: 4 }}>{t.place}</div>
               </div>
@@ -414,7 +415,7 @@ function Portfolio() {
         <TextReveal text="I Nostri Progetti" style={{ fontFamily: FONT_INTER, fontSize: "clamp(28px, 4.5vw, 46px)", fontWeight: 800, color: "#ffffff", marginBottom: 16 }} />
         <div style={{ width: 40, height: 1, background: ACCENT, margin: "0 auto 24px" }} />
         <p style={{ fontFamily: FONT_INTER, fontSize: 14, color: "rgba(255,255,255,0.6)", marginBottom: 40, lineHeight: 1.8, fontWeight: 400 }}>Siti e sistemi realizzati per le nostre pizzerie. Esempi concreti di cosa possiamo fare per te.</p>
-        <a href="/portfolio" className="btn-outline" style={{ display: "inline-block", background: "transparent", color: ACCENT, border: `1px solid ${ACCENT}`, padding: "16px 44px", fontFamily: FONT_INTER, fontSize: 12, fontWeight: 600, cursor: "pointer", textTransform: "uppercase", letterSpacing: 3, transition: "transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease", textDecoration: "none" }}>Vedi tutti i progetti</a>
+        <Link to="/portfolio" className="btn-outline" style={{ display: "inline-block", background: "transparent", color: ACCENT, border: `1px solid ${ACCENT}`, padding: "16px 44px", fontFamily: FONT_INTER, fontSize: 12, fontWeight: 600, cursor: "pointer", textTransform: "uppercase", letterSpacing: 3, transition: "transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease", textDecoration: "none" }}>Vedi tutti i progetti</Link>
       </div>
     </section>
   );
@@ -762,7 +763,8 @@ export default function PremiumTemplate() {
           0%, 100% { transform: translate(0, 0) scale(1); }
           50% { transform: translate(-40px, -25px) scale(1.06); }
         }
-        .ecf-media-site .hero-section { padding: 100px 36px 60px; }
+        .ecf-media-site .hero-section { padding: 100px 36px 60px; width: 100%; box-sizing: border-box; }
+        .ecf-media-site .hero-content-inner { margin-left: auto !important; margin-right: auto !important; display: block !important; }
         @media (max-width: 768px) {
           .ecf-media-site .hero-section { padding: 80px 24px 48px; overflow-x: hidden; }
           .ecf-media-site .hero-blob-mobile-hide { display: none; }
