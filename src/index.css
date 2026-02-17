@@ -1,6 +1,8 @@
 html {
   overflow-x: hidden;
   box-sizing: border-box;
+  min-height: 100%;
+  background-color: #0C0C0C;
 }
 
 *, *::before, *::after {
@@ -12,9 +14,9 @@ html {
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light;
-  color: #111;
-  background-color: #ffffff;
+  color-scheme: dark;
+  color: #ffffff;
+  background-color: #0C0C0C;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -38,7 +40,7 @@ body {
   width: 100%;
   max-width: 100vw;
   overflow-x: hidden;
-  background-color: #ffffff;
+  background-color: #0C0C0C;
   padding-left: env(safe-area-inset-left);
   padding-right: env(safe-area-inset-right);
 }
@@ -46,7 +48,9 @@ body {
 #root {
   width: 100%;
   max-width: 100%;
+  min-height: 100vh;
   overflow-x: hidden;
+  background-color: #0C0C0C;
 }
 
 h1 {
