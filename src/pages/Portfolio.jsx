@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
 const FONT_INTER = "'Inter', sans-serif";
@@ -6,6 +7,57 @@ const ACCENT_RGBA = (o) => `rgba(14,165,233,${o})`;
 const WHATSAPP_NUMBER = "393664400722";
 const WHATSAPP_MSG = "Buongiorno, vorrei prenotare un'analisi gratuita della mia pizzeria.";
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MSG)}`;
+
+/* ───────── SCROLL REVEAL ───────── */
+function ScrollReveal({ children, className = "", style = {}, delay = 0, once = true }) {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setVisible(true);
+        else if (!once) setVisible(false);
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [once]);
+  return (
+    <div ref={ref} className={`scroll-reveal ${visible ? "scroll-reveal-visible" : ""} ${className}`} style={{ ...style, animationDelay: visible ? `${delay}ms` : undefined }}>
+      {children}
+    </div>
+  );
+}
+
+/* ───────── TEXT REVEAL ───────── */
+function TextReveal({ text, tag: Tag = "h2", style = {}, className = "" }) {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
+      { threshold: 0.2 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+  const words = text.split(/\s+/).filter(Boolean);
+  return (
+    <Tag ref={ref} className={`text-reveal ${visible ? "text-reveal-visible" : ""} ${className}`.trim()} style={style}>
+      {words.map((w, i) => (
+        <span key={i}>
+          {i > 0 && " "}
+          <span className="text-reveal-word" style={{ animationDelay: visible ? `${i * 60}ms` : undefined }}>{w}</span>
+        </span>
+      ))}
+    </Tag>
+  );
+}
 
 /* Logo (link to home) */
 function PortfolioLogo() {
@@ -42,10 +94,10 @@ function PortfolioHero() {
   return (
     <section className="portfolio-hero" style={{ paddingTop: 140, paddingBottom: 80, paddingLeft: 24, paddingRight: 24, background: "#0C0C0C", textAlign: "center" }}>
       <div style={{ maxWidth: 800, margin: "0 auto" }}>
-        <div style={{ fontFamily: FONT_INTER, fontSize: 10, fontWeight: 600, color: ACCENT, textTransform: "uppercase", letterSpacing: 5, marginBottom: 20 }}>PORTFOLIO</div>
-        <h1 style={{ fontFamily: FONT_INTER, fontSize: "clamp(36px, 5vw, 56px)", fontWeight: 800, color: "#ffffff", margin: "0 0 16px", lineHeight: 1.1 }}>I Nostri Progetti</h1>
-        <div style={{ width: 40, height: 1, background: ACCENT, margin: "0 auto 24px" }} />
-        <p style={{ fontFamily: FONT_INTER, fontSize: 16, color: "rgba(255,255,255,0.6)", lineHeight: 1.8, margin: 0, fontWeight: 400 }}>Siti e sistemi realizzati per le nostre pizzerie. Design, prenotazioni e ordini online che funzionano.</p>
+        <div className="portfolio-hero-label" style={{ fontFamily: FONT_INTER, fontSize: 10, fontWeight: 600, color: ACCENT, textTransform: "uppercase", letterSpacing: 5, marginBottom: 20 }}>PORTFOLIO</div>
+        <TextReveal text="I Nostri Progetti" tag="h1" style={{ fontFamily: FONT_INTER, fontSize: "clamp(36px, 5vw, 56px)", fontWeight: 800, color: "#ffffff", margin: "0 0 16px", lineHeight: 1.1 }} />
+        <div className="portfolio-hero-line" style={{ width: 40, height: 1, background: ACCENT, margin: "0 auto 24px" }} />
+        <p className="portfolio-hero-subtitle" style={{ fontFamily: FONT_INTER, fontSize: 16, color: "rgba(255,255,255,0.6)", lineHeight: 1.8, margin: 0, fontWeight: 400 }}>Siti e sistemi realizzati per le nostre pizzerie. Design, prenotazioni e ordini online che funzionano.</p>
       </div>
     </section>
   );
@@ -85,8 +137,10 @@ function ProjectsSection() {
     <section className="portfolio-projects" style={{ padding: "0 24px 100px", background: "#0C0C0C" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <div className="portfolio-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))", gap: 28 }}>
-          {PLACEHOLDER_PROJECTS.map((p) => (
-            <ProjectCard key={p.id} project={p} />
+          {PLACEHOLDER_PROJECTS.map((p, i) => (
+            <ScrollReveal key={p.id} delay={i * 80}>
+              <ProjectCard project={p} />
+            </ScrollReveal>
           ))}
         </div>
       </div>
@@ -98,11 +152,13 @@ function ProjectsSection() {
 function PortfolioCTA() {
   return (
     <section className="portfolio-cta" style={{ padding: "80px 24px", background: "#0C0C0C", textAlign: "center", borderTop: `1px solid ${ACCENT_RGBA(0.15)}` }}>
-      <div style={{ maxWidth: 600, margin: "0 auto" }}>
-        <h2 style={{ fontFamily: FONT_INTER, fontSize: "clamp(24px, 4vw, 36px)", fontWeight: 800, color: "#ffffff", marginBottom: 16 }}>Vuoi il tuo progetto qui?</h2>
-        <p style={{ fontFamily: FONT_INTER, fontSize: 14, color: "rgba(255,255,255,0.6)", lineHeight: 1.8, marginBottom: 32 }}>Prenota un'analisi gratuita e ti mostriamo come portare la tua pizzeria online.</p>
-        <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", background: ACCENT, color: "#0C0C0C", padding: "16px 40px", fontFamily: FONT_INTER, fontSize: 12, fontWeight: 600, textTransform: "uppercase", letterSpacing: 3, textDecoration: "none", borderRadius: 8, transition: "background-color 0.2s, transform 0.2s" }}>Analisi Gratuita</a>
-      </div>
+      <ScrollReveal delay={0}>
+        <div style={{ maxWidth: 600, margin: "0 auto" }}>
+          <h2 style={{ fontFamily: FONT_INTER, fontSize: "clamp(24px, 4vw, 36px)", fontWeight: 800, color: "#ffffff", marginBottom: 16 }}>Vuoi il tuo progetto qui?</h2>
+          <p style={{ fontFamily: FONT_INTER, fontSize: 14, color: "rgba(255,255,255,0.6)", lineHeight: 1.8, marginBottom: 32 }}>Prenota un'analisi gratuita e ti mostriamo come portare la tua pizzeria online.</p>
+          <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", background: ACCENT, color: "#0C0C0C", padding: "16px 40px", fontFamily: FONT_INTER, fontSize: 12, fontWeight: 600, textTransform: "uppercase", letterSpacing: 3, textDecoration: "none", borderRadius: 8, transition: "background-color 0.2s, transform 0.2s" }}>Analisi Gratuita</a>
+        </div>
+      </ScrollReveal>
     </section>
   );
 }
@@ -142,6 +198,24 @@ export default function PortfolioPage() {
           .portfolio-grid { grid-template-columns: 1fr !important; }
           .portfolio-hero { padding-top: 120px !important; padding-bottom: 60px !important; }
         }
+        /* Scroll reveal */
+        @keyframes scrollRevealIn {
+          from { opacity: 0; transform: translateY(24px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .portfolio-page .scroll-reveal { opacity: 0; }
+        .portfolio-page .scroll-reveal-visible { animation: scrollRevealIn 0.6s ease forwards; }
+        /* Text reveal (hero title) */
+        .portfolio-page .text-reveal-word { display: inline-block; opacity: 0; transform: translateY(12px); }
+        .portfolio-page .text-reveal-visible .text-reveal-word { animation: scrollRevealIn 0.5s ease forwards; }
+        /* Hero label / line / subtitle */
+        @keyframes heroReveal {
+          from { opacity: 0; transform: translateY(12px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .portfolio-page .portfolio-hero-label { opacity: 0; animation: heroReveal 0.5s ease 0.2s forwards; }
+        .portfolio-page .portfolio-hero-line { opacity: 0; animation: heroReveal 0.5s ease 0.6s forwards; }
+        .portfolio-page .portfolio-hero-subtitle { opacity: 0; animation: heroReveal 0.5s ease 1s forwards; }
       `}</style>
       <PortfolioNav />
       <PortfolioHero />
