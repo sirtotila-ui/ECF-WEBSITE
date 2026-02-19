@@ -105,31 +105,47 @@ function PortfolioHero() {
 
 /* Projects grid - placeholder cards (puoi sostituire con dati reali) */
 const PLACEHOLDER_PROJECTS = [
-  { id: 1, title: "Pizzeria Bella Napoli", category: "Sito + Ordini", desc: "Sito one-page con menù digitale e ordini via WhatsApp.", url: "#", image: null },
+  { id: 1, title: "Pizzeria Bella Napoli", category: "Sito + Ordini", desc: "Sito one-page con menù digitale e ordini via WhatsApp.", url: "https://ecfpizzabellanapoli.vercel.app", image: null },
   { id: 2, title: "Pizza & Fantasia", category: "Sito + SEO", desc: "Sito multi-pagina ottimizzato per Google, primo risultato in zona.", url: "#", image: null },
   { id: 3, title: "Pizzeria Da Luigi", category: "Sito + Prenotazioni", desc: "Widget prenotazioni e bot WhatsApp per i tavoli.", url: "#", image: null },
 ];
 
 function ProjectCard({ project }) {
-  return (
-    <div className="portfolio-card" style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${ACCENT_RGBA(0.2)}`, borderRadius: 12, overflow: "hidden", transition: "transform 0.25s ease, border-color 0.25s ease" }}>
-      <div style={{ aspectRatio: "16/10", background: "rgba(14,165,233,0.08)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+  const hasLink = project.url && project.url !== "#";
+  const cardContent = (
+    <div className="portfolio-card" style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${ACCENT_RGBA(0.2)}`, borderRadius: 12, overflow: "hidden", transition: "transform 0.25s ease, border-color 0.25s ease", height: "100%", display: "flex", flexDirection: "column" }}>
+      <div className="portfolio-card-preview" style={{ aspectRatio: "16/10", background: "rgba(14,165,233,0.08)", minHeight: 180, overflow: "hidden", position: "relative" }}>
         {project.image ? (
           <img src={project.image} alt={project.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+        ) : hasLink ? (
+          <iframe
+            src={project.url}
+            title={`Preview ${project.title}`}
+            style={{ position: "absolute", top: 0, left: 0, width: "400%", height: "400%", border: "none", pointerEvents: "none", transform: "scale(0.25)", transformOrigin: "top left" }}
+            loading="lazy"
+          />
         ) : (
-          <span style={{ fontFamily: FONT_INTER, fontSize: 14, color: ACCENT_RGBA(0.5), fontWeight: 600 }}>Immagine progetto</span>
+          <span style={{ fontFamily: FONT_INTER, fontSize: 14, color: ACCENT_RGBA(0.5), fontWeight: 600, position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>Immagine progetto</span>
         )}
       </div>
-      <div style={{ padding: "24px 20px" }}>
+      <div style={{ padding: "24px 20px", flex: 1 }}>
         <div style={{ fontFamily: FONT_INTER, fontSize: 10, fontWeight: 600, color: ACCENT, textTransform: "uppercase", letterSpacing: 2, marginBottom: 8 }}>{project.category}</div>
         <h3 style={{ fontFamily: FONT_INTER, fontSize: 20, fontWeight: 800, color: "#ffffff", margin: "0 0 8px" }}>{project.title}</h3>
         <p style={{ fontFamily: FONT_INTER, fontSize: 13, color: "rgba(255,255,255,0.55)", lineHeight: 1.6, margin: "0 0 20px" }}>{project.desc}</p>
-        {project.url && project.url !== "#" && (
-          <a href={project.url} target="_blank" rel="noopener noreferrer" style={{ fontFamily: FONT_INTER, fontSize: 12, fontWeight: 600, color: ACCENT, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6 }}>Vedi sito →</a>
+        {hasLink && (
+          <span style={{ fontFamily: FONT_INTER, fontSize: 12, fontWeight: 600, color: ACCENT, display: "inline-flex", alignItems: "center", gap: 6 }}>Vedi sito →</span>
         )}
       </div>
     </div>
   );
+  if (hasLink) {
+    return (
+      <a href={project.url} target="_blank" rel="noopener noreferrer" className="portfolio-card-link" style={{ display: "block", textDecoration: "none", color: "inherit" }}>
+        {cardContent}
+      </a>
+    );
+  }
+  return cardContent;
 }
 
 function ProjectsSection() {
@@ -192,6 +208,8 @@ export default function PortfolioPage() {
         .portfolio-page { overflow-x: hidden; }
         .portfolio-nav a:hover { color: ${ACCENT} !important; }
         .portfolio-nav a[style*="background"]:hover { background-color: #0284C7 !important; }
+        .portfolio-card-link { cursor: pointer; }
+        .portfolio-card-link:hover .portfolio-card { transform: translateY(-4px); border-color: ${ACCENT_RGBA(0.4)} !important; }
         .portfolio-card:hover { transform: translateY(-4px); border-color: ${ACCENT_RGBA(0.4)} !important; }
         .portfolio-cta a:hover { background-color: #0284C7 !important; transform: scale(1.02); }
         @media (max-width: 768px) {
