@@ -123,7 +123,7 @@ function ProjectCard({ project }) {
           <iframe
             src={project.url}
             title={`Preview ${project.title}`}
-            style={{ position: "absolute", top: 0, left: 0, width: "400%", height: "400%", border: "none", pointerEvents: "none", transform: "scale(0.25)", transformOrigin: "top left" }}
+            style={{ position: "absolute", top: 0, left: 0, width: "200%", height: "200%", border: "none", pointerEvents: "none", transform: "scale(0.5)", transformOrigin: "top left" }}
             loading="lazy"
           />
         ) : (
@@ -203,6 +203,9 @@ function PortfolioFooter() {
 }
 
 export default function PortfolioPage() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="portfolio-page" style={{ background: "#0C0C0C", minHeight: "100vh" }}>
       <style>{`
