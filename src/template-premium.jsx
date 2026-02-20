@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
-const SECTIONS = ["home", "problema", "soluzione", "risultati", "portfolio", "servizi", "processo", "pricing", "faq", "contatti"];
+const SECTIONS = ["home", "problema", "soluzione", "portfolio", "risultati", "servizi", "processo", "pricing", "faq", "contatti"];
 const NAV_LABELS = { home: "Home", problema: "Problema", soluzione: "Soluzione", risultati: "Risultati", portfolio: "Portfolio", servizi: "Servizi", processo: "Come Funziona", pricing: "Prezzi", faq: "FAQ", contatti: "Contatti" };
 
 const FONT_INTER = "'Inter', sans-serif";
-const ACCENT = "#0EA5E9";
-const ACCENT_RGBA = (o) => `rgba(14,165,233,${o})`;
+const ACCENT = "#EF4444";
+const ACCENT_RGBA = (o) => `rgba(239,68,68,${o})`;
 const SCROLL_OFFSET = 80;
 const WHATSAPP_NUMBER = "393664400722";
 const WHATSAPP_PRENOTA_MSG = "Buongiorno, vorrei prenotare un'analisi gratuita della mia pizzeria.";
@@ -195,9 +195,9 @@ function Navbar() {
   const scrollTo = (id) => { scrollToSection(id, () => setMenuOpen(false)); };
 
   return (
-    <nav className="nav-ecf" style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000, background: "rgba(12,12,12,0.95)", backdropFilter: "blur(20px)", borderBottom: "1px solid rgba(14,165,233,0.2)", minHeight: 68, display: "flex", alignItems: "center", justifyContent: "center" }}>
-      <div className="nav-inner" style={{ width: "100%", maxWidth: 1440, margin: "0 auto", height: "100%", minHeight: 68, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-      <div className="nav-brand-wrap"><ECFLogo /></div>
+    <nav className="nav-ecf" style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000, background: "rgba(12,12,12,0.95)", backdropFilter: "blur(20px)", borderBottom: "1px solid rgba(239,68,68,0.2)", height: 68, display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <div className="nav-inner" style={{ width: "100%", maxWidth: 1440, margin: "0 auto", height: "100%", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+      <ECFLogo />
       <div style={{ display: "flex", gap: 6, alignItems: "center" }} className="desktop-nav-p">
         {SECTIONS.map(id => (
           <button key={id} onClick={() => scrollTo(id)} className={`btn-nav ${id === "contatti" ? "btn-nav-cta" : ""}`} style={id === "contatti" ? { background: ACCENT, color: "#ffffff", border: "none", cursor: "pointer", padding: "10px 18px", fontFamily: FONT_INTER, fontSize: 11, fontWeight: 600, transition: "transform 0.2s ease, color 0.2s ease, background-color 0.2s ease", textTransform: "uppercase", letterSpacing: 1.5, borderRadius: 9999 } : { background: "transparent", border: "none", cursor: "pointer", padding: "8px 13px", fontFamily: FONT_INTER, fontSize: 11, fontWeight: active === id ? 600 : 400, color: active === id ? ACCENT : "rgba(255,255,255,0.6)", transition: "transform 0.2s ease, color 0.2s ease", textTransform: "uppercase", letterSpacing: 1.5 }}>{NAV_LABELS[id]}</button>
@@ -224,13 +224,7 @@ function Navbar() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
         .hamburger-p { display: none !important; }
-        @media (max-width: 900px) {
-          .desktop-nav-p { display: none !important; }
-          .hamburger-p { display: flex !important; }
-          .nav-ecf .nav-inner { flex-direction: column !important; justify-content: center !important; gap: 12px !important; padding-top: 14px !important; padding-bottom: 14px !important; min-height: 68px !important; }
-          .nav-ecf .nav-brand-wrap { order: 1; }
-          .nav-ecf .hamburger-btn { order: 2; }
-        }
+        @media (max-width: 900px) { .desktop-nav-p { display: none !important; } .hamburger-p { display: flex !important; } }
         .nav-ecf .nav-inner { padding-left: max(36px, env(safe-area-inset-left)); padding-right: max(36px, env(safe-area-inset-right)); }
         .hamburger-btn { min-width: 44px; min-height: 44px; }
         @media (max-width: 480px) { .nav-ecf .nav-inner { padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right)); } }
@@ -244,7 +238,7 @@ function Navbar() {
         }
         .mobile-menu-overlay::-webkit-scrollbar { display: none; }
         .mobile-menu-overlay .btn-nav-mobile { white-space: nowrap; }
-        .mobile-menu-overlay .btn-nav-mobile:not(.btn-nav-mobile-cta):hover { color: #0EA5E9 !important; }
+        .mobile-menu-overlay .btn-nav-mobile:not(.btn-nav-mobile-cta):hover { color: #EF4444 !important; }
       `}</style>
     </nav>
   );
@@ -267,7 +261,7 @@ function Hero() {
   return (
     <section id="home" className="hero-section" style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "#0C0C0C", position: "relative", overflow: "hidden" }}>
       <div ref={meshRef} className="hero-mesh hero-mesh-parallax" aria-hidden="true">
-        <div className="hero-blob hero-blob-1" style={{ background: "rgba(14,165,233,0.12)" }} />
+        <div className="hero-blob hero-blob-1" style={{ background: "rgba(239,68,68,0.12)" }} />
         <div className="hero-blob hero-blob-2" style={{ background: "rgba(56,189,248,0.1)" }} />
         <div className="hero-blob hero-blob-3 hero-blob-mobile-hide" style={{ background: "rgba(125,211,252,0.1)" }} />
         <div className="hero-blob hero-blob-4 hero-blob-mobile-hide" style={{ background: "rgba(186,230,253,0.12)" }} />
@@ -293,7 +287,7 @@ function Hero() {
         <p className="hero-subtitle" style={{ fontFamily: FONT_INTER, fontSize: "clamp(14px, 2vw, 16px)", color: "rgba(255,255,255,0.6)", maxWidth: 520, margin: "0 auto 44px", lineHeight: 1.9, fontWeight: 400, letterSpacing: 0.3 }}>Creiamo siti web, sistemi di prenotazione e ordini online che riempiono i tavoli e aumentano gli asporti. Specializzati solo in pizzerie.</p>
         <div className="cta-hero-wrap" style={{ display: "flex", gap: 20, justifyContent: "center", flexWrap: "wrap" }}>
           <button onClick={() => window.open(WHATSAPP_URL, "_blank", "noopener,noreferrer")} className="btn-primary btn-hero-cta-primary" style={{ background: "transparent", color: ACCENT, border: `1px solid ${ACCENT}`, padding: "16px 44px", fontFamily: FONT_INTER, fontSize: 12, fontWeight: 600, cursor: "pointer", textTransform: "uppercase", letterSpacing: 3, transition: "transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease", minWidth: 200 }}>Analisi Gratuita della Tua Pizzeria</button>
-          <button onClick={() => scrollToSection("risultati")} className="btn-outline btn-hero-cta-secondary" style={{ background: "transparent", color: "rgba(255,255,255,0.8)", border: "1px solid rgba(255,255,255,0.12)", padding: "16px 44px", fontFamily: FONT_INTER, fontSize: 12, fontWeight: 600, cursor: "pointer", textTransform: "uppercase", letterSpacing: 3, transition: "transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease", minWidth: 200 }}>Vedi Esempi</button>
+          <button onClick={() => scrollToSection("portfolio")} className="btn-outline btn-hero-cta-secondary" style={{ background: "transparent", color: "rgba(255,255,255,0.8)", border: "1px solid rgba(255,255,255,0.12)", padding: "16px 44px", fontFamily: FONT_INTER, fontSize: 12, fontWeight: 600, cursor: "pointer", textTransform: "uppercase", letterSpacing: 3, transition: "transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease", minWidth: 200 }}>Vedi Esempi</button>
         </div>
         <div style={{ width: 1, height: 60, background: `linear-gradient(to bottom, transparent, ${ACCENT_RGBA(0.3)})`, margin: "56px auto 0" }} />
         <div className="hero-stats-wrap" style={{ display: "flex", gap: 56, justifyContent: "center", marginTop: 32, flexWrap: "wrap" }}>
@@ -399,7 +393,7 @@ function Results() {
         <div className="results-cards-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 28, alignItems: "stretch" }}>
           {testimonials.map((t, i) => (
             <ScrollReveal key={i} delay={i * 80} style={{ display: "flex" }}>
-              <div className="card-testimonial" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(14,165,233,0.2)", padding: "32px 28px", borderRadius: 12, transition: "transform 0.25s ease, border-color 0.25s ease", flex: 1, display: "flex", flexDirection: "column" }}>
+              <div className="card-testimonial" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(239,68,68,0.2)", padding: "32px 28px", borderRadius: 12, transition: "transform 0.25s ease, border-color 0.25s ease", flex: 1, display: "flex", flexDirection: "column" }}>
                 <p style={{ fontFamily: FONT_INTER, fontSize: 14, color: "rgba(255,255,255,0.85)", lineHeight: 1.8, margin: "0 0 20px", fontWeight: 400, fontStyle: "italic", flex: 1 }}>"{t.quote}"</p>
                 <div style={{ fontFamily: FONT_INTER, fontSize: 13, fontWeight: 600, color: ACCENT }}>{t.author}</div>
                 <div style={{ fontFamily: FONT_INTER, fontSize: 12, color: "rgba(255,255,255,0.45)", marginTop: 4 }}>{t.place}</div>
@@ -483,7 +477,7 @@ function Process() {
         <div style={{ display: "flex", flexDirection: "column" }}>
           {steps.map((s, i) => (
             <ScrollReveal key={i} delay={i * 100}>
-              <div className="process-step" style={{ display: "flex", gap: 40, alignItems: "flex-start", padding: "40px 0", borderBottom: i < 2 ? "1px solid rgba(14,165,233,0.15)" : "none" }}>
+              <div className="process-step" style={{ display: "flex", gap: 40, alignItems: "flex-start", padding: "40px 0", borderBottom: i < 2 ? "1px solid rgba(239,68,68,0.15)" : "none" }}>
               <div className="process-step-num" style={{ fontFamily: FONT_INTER, fontSize: 52, fontWeight: 800, color: ACCENT_RGBA(0.2), lineHeight: 1, minWidth: 60, textAlign: "center" }}>{i + 1}</div>
               <div>
                 <h3 style={{ fontFamily: FONT_INTER, fontSize: 24, fontWeight: 800, color: "#ffffff", margin: "0 0 10px" }}>{s.title}</h3>
@@ -537,7 +531,7 @@ function Pricing() {
   ];
   const textMuted = "rgba(255,255,255,0.5)";
   const textMutedLight = "rgba(255,255,255,0.45)";
-  const borderCard = "1px solid rgba(14,165,233,0.2)";
+  const borderCard = "1px solid rgba(239,68,68,0.2)";
   return (
     <section id="pricing" className="section-padding pricing-section-dark" style={{ background: "#0C0C0C" }}>
       <div style={{ maxWidth: "min(1200px, 92vw)", width: "100%", margin: "0 auto", padding: "0 24px", textAlign: "center" }}>
@@ -561,14 +555,14 @@ function Pricing() {
                   </div>
                 ))}
               </div>
-              <button onClick={() => window.open(WHATSAPP_URL, "_blank", "noopener,noreferrer")} className="btn-pricing-outline" style={{ marginTop: 32, width: "100%", background: "transparent", color: ACCENT, border: "1px solid rgba(14,165,233,0.4)", padding: "17px", fontFamily: FONT_INTER, fontSize: 12, fontWeight: 600, cursor: "pointer", textTransform: "uppercase", letterSpacing: 3, transition: "all 0.3s ease", borderRadius: 8 }}>Parti con il Sito</button>
+              <button onClick={() => window.open(WHATSAPP_URL, "_blank", "noopener,noreferrer")} className="btn-pricing-outline" style={{ marginTop: 32, width: "100%", background: "transparent", color: ACCENT, border: "1px solid rgba(239,68,68,0.4)", padding: "17px", fontFamily: FONT_INTER, fontSize: 12, fontWeight: 600, cursor: "pointer", textTransform: "uppercase", letterSpacing: 3, transition: "all 0.3s ease", borderRadius: 8 }}>Parti con il Sito</button>
               <div style={{ fontFamily: FONT_INTER, fontSize: 11, color: textMutedLight, marginTop: 12, fontWeight: 400 }}>Perfetto per chi non ha ancora un sito</div>
             </div>
           </ScrollReveal>
           
           {/* CARD 2 - Pro (HIGHLIGHT) */}
           <ScrollReveal delay={100}>
-            <div className="card-pricing-rifacimento" style={{ position: "relative", background: "rgba(14,165,233,0.05)", border: "1.5px solid #0EA5E9", padding: "44px 32px", borderRadius: 12, display: "flex", flexDirection: "column", transition: "transform 0.25s ease, box-shadow 0.25s ease", boxShadow: "0 0 40px rgba(14,165,233,0.12)", overflow: "visible" }}>
+            <div className="card-pricing-rifacimento" style={{ position: "relative", background: "rgba(239,68,68,0.05)", border: "1.5px solid #EF4444", padding: "44px 32px", borderRadius: 12, display: "flex", flexDirection: "column", transition: "transform 0.25s ease, box-shadow 0.25s ease", boxShadow: "0 0 40px rgba(239,68,68,0.12)", overflow: "visible" }}>
               <div style={{ position: "absolute", top: -14, left: "50%", transform: "translateX(-50%)", background: ACCENT, color: "#0C0C0C", fontFamily: FONT_INTER, fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: 2, padding: "6px 16px", borderRadius: 6 }}>Più Scelto</div>
               <div style={{ fontFamily: FONT_INTER, fontSize: 10, fontWeight: 600, color: ACCENT, textTransform: "uppercase", letterSpacing: 4, marginBottom: 8, marginTop: 8 }}>Pro</div>
               <div style={{ fontFamily: FONT_INTER, fontSize: 12, color: textMuted, marginBottom: 24, fontWeight: 400 }}>Sito + Prenotazioni automatiche</div>
@@ -604,7 +598,7 @@ function Pricing() {
                   </div>
                 ))}
               </div>
-              <button onClick={() => window.open(WHATSAPP_URL, "_blank", "noopener,noreferrer")} className="btn-pricing-outline" style={{ marginTop: 32, width: "100%", background: "transparent", color: ACCENT, border: "1px solid rgba(14,165,233,0.4)", padding: "17px", fontFamily: FONT_INTER, fontSize: 12, fontWeight: 600, cursor: "pointer", textTransform: "uppercase", letterSpacing: 3, transition: "all 0.3s ease", borderRadius: 8 }}>Vai Premium</button>
+              <button onClick={() => window.open(WHATSAPP_URL, "_blank", "noopener,noreferrer")} className="btn-pricing-outline" style={{ marginTop: 32, width: "100%", background: "transparent", color: ACCENT, border: "1px solid rgba(239,68,68,0.4)", padding: "17px", fontFamily: FONT_INTER, fontSize: 12, fontWeight: 600, cursor: "pointer", textTransform: "uppercase", letterSpacing: 3, transition: "all 0.3s ease", borderRadius: 8 }}>Vai Premium</button>
               <div style={{ fontFamily: FONT_INTER, fontSize: 11, color: textMutedLight, marginTop: 12, fontWeight: 400 }}>Per chi vuole il sistema completo senza commissioni</div>
             </div>
           </ScrollReveal>
@@ -637,7 +631,7 @@ function FAQ() {
           <div style={{ width: 40, height: 1, background: ACCENT, margin: "20px auto 0" }} />
         </div>
         {faqs.map((f, i) => (
-          <div key={i} style={{ borderBottom: "1px solid rgba(14,165,233,0.15)" }}>
+          <div key={i} style={{ borderBottom: "1px solid rgba(239,68,68,0.15)" }}>
             <button onClick={() => setOpen(open === i ? null : i)} className="btn-faq btn-tap" style={{ width: "100%", background: "none", border: "none", cursor: "pointer", display: "flex", justifyContent: "space-between", alignItems: "center", padding: "24px 0", textAlign: "left", transition: "transform 0.2s ease" }}>
               <span className="faq-question" style={{ fontFamily: FONT_INTER, fontSize: 19, fontWeight: 600, color: "#ffffff" }}>{f.q}</span>
               <span style={{ fontSize: 16, color: ACCENT, transition: "transform .3s", transform: open === i ? "rotate(45deg)" : "none", flexShrink: 0, marginLeft: 20, fontFamily: FONT_INTER, fontWeight: 400 }}>+</span>
@@ -671,7 +665,7 @@ function FooterCTA() {
             </div>
           ))}
         </div>
-        <div style={{ marginTop: 64, paddingTop: 28, borderTop: "1px solid rgba(14,165,233,0.15)", fontFamily: FONT_INTER, fontSize: 11, color: "rgba(255,255,255,0.4)", letterSpacing: 1 }}>© 2026 ECF Media · Tutti i diritti riservati</div>
+        <div style={{ marginTop: 64, paddingTop: 28, borderTop: "1px solid rgba(239,68,68,0.15)", fontFamily: FONT_INTER, fontSize: 11, color: "rgba(255,255,255,0.4)", letterSpacing: 1 }}>© 2026 ECF Media · Tutti i diritti riservati</div>
       </div>
     </section>
   );
@@ -829,7 +823,7 @@ export default function PremiumTemplate() {
         /* Text Reveal */
         .ecf-media-site .text-reveal-word { display: inline-block; opacity: 0; transform: translateY(12px); }
         .ecf-media-site .text-reveal-visible .text-reveal-word { animation: scrollRevealIn 0.5s ease forwards; }
-        .ecf-media-site .text-reveal-accent-last .text-reveal-word:last-child { font-style: italic; color: #0EA5E9; }
+        .ecf-media-site .text-reveal-accent-last .text-reveal-word:last-child { font-style: italic; color: #EF4444; }
         .ecf-media-site .btn-primary,
         .ecf-media-site .btn-outline,
         .ecf-media-site .btn-nav,
@@ -845,15 +839,15 @@ export default function PremiumTemplate() {
         @media (hover: hover) {
           .ecf-media-site .btn-primary:hover {
             transform: scale(1.02);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 20px rgba(14,165,233,0.35);
-            background-color: #0284C7 !important;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 20px rgba(239,68,68,0.35);
+            background-color: #DC2626 !important;
           }
           .ecf-media-site .btn-primary:hover:active { transform: scale(0.98); }
           .ecf-media-site .btn-outline:hover,
           .ecf-media-site .btn-hero-cta-primary:hover {
             transform: scale(1.02);
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            background-color: rgba(14,165,233,0.08) !important;
+            background-color: rgba(239,68,68,0.08) !important;
           }
           .ecf-media-site .btn-hero-cta-secondary:hover {
             transform: scale(1.02);
@@ -865,15 +859,15 @@ export default function PremiumTemplate() {
           .ecf-media-site .btn-hero-cta-secondary:hover:active { transform: scale(0.98); }
           .ecf-media-site .btn-nav:hover {
             transform: scale(1.02);
-            color: #0EA5E9 !important;
+            color: #EF4444 !important;
           }
           .ecf-media-site .btn-nav-cta:hover {
             transform: scale(1.02);
-            background-color: #0284C7 !important;
+            background-color: #DC2626 !important;
             color: #ffffff !important;
           }
           .ecf-media-site .btn-nav-mobile-cta:hover {
-            background-color: #0284C7 !important;
+            background-color: #DC2626 !important;
             color: #ffffff !important;
           }
           .ecf-media-site .btn-nav:hover:active,
@@ -881,33 +875,33 @@ export default function PremiumTemplate() {
           .ecf-media-site .card-problema:hover {
             transform: translateY(-4px);
             box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-            border-color: rgba(14,165,233,0.2) !important;
+            border-color: rgba(239,68,68,0.2) !important;
           }
           .ecf-media-site .card-soluzione:hover {
             transform: translateY(-4px);
             box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-            border-color: rgba(14,165,233,0.4) !important;
+            border-color: rgba(239,68,68,0.4) !important;
           }
           .ecf-media-site .card-servizi:hover {
             transform: translateY(-4px);
             box-shadow: 0 8px 24px rgba(0,0,0,0.08) !important;
-            border-color: rgba(14,165,233,0.35) !important;
+            border-color: rgba(239,68,68,0.35) !important;
           }
           .ecf-media-site .card-pricing-starter:hover,
           .ecf-media-site .card-pricing-premium:hover {
             transform: translateY(-4px);
-            border-color: rgba(14,165,233,0.3) !important;
+            border-color: rgba(239,68,68,0.3) !important;
           }
           .ecf-media-site .card-pricing-rifacimento:hover {
             transform: translateY(-4px);
-            box-shadow: 0 0 50px rgba(14,165,233,0.12) !important;
+            box-shadow: 0 0 50px rgba(239,68,68,0.12) !important;
           }
           .ecf-media-site .btn-pricing-outline:hover {
-            border-color: #0EA5E9 !important;
-            color: #0EA5E9 !important;
+            border-color: #EF4444 !important;
+            color: #EF4444 !important;
           }
           .ecf-media-site .btn-pricing-filled:hover {
-            background-color: #0284C7 !important;
+            background-color: #DC2626 !important;
             transform: scale(1.02);
           }
           .ecf-media-site .btn-pricing-outline:hover:active,
@@ -926,9 +920,9 @@ export default function PremiumTemplate() {
       <BlueLine />
       <Solution />
       <BlueLine />
-      <Results />
-      <BlueLine />
       <Portfolio />
+      <BlueLine />
+      <Results />
       <BlueLine />
       <Services />
       <BlueLine />

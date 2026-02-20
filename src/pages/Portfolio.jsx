@@ -2,8 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
 const FONT_INTER = "'Inter', sans-serif";
-const ACCENT = "#0EA5E9";
-const ACCENT_RGBA = (o) => `rgba(14,165,233,${o})`;
+const ACCENT = "#EF4444";
+const ACCENT_RGBA = (o) => `rgba(239,68,68,${o})`;
 const WHATSAPP_NUMBER = "393664400722";
 const WHATSAPP_MSG = "Buongiorno, vorrei prenotare un'analisi gratuita della mia pizzeria.";
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MSG)}`;
@@ -123,7 +123,7 @@ function ProjectCard({ project }) {
   const hasLink = project.url && project.url !== "#";
   const cardContent = (
     <div className="portfolio-card" style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${ACCENT_RGBA(0.2)}`, borderRadius: 12, overflow: "hidden", transition: "transform 0.25s ease, border-color 0.25s ease", height: "100%", display: "flex", flexDirection: "column" }}>
-      <div className="portfolio-card-preview" style={{ aspectRatio: "16/10", background: "rgba(14,165,233,0.08)", minHeight: 180, overflow: "hidden", position: "relative" }}>
+      <div className="portfolio-card-preview" style={{ aspectRatio: "16/10", background: "rgba(239,68,68,0.08)", minHeight: 180, overflow: "hidden", position: "relative" }}>
         {project.image ? (
           <img src={project.image} alt={project.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
         ) : hasLink ? (
@@ -229,11 +229,11 @@ export default function PortfolioPage() {
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
         .portfolio-page { overflow-x: hidden; }
         .portfolio-nav a:hover { color: ${ACCENT} !important; }
-        .portfolio-nav a[style*="background"]:hover { background-color: #0284C7 !important; }
+        .portfolio-nav a[style*="background"]:hover { background-color: #DC2626 !important; }
         .portfolio-card-link { cursor: pointer; }
         .portfolio-card-link:hover .portfolio-card { transform: translateY(-4px); border-color: ${ACCENT_RGBA(0.4)} !important; }
         .portfolio-card:hover { transform: translateY(-4px); border-color: ${ACCENT_RGBA(0.4)} !important; }
-        .portfolio-cta a:hover { background-color: #0284C7 !important; transform: scale(1.02); }
+        .portfolio-cta a:hover { background-color: #DC2626 !important; transform: scale(1.02); }
         @media (max-width: 768px) {
           .portfolio-grid { grid-template-columns: 1fr !important; }
           .portfolio-hero { padding-top: 120px !important; padding-bottom: 60px !important; }
