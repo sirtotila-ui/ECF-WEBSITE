@@ -195,9 +195,9 @@ function Navbar() {
   const scrollTo = (id) => { scrollToSection(id, () => setMenuOpen(false)); };
 
   return (
-    <nav className="nav-ecf" style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000, background: "rgba(12,12,12,0.95)", backdropFilter: "blur(20px)", borderBottom: "1px solid rgba(14,165,233,0.2)", height: 68, display: "flex", alignItems: "center", justifyContent: "center" }}>
-      <div className="nav-inner" style={{ width: "100%", maxWidth: 1440, margin: "0 auto", height: "100%", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-      <ECFLogo />
+    <nav className="nav-ecf" style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000, background: "rgba(12,12,12,0.95)", backdropFilter: "blur(20px)", borderBottom: "1px solid rgba(14,165,233,0.2)", minHeight: 68, display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <div className="nav-inner" style={{ width: "100%", maxWidth: 1440, margin: "0 auto", height: "100%", minHeight: 68, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+      <div className="nav-brand-wrap"><ECFLogo /></div>
       <div style={{ display: "flex", gap: 6, alignItems: "center" }} className="desktop-nav-p">
         {SECTIONS.map(id => (
           <button key={id} onClick={() => scrollTo(id)} className={`btn-nav ${id === "contatti" ? "btn-nav-cta" : ""}`} style={id === "contatti" ? { background: ACCENT, color: "#ffffff", border: "none", cursor: "pointer", padding: "10px 18px", fontFamily: FONT_INTER, fontSize: 11, fontWeight: 600, transition: "transform 0.2s ease, color 0.2s ease, background-color 0.2s ease", textTransform: "uppercase", letterSpacing: 1.5, borderRadius: 9999 } : { background: "transparent", border: "none", cursor: "pointer", padding: "8px 13px", fontFamily: FONT_INTER, fontSize: 11, fontWeight: active === id ? 600 : 400, color: active === id ? ACCENT : "rgba(255,255,255,0.6)", transition: "transform 0.2s ease, color 0.2s ease", textTransform: "uppercase", letterSpacing: 1.5 }}>{NAV_LABELS[id]}</button>
@@ -224,7 +224,13 @@ function Navbar() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
         .hamburger-p { display: none !important; }
-        @media (max-width: 900px) { .desktop-nav-p { display: none !important; } .hamburger-p { display: flex !important; } }
+        @media (max-width: 900px) {
+          .desktop-nav-p { display: none !important; }
+          .hamburger-p { display: flex !important; }
+          .nav-ecf .nav-inner { flex-direction: column !important; justify-content: center !important; gap: 12px !important; padding-top: 14px !important; padding-bottom: 14px !important; min-height: 68px !important; }
+          .nav-ecf .nav-brand-wrap { order: 1; }
+          .nav-ecf .hamburger-btn { order: 2; }
+        }
         .nav-ecf .nav-inner { padding-left: max(36px, env(safe-area-inset-left)); padding-right: max(36px, env(safe-area-inset-right)); }
         .hamburger-btn { min-width: 44px; min-height: 44px; }
         @media (max-width: 480px) { .nav-ecf .nav-inner { padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right)); } }
