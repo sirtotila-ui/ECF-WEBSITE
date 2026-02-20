@@ -107,8 +107,9 @@ function PortfolioHero() {
 const PLACEHOLDER_PROJECTS = [
   { id: 1, title: "Pizzeria Bella Napoli", category: "Sito + Ordini", desc: "Sito one-page con menù digitale e ordini via WhatsApp.", url: "https://ecfpizzabellanapoli.vercel.app", image: null },
   { id: 2, title: "Da Nonno Peppe", category: "Sito + Menù + Prenotazioni", desc: "Pizzeria artigianale a Rimini, dal 1985. Menù, storia, recensioni, prenotazioni e ordini WhatsApp.", url: "https://ecfdanonnopeppe.vercel.app", image: null },
-  { id: 3, title: "Pizza & Fantasia", category: "Sito + SEO", desc: "Sito multi-pagina ottimizzato per Google, primo risultato in zona.", url: "#", image: null },
-  { id: 4, title: "Pizzeria Da Luigi", category: "Sito + Prenotazioni", desc: "Widget prenotazioni e bot WhatsApp per i tavoli.", url: "#", image: null },
+  { id: 3, title: "Impasto", category: "Sito + Menù", desc: "Pizza fresca, ingredienti veri. Sito one-page con identità forte e menù digitale.", url: "https://ecfpizzeriaimpasto.vercel.app", image: null },
+  { id: 4, title: "Pizza & Fantasia", category: "Sito + SEO", desc: "Sito multi-pagina ottimizzato per Google, primo risultato in zona.", url: "#", image: null },
+  { id: 5, title: "Pizzeria Da Luigi", category: "Sito + Prenotazioni", desc: "Widget prenotazioni e bot WhatsApp per i tavoli.", url: "#", image: null },
 ];
 
 function ProjectCard({ project }) {
