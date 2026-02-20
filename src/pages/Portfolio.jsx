@@ -103,13 +103,20 @@ function PortfolioHero() {
   );
 }
 
-/* Projects grid - placeholder cards (puoi sostituire con dati reali) */
-const PLACEHOLDER_PROJECTS = [
+/* Progetti Pizzerie */
+const PIZZERIE_PROJECTS = [
   { id: 1, title: "Pizzeria Bella Napoli", category: "Sito + Ordini", desc: "Sito one-page con menù digitale e ordini via WhatsApp.", url: "https://ecfpizzabellanapoli.vercel.app", image: null },
   { id: 2, title: "Da Nonno Peppe", category: "Sito + Menù + Prenotazioni", desc: "Pizzeria artigianale a Rimini, dal 1985. Menù, storia, recensioni, prenotazioni e ordini WhatsApp.", url: "https://ecfdanonnopeppe.vercel.app", image: null },
   { id: 3, title: "Impasto", category: "Sito + Menù", desc: "Pizza fresca, ingredienti veri. Sito one-page con identità forte e menù digitale.", url: "https://ecfpizzeriaimpasto.vercel.app", image: null },
-  { id: 4, title: "Pizza & Fantasia", category: "Sito + SEO", desc: "Sito multi-pagina ottimizzato per Google, primo risultato in zona.", url: "#", image: null },
-  { id: 5, title: "Pizzeria Da Luigi", category: "Sito + Prenotazioni", desc: "Widget prenotazioni e bot WhatsApp per i tavoli.", url: "#", image: null },
+  { id: 4, title: "Pizzeria", category: "Sito + Menù", desc: "Sito one-page per pizzeria con menù e ordini online.", url: "https://pizzeria-two-dun.vercel.app", image: null },
+];
+
+/* Siti PMI */
+const SITI_PMI_PROJECTS = [
+  { id: 10, title: "Lattoneria", category: "Sito vetrina", desc: "Sito per attività di lattoneria e lavorazione metalli.", url: "https://v0-lattoneria-hoti-website-git-v0-sirto-bfc528-totilas-projects.vercel.app/", image: null },
+  { id: 11, title: "Dentist", category: "Portfolio professionale", desc: "Sito portfolio per studio dentistico e servizi.", url: "https://dentist-portfolio-ecf.vercel.app", image: null },
+  { id: 12, title: "Palestra", category: "Sito + Corsi", desc: "Sito per palestra con corsi, orari e informazioni.", url: "https://templatepermobileenon.vercel.app", image: null },
+  { id: 13, title: "Idraulico", category: "Sito servizi", desc: "Sito per impresa idraulica con servizi e contatti.", url: "https://plumber-example.vercel.app", image: null },
 ];
 
 function ProjectCard({ project }) {
@@ -155,11 +162,21 @@ function ProjectsSection() {
     <section className="portfolio-projects" style={{ padding: "0 24px 100px", background: "#0C0C0C" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <div className="portfolio-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))", gap: 28 }}>
-          {PLACEHOLDER_PROJECTS.map((p, i) => (
+          {PIZZERIE_PROJECTS.map((p, i) => (
             <ScrollReveal key={p.id} delay={i * 80}>
               <ProjectCard project={p} />
             </ScrollReveal>
           ))}
+        </div>
+        <div style={{ marginTop: 64, paddingTop: 48, borderTop: `1px solid ${ACCENT_RGBA(0.25)}` }}>
+          <h3 style={{ fontFamily: FONT_INTER, fontSize: 12, fontWeight: 600, color: ACCENT, textTransform: "uppercase", letterSpacing: 4, marginBottom: 28 }}>Siti PMI</h3>
+          <div className="portfolio-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))", gap: 28 }}>
+            {SITI_PMI_PROJECTS.map((p, i) => (
+              <ScrollReveal key={p.id} delay={i * 80}>
+                <ProjectCard project={p} />
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
       </div>
     </section>
