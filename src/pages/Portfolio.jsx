@@ -106,7 +106,7 @@ function PortfolioHero() {
 /* Progetti Pizzerie */
 const PIZZERIE_PROJECTS = [
   { id: 1, title: "Pizzeria", category: "Sito + Menù", desc: "Sito one-page per pizzeria con menù e ordini online.", url: "https://pizzeria-two-dun.vercel.app", image: null },
-  { id: 2, title: "Da Nonno Peppe", category: "Sito + Menù + Prenotazioni", desc: "Pizzeria artigianale a Rimini, dal 1985. Menù, storia, recensioni, prenotazioni e ordini WhatsApp.", url: "https://ecfdanonnopeppe.vercel.app", image: null },
+  { id: 2, title: "Da Nonno Peppe", category: "Sito + Menù + Prenotazioni", desc: "Pizzeria artigianale a Rimini, dal 1985. Menù, storia, recensioni, prenotazioni e ordini WhatsApp.", url: "https://ecfnonnopeppe.vercel.app", image: null },
   { id: 3, title: "Impasto", category: "Sito + Menù", desc: "Pizza fresca, ingredienti veri. Sito one-page con identità forte e menù digitale.", url: "https://ecfpizzeriaimpasto.vercel.app", image: null },
 ];
 
