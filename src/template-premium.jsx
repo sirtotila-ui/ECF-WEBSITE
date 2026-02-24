@@ -494,8 +494,8 @@ function Process() {
 
 /* ───────── PRICING ───────── */
 function Pricing() {
-  const baseFeatures = [
-    "Sito one-page professionale",
+  const offerFeatures = [
+    "Sito professionale one-page",
     "Menù completo con prezzi",
     "Foto e descrizione pizze",
     "Mobile-first responsive",
@@ -503,35 +503,11 @@ function Pricing() {
     "Mappa + orari + contatti",
     "Bottone WhatsApp / Chiama",
     "Deploy e messa online",
-    "15 giorni di supporto"
-  ];
-  const proFeatures = [
-    "Tutto quello del Base, più:",
-    "Sito multi-pagina completo",
-    "Widget prenotazione tavoli integrato",
-    "Bot WhatsApp prenotazioni 24/7",
-    "Conferma e promemoria automatici",
-    "Gallery foto professionale",
-    "Sezione recensioni Google",
-    "Integrazione Google Analytics",
-    "30 giorni di supporto",
-    "Manutenzione mensile inclusa"
-  ];
-  const premiumFeatures = [
-    "Tutto quello del Pro, più:",
-    "Sistema ordini asporto/delivery",
-    "Menù interattivo con carrello",
-    "Ordini via WhatsApp automatizzati",
-    "Gestione delivery zone",
-    "Nessuna commissione (tuo al 100%)",
-    "Design premium personalizzato",
-    "Report mensile performance",
-    "Supporto prioritario WhatsApp",
-    "Manutenzione + aggiornamenti inclusi"
+    "Pronto in 7 giorni",
+    "Garanzia rimborso"
   ];
   const textMuted = "rgba(255,255,255,0.5)";
   const textMutedLight = "rgba(255,255,255,0.45)";
-  const borderCard = "1px solid rgba(239,68,68,0.2)";
   return (
     <section id="pricing" className="section-padding pricing-section-dark" style={{ background: "#0C0C0C" }}>
       <div style={{ maxWidth: "min(1200px, 92vw)", width: "100%", margin: "0 auto", padding: "0 24px", textAlign: "center" }}>
@@ -539,73 +515,28 @@ function Pricing() {
         <TextReveal text="Scegli il Piano Giusto per Te" style={{ fontFamily: FONT_INTER, fontSize: "clamp(28px, 4.5vw, 46px)", fontWeight: 800, color: "#ffffff", marginBottom: 16 }} />
         <div style={{ width: 40, height: 1, background: ACCENT, margin: "0 auto 16px" }} />
         
-        <div className="pricing-cards-wrapper" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24, alignItems: "stretch", marginBottom: 36 }}>
-          {/* CARD 1 - Base */}
+        <div className="pricing-cards-wrapper" style={{ maxWidth: 440, margin: "0 auto 36px" }}>
           <ScrollReveal delay={0}>
-            <div className="card-pricing-starter" style={{ position: "relative", background: "rgba(255,255,255,0.03)", border: borderCard, padding: "44px 32px", borderRadius: 12, display: "flex", flexDirection: "column", transition: "transform 0.25s ease, border-color 0.25s ease" }}>
-              <div style={{ fontFamily: FONT_INTER, fontSize: 10, fontWeight: 600, color: ACCENT, textTransform: "uppercase", letterSpacing: 4, marginBottom: 8 }}>Base</div>
-              <div style={{ fontFamily: FONT_INTER, fontSize: 12, color: textMuted, marginBottom: 24, fontWeight: 400 }}>Vai online e fatti trovare</div>
-              <div className="card-pricing-price" style={{ fontFamily: FONT_INTER, fontSize: 48, fontWeight: 300, color: "#ffffff", marginBottom: 32, lineHeight: 1 }}>
-                €297<span style={{ fontSize: 14, color: textMutedLight, fontWeight: 300, marginLeft: 4 }}>/una tantum</span>
+            <div className="card-pricing-rifacimento" style={{ position: "relative", background: "rgba(239,68,68,0.05)", border: "1.5px solid #EF4444", padding: "44px 32px", borderRadius: 12, display: "flex", flexDirection: "column", transition: "transform 0.25s ease, box-shadow 0.25s ease", boxShadow: "0 0 40px rgba(239,68,68,0.12)", overflow: "visible" }}>
+              <div style={{ fontFamily: FONT_INTER, fontSize: 10, fontWeight: 600, color: ACCENT, textTransform: "uppercase", letterSpacing: 4, marginBottom: 8 }}>Sito professionale per pizzerie</div>
+              <div className="card-pricing-price" style={{ fontFamily: FONT_INTER, fontSize: 48, fontWeight: 300, color: "#ffffff", marginBottom: 8, lineHeight: 1 }}>
+                €197<span style={{ fontSize: 14, color: textMutedLight, fontWeight: 300, marginLeft: 4 }}>/una tantum</span>
               </div>
+              <div style={{ fontFamily: FONT_INTER, fontSize: 13, color: textMuted, marginBottom: 24, fontWeight: 400 }}>Pronto in 7 giorni · Garanzia rimborso</div>
               <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
-                {baseFeatures.map((f, i) => (
-                  <div key={i} style={{ fontFamily: FONT_INTER, fontSize: 13, color: textMuted, padding: "12px 0", borderBottom: i < baseFeatures.length - 1 ? "1px solid rgba(255,255,255,0.06)" : "none", textAlign: "left", display: "flex", alignItems: "flex-start", gap: 14, fontWeight: 300 }}>
+                {offerFeatures.map((f, i) => (
+                  <div key={i} style={{ fontFamily: FONT_INTER, fontSize: 13, color: textMuted, padding: "12px 0", borderBottom: i < offerFeatures.length - 1 ? "1px solid rgba(255,255,255,0.06)" : "none", textAlign: "left", display: "flex", alignItems: "flex-start", gap: 14, fontWeight: 300 }}>
                     <span style={{ color: ACCENT, fontSize: 10, flexShrink: 0, marginTop: 2 }}>◆</span> <span>{f}</span>
                   </div>
                 ))}
               </div>
-              <button onClick={() => window.open(WHATSAPP_URL, "_blank", "noopener,noreferrer")} className="btn-pricing-outline" style={{ marginTop: 32, width: "100%", background: "transparent", color: ACCENT, border: "1px solid rgba(239,68,68,0.4)", padding: "17px", fontFamily: FONT_INTER, fontSize: 12, fontWeight: 600, cursor: "pointer", textTransform: "uppercase", letterSpacing: 3, transition: "all 0.3s ease", borderRadius: 8 }}>Parti con il Sito</button>
-              <div style={{ fontFamily: FONT_INTER, fontSize: 11, color: textMutedLight, marginTop: 12, fontWeight: 400 }}>Perfetto per chi non ha ancora un sito</div>
-            </div>
-          </ScrollReveal>
-          
-          {/* CARD 2 - Pro (HIGHLIGHT) */}
-          <ScrollReveal delay={100}>
-            <div className="card-pricing-rifacimento" style={{ position: "relative", background: "rgba(239,68,68,0.05)", border: "1.5px solid #EF4444", padding: "44px 32px", borderRadius: 12, display: "flex", flexDirection: "column", transition: "transform 0.25s ease, box-shadow 0.25s ease", boxShadow: "0 0 40px rgba(239,68,68,0.12)", overflow: "visible" }}>
-              <div style={{ position: "absolute", top: -14, left: "50%", transform: "translateX(-50%)", background: ACCENT, color: "#0C0C0C", fontFamily: FONT_INTER, fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: 2, padding: "6px 16px", borderRadius: 6 }}>Più Scelto</div>
-              <div style={{ fontFamily: FONT_INTER, fontSize: 10, fontWeight: 600, color: ACCENT, textTransform: "uppercase", letterSpacing: 4, marginBottom: 8, marginTop: 8 }}>Pro</div>
-              <div style={{ fontFamily: FONT_INTER, fontSize: 12, color: textMuted, marginBottom: 24, fontWeight: 400 }}>Sito + Prenotazioni automatiche</div>
-              <div className="card-pricing-price" style={{ fontFamily: FONT_INTER, fontSize: 48, fontWeight: 300, color: "#ffffff", marginBottom: 32, lineHeight: 1 }}>
-                €597<span style={{ fontSize: 14, color: textMutedLight, fontWeight: 300, marginLeft: 4 }}>/una tantum</span>
-              </div>
-              <div style={{ fontFamily: FONT_INTER, fontSize: 13, color: textMuted, marginBottom: 16 }}>+ €47/mese</div>
-              <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
-                {proFeatures.map((f, i) => (
-                  <div key={i} style={{ fontFamily: FONT_INTER, fontSize: 13, color: i === 0 ? ACCENT : textMuted, padding: "12px 0", borderBottom: i < proFeatures.length - 1 ? "1px solid rgba(255,255,255,0.06)" : "none", textAlign: "left", display: "flex", alignItems: "flex-start", gap: 14, fontWeight: i === 0 ? 500 : 300, marginBottom: i === 0 ? 8 : 0 }}>
-                    {i > 0 && <span style={{ color: ACCENT, fontSize: 10, flexShrink: 0, marginTop: 2 }}>◆</span>} <span>{f}</span>
-                  </div>
-                ))}
-              </div>
-              <button onClick={() => window.open(WHATSAPP_URL, "_blank", "noopener,noreferrer")} className="btn-pricing-filled" style={{ marginTop: 32, width: "100%", background: ACCENT, color: "#0C0C0C", border: "none", padding: "17px", fontFamily: FONT_INTER, fontSize: 12, fontWeight: 600, cursor: "pointer", textTransform: "uppercase", letterSpacing: 3, transition: "all 0.3s ease", borderRadius: 8 }}>Scegli Pro</button>
-              <div style={{ fontFamily: FONT_INTER, fontSize: 11, color: textMutedLight, marginTop: 12, fontWeight: 400 }}>Per chi vuole riempire i tavoli senza il telefono</div>
-            </div>
-          </ScrollReveal>
-          
-          {/* CARD 3 - Premium */}
-          <ScrollReveal delay={200}>
-            <div className="card-pricing-premium" style={{ position: "relative", background: "rgba(255,255,255,0.03)", border: borderCard, padding: "44px 32px", borderRadius: 12, display: "flex", flexDirection: "column", transition: "transform 0.25s ease, border-color 0.25s ease" }}>
-              <div style={{ fontFamily: FONT_INTER, fontSize: 10, fontWeight: 600, color: ACCENT, textTransform: "uppercase", letterSpacing: 4, marginBottom: 8 }}>Premium</div>
-              <div style={{ fontFamily: FONT_INTER, fontSize: 12, color: textMuted, marginBottom: 24, fontWeight: 400 }}>Il sistema completo per la tua pizzeria</div>
-              <div className="card-pricing-price" style={{ fontFamily: FONT_INTER, fontSize: 48, fontWeight: 300, color: "#ffffff", marginBottom: 32, lineHeight: 1 }}>
-                €997<span style={{ fontSize: 14, color: textMutedLight, fontWeight: 300, marginLeft: 4 }}>/una tantum</span>
-              </div>
-              <div style={{ fontFamily: FONT_INTER, fontSize: 13, color: textMuted, marginBottom: 16 }}>+ €97/mese</div>
-              <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
-                {premiumFeatures.map((f, i) => (
-                  <div key={i} style={{ fontFamily: FONT_INTER, fontSize: 13, color: i === 0 ? ACCENT : textMuted, padding: "12px 0", borderBottom: i < premiumFeatures.length - 1 ? "1px solid rgba(255,255,255,0.06)" : "none", textAlign: "left", display: "flex", alignItems: "flex-start", gap: 14, fontWeight: i === 0 ? 500 : 300, marginBottom: i === 0 ? 8 : 0 }}>
-                    {i > 0 && <span style={{ color: ACCENT, fontSize: 10, flexShrink: 0, marginTop: 2 }}>◆</span>} <span>{f}</span>
-                  </div>
-                ))}
-              </div>
-              <button onClick={() => window.open(WHATSAPP_URL, "_blank", "noopener,noreferrer")} className="btn-pricing-outline" style={{ marginTop: 32, width: "100%", background: "transparent", color: ACCENT, border: "1px solid rgba(239,68,68,0.4)", padding: "17px", fontFamily: FONT_INTER, fontSize: 12, fontWeight: 600, cursor: "pointer", textTransform: "uppercase", letterSpacing: 3, transition: "all 0.3s ease", borderRadius: 8 }}>Vai Premium</button>
-              <div style={{ fontFamily: FONT_INTER, fontSize: 11, color: textMutedLight, marginTop: 12, fontWeight: 400 }}>Per chi vuole il sistema completo senza commissioni</div>
+              <div style={{ fontFamily: FONT_INTER, fontSize: 12, color: textMutedLight, marginTop: 20, fontWeight: 400 }}>Niente bot, niente prenotazioni automatiche, niente ordini online.</div>
+              <button onClick={() => window.open(WHATSAPP_URL, "_blank", "noopener,noreferrer")} className="btn-pricing-filled" style={{ marginTop: 28, width: "100%", background: ACCENT, color: "#0C0C0C", border: "none", padding: "17px", fontFamily: FONT_INTER, fontSize: 12, fontWeight: 600, cursor: "pointer", textTransform: "uppercase", letterSpacing: 3, transition: "all 0.3s ease", borderRadius: 8 }}>Richiedi il tuo sito</button>
             </div>
           </ScrollReveal>
         </div>
         
-        <div style={{ fontFamily: FONT_INTER, fontSize: 12, color: textMutedLight, marginTop: 24, fontWeight: 400 }}>Tutti i piani includono analisi gratuita · Pagamento rateizzabile · Nessun vincolo</div>
-        <div style={{ fontFamily: FONT_INTER, fontSize: 13, color: ACCENT, fontWeight: 600, marginTop: 16, maxWidth: 640, marginLeft: "auto", marginRight: "auto" }}>Confronta: JustEat e Deliveroo prendono il 15-30% su ogni ordine. Il nostro sistema è TUO, zero commissioni.</div>
+        <div style={{ fontFamily: FONT_INTER, fontSize: 12, color: textMutedLight, marginTop: 24, fontWeight: 400 }}>Analisi gratuita · Pagamento rateizzabile · Garanzia rimborso · Nessun vincolo</div>
       </div>
     </section>
   );
@@ -615,11 +546,11 @@ function Pricing() {
 function FAQ() {
   const [open, setOpen] = useState(null);
   const faqs = [
-    { q: "Quanto tempo ci vuole?", a: "Il sito Base è pronto in 5 giorni. Il Pro con prenotazioni in 7-10 giorni. Il Premium completo in 2 settimane. Tempi garantiti." },
+    { q: "Quanto tempo ci vuole?", a: "Il sito è pronto in 7 giorni. Tempi garantiti." },
     { q: "Devo fornire le foto?", a: "Se le hai, perfetto. Se non le hai, ti guidiamo su come fare foto perfette delle tue pizze con il telefono. Bastano 30 minuti." },
-    { q: "Quanto costa il bot WhatsApp al mese?", a: "Il bot è incluso nel piano Pro (€47/mese) e Premium (€97/mese). Incluso manutenzione, aggiornamenti e supporto." },
+    { q: "Offrite bot o prenotazioni automatiche?", a: "No. L'offerta è solo il sito professionale: menù, foto, orari, mappa, contatti. Niente bot WhatsApp, niente prenotazioni automatiche, niente ordini online." },
     { q: "Posso iniziare col Base e aggiungere dopo?", a: "Assolutamente sì. Il sistema è modulare. Parti col sito, poi aggiungi prenotazioni e ordini quando vuoi. Upgrade facile." },
-    { q: "E se non funziona?", a: "Se in 30 giorni non sei soddisfatto, ti rimborsiamo. Ma non è mai successo." },
+    { q: "E se non funziona?", a: "Garanzia rimborso: se non sei soddisfatto, ti rimborsiamo. Ma non è mai successo." },
     { q: "È meglio di JustEat/Deliveroo?", a: "Sono cose diverse. JustEat ti porta visibilità ma prende il 15-30% su ogni ordine. Il nostro sistema è TUO — zero commissioni, i clienti restano tuoi." }
   ];
   return (
@@ -677,7 +608,7 @@ export default function PremiumTemplate() {
     <div style={{ margin: 0, padding: 0, background: "#0C0C0C" }} className="ecf-media-site">
       <NoiseOverlay />
       <style>{`
-        .ecf-media-site { max-width: 1440px; margin-left: auto; margin-right: auto; width: 100%; overflow-x: hidden; }
+        .ecf-media-site { max-width: 100%; width: 100%; overflow-x: hidden; }
         @media (max-width: 768px) {
           .ecf-media-site { max-width: 100%; }
           .ecf-media-site .hero-section { display: flex !important; justify-content: center !important; align-items: center !important; }

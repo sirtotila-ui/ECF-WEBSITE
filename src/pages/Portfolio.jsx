@@ -105,24 +105,15 @@ function PortfolioHero() {
 
 /* Progetti Pizzerie */
 const PIZZERIE_PROJECTS = [
-  { id: 1, title: "Pizzeria Bella Napoli", category: "Sito + Ordini", desc: "Sito one-page con menù digitale e ordini via WhatsApp.", url: "https://ecfpizzabellanapoli.vercel.app", image: null },
+  { id: 1, title: "Pizzeria", category: "Sito + Menù", desc: "Sito one-page per pizzeria con menù e ordini online.", url: "https://pizzeria-two-dun.vercel.app", image: null },
   { id: 2, title: "Da Nonno Peppe", category: "Sito + Menù + Prenotazioni", desc: "Pizzeria artigianale a Rimini, dal 1985. Menù, storia, recensioni, prenotazioni e ordini WhatsApp.", url: "https://ecfdanonnopeppe.vercel.app", image: null },
   { id: 3, title: "Impasto", category: "Sito + Menù", desc: "Pizza fresca, ingredienti veri. Sito one-page con identità forte e menù digitale.", url: "https://ecfpizzeriaimpasto.vercel.app", image: null },
-  { id: 4, title: "Pizzeria", category: "Sito + Menù", desc: "Sito one-page per pizzeria con menù e ordini online.", url: "https://pizzeria-two-dun.vercel.app", image: null },
-];
-
-/* Siti PMI */
-const SITI_PMI_PROJECTS = [
-  { id: 10, title: "Lattoneria", category: "Sito vetrina", desc: "Sito per attività di lattoneria e lavorazione metalli.", url: "https://v0-lattoneria-hoti-website-git-v0-sirto-bfc528-totilas-projects.vercel.app/", image: null },
-  { id: 11, title: "Dentist", category: "Portfolio professionale", desc: "Sito portfolio per studio dentistico e servizi.", url: "https://dentist-portfolio-ecf.vercel.app", image: null },
-  { id: 12, title: "Palestra", category: "Sito + Corsi", desc: "Sito per palestra con corsi, orari e informazioni.", url: "https://templatepermobileenon.vercel.app", image: null },
-  { id: 13, title: "Idraulico", category: "Sito servizi", desc: "Sito per impresa idraulica con servizi e contatti.", url: "https://plumber-example.vercel.app", image: null },
 ];
 
 function ProjectCard({ project }) {
   const hasLink = project.url && project.url !== "#";
   const cardContent = (
-    <div className="portfolio-card" style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${ACCENT_RGBA(0.2)}`, borderRadius: 12, overflow: "hidden", transition: "transform 0.25s ease, border-color 0.25s ease", height: "100%", display: "flex", flexDirection: "column" }}>
+    <div className="portfolio-card" style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${ACCENT_RGBA(0.2)}`, borderRadius: 12, overflow: "hidden", height: "100%", display: "flex", flexDirection: "column" }}>
       <div className="portfolio-card-preview" style={{ aspectRatio: "16/10", background: "rgba(239,68,68,0.08)", minHeight: 180, overflow: "hidden", position: "relative" }}>
         {project.image ? (
           <img src={project.image} alt={project.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
@@ -167,16 +158,6 @@ function ProjectsSection() {
               <ProjectCard project={p} />
             </ScrollReveal>
           ))}
-        </div>
-        <div style={{ marginTop: 64, paddingTop: 48, borderTop: `1px solid ${ACCENT_RGBA(0.25)}` }}>
-          <h3 style={{ fontFamily: FONT_INTER, fontSize: 12, fontWeight: 600, color: ACCENT, textTransform: "uppercase", letterSpacing: 4, marginBottom: 28 }}>Siti PMI</h3>
-          <div className="portfolio-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))", gap: 28 }}>
-            {SITI_PMI_PROJECTS.map((p, i) => (
-              <ScrollReveal key={p.id} delay={i * 80}>
-                <ProjectCard project={p} />
-              </ScrollReveal>
-            ))}
-          </div>
         </div>
       </div>
     </section>
@@ -231,8 +212,6 @@ export default function PortfolioPage() {
         .portfolio-nav a:hover { color: ${ACCENT} !important; }
         .portfolio-nav a[style*="background"]:hover { background-color: #DC2626 !important; }
         .portfolio-card-link { cursor: pointer; }
-        .portfolio-card-link:hover .portfolio-card { transform: translateY(-4px); border-color: ${ACCENT_RGBA(0.4)} !important; }
-        .portfolio-card:hover { transform: translateY(-4px); border-color: ${ACCENT_RGBA(0.4)} !important; }
         .portfolio-cta a:hover { background-color: #DC2626 !important; transform: scale(1.02); }
         @media (max-width: 768px) {
           .portfolio-grid { grid-template-columns: 1fr !important; }
