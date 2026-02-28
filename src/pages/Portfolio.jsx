@@ -118,12 +118,15 @@ function ProjectCard({ project }) {
         {project.image ? (
           <img src={project.image} alt={project.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
         ) : hasLink ? (
-          <iframe
-            src={project.url}
-            title={`Preview ${project.title}`}
-            style={{ position: "absolute", top: 0, left: 0, width: "200%", height: "200%", border: "none", pointerEvents: "none", transform: "scale(0.5)", transformOrigin: "top left" }}
-            loading="lazy"
-          />
+          <>
+            <iframe
+              src={project.url}
+              title={`Preview ${project.title}`}
+              style={{ position: "absolute", top: 0, left: 0, width: "200%", height: "200%", border: "none", pointerEvents: "none", transform: "scale(0.5)", transformOrigin: "top left" }}
+              loading="lazy"
+            />
+            <div aria-hidden="true" style={{ position: "absolute", inset: 0, zIndex: 1, cursor: "pointer" }} />
+          </>
         ) : (
           <span style={{ fontFamily: FONT_INTER, fontSize: 14, color: ACCENT_RGBA(0.5), fontWeight: 600, position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>Immagine progetto</span>
         )}
