@@ -5,11 +5,11 @@ const SECTIONS = ["home", "problema", "soluzione", "portfolio", "risultati", "se
 const NAV_LABELS = { home: "Home", problema: "Problema", soluzione: "Soluzione", risultati: "Risultati", portfolio: "Portfolio", servizi: "Servizi", processo: "Come Funziona", pricing: "Prezzi", faq: "FAQ", contatti: "Contatti" };
 
 const FONT_INTER = "'Inter', sans-serif";
-const ACCENT = "#EF4444";
-const ACCENT_RGBA = (o) => `rgba(239,68,68,${o})`;
+const ACCENT = "#2563EB";
+const ACCENT_RGBA = (o) => `rgba(37,99,235,${o})`;
 const SCROLL_OFFSET = 80;
 const WHATSAPP_NUMBER = "393664400722";
-const WHATSAPP_PRENOTA_MSG = "Buongiorno, vorrei prenotare un'analisi gratuita della mia pizzeria.";
+const WHATSAPP_PRENOTA_MSG = "Buongiorno, vorrei un'analisi gratuita per il sito della mia attività.";
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_PRENOTA_MSG)}`;
 
 /* ───────── SMOOTH SCROLL ───────── */
@@ -195,7 +195,7 @@ function Navbar() {
   const scrollTo = (id) => { scrollToSection(id, () => setMenuOpen(false)); };
 
   return (
-    <nav className="nav-ecf" style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000, background: "rgba(12,12,12,0.95)", backdropFilter: "blur(20px)", borderBottom: "1px solid rgba(239,68,68,0.2)", height: 68, display: "flex", alignItems: "center", justifyContent: "center" }}>
+    <nav className="nav-ecf" style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000, background: "rgba(12,12,12,0.95)", backdropFilter: "blur(20px)", borderBottom: `1px solid ${ACCENT_RGBA(0.2)}`, height: 68, display: "flex", alignItems: "center", justifyContent: "center" }}>
       <div className="nav-inner" style={{ width: "100%", maxWidth: 1440, margin: "0 auto", height: "100%", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
       <ECFLogo />
       <div style={{ display: "flex", gap: 6, alignItems: "center" }} className="desktop-nav-p">
@@ -238,7 +238,7 @@ function Navbar() {
         }
         .mobile-menu-overlay::-webkit-scrollbar { display: none; }
         .mobile-menu-overlay .btn-nav-mobile { white-space: nowrap; }
-        .mobile-menu-overlay .btn-nav-mobile:not(.btn-nav-mobile-cta):hover { color: #EF4444 !important; }
+        .mobile-menu-overlay .btn-nav-mobile:not(.btn-nav-mobile-cta):hover { color: #2563EB !important; }
       `}</style>
     </nav>
   );
@@ -261,7 +261,7 @@ function Hero() {
   return (
     <section id="home" className="hero-section" style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "#0C0C0C", position: "relative", overflow: "hidden" }}>
       <div ref={meshRef} className="hero-mesh hero-mesh-parallax" aria-hidden="true">
-        <div className="hero-blob hero-blob-1" style={{ background: "rgba(239,68,68,0.12)" }} />
+        <div className="hero-blob hero-blob-1" style={{ background: ACCENT_RGBA(0.12) }} />
         <div className="hero-blob hero-blob-2" style={{ background: "rgba(56,189,248,0.1)" }} />
         <div className="hero-blob hero-blob-3 hero-blob-mobile-hide" style={{ background: "rgba(125,211,252,0.1)" }} />
         <div className="hero-blob hero-blob-4 hero-blob-mobile-hide" style={{ background: "rgba(186,230,253,0.12)" }} />
@@ -271,9 +271,9 @@ function Hero() {
       <div className="hero-line-mobile-hide" style={{ position: "absolute", bottom: 120, left: "10%", width: 1, height: 120, background: `linear-gradient(to bottom, transparent, ${ACCENT_RGBA(0.2)}, transparent)` }} />
 
       <div className="hero-content-inner" style={{ maxWidth: "min(1100px, 92vw)", width: "100%", marginLeft: "auto", marginRight: "auto", textAlign: "center", position: "relative", zIndex: 1, boxSizing: "border-box" }}>
-        <div style={{ fontFamily: FONT_INTER, fontSize: 11, fontWeight: 600, color: ACCENT, textTransform: "uppercase", letterSpacing: 5, marginBottom: 32 }}>L'AGENZIA WEB PER PIZZERIE</div>
+        <div style={{ fontFamily: FONT_INTER, fontSize: 11, fontWeight: 600, color: ACCENT, textTransform: "uppercase", letterSpacing: 5, marginBottom: 32 }}>SITI WEB PER ATTIVITÀ LOCALI</div>
         <h1 style={{ fontFamily: FONT_INTER, fontSize: "clamp(38px, 6vw, 72px)", fontWeight: 800, color: "#ffffff", lineHeight: 1.1, margin: "0 0 28px", letterSpacing: -0.5 }}>
-          {["La", "Tua", "Pizzeria", "Merita"].map((word, i) => (
+          {["Il", "Tuo", "Sito", "Web."].map((word, i) => (
             <span key={i}>
               {i > 0 && " "}
               <span className="hero-word" style={{ animationDelay: `${300 + i * 80}ms` }}>{word}</span>
@@ -284,14 +284,14 @@ function Hero() {
             <span className="hero-word" style={{ animationDelay: "940ms" }}>Più Clienti.</span>
           </span>
         </h1>
-        <p className="hero-subtitle" style={{ fontFamily: FONT_INTER, fontSize: "clamp(14px, 2vw, 16px)", color: "rgba(255,255,255,0.6)", maxWidth: 520, margin: "0 auto 44px", lineHeight: 1.9, fontWeight: 400, letterSpacing: 0.3 }}>Creiamo siti web, sistemi di prenotazione e ordini online che riempiono i tavoli e aumentano gli asporti. Specializzati solo in pizzerie.</p>
+        <p className="hero-subtitle" style={{ fontFamily: FONT_INTER, fontSize: "clamp(14px, 2vw, 16px)", color: "rgba(255,255,255,0.6)", maxWidth: 520, margin: "0 auto 44px", lineHeight: 1.9, fontWeight: 400, letterSpacing: 0.3 }}>Creiamo siti web professionali per attività locali. I clienti che ti cercano su Google ti trovano. Semplice, pulito, efficace.</p>
         <div className="cta-hero-wrap" style={{ display: "flex", gap: 20, justifyContent: "center", flexWrap: "wrap" }}>
-          <button onClick={() => window.open(WHATSAPP_URL, "_blank", "noopener,noreferrer")} className="btn-primary btn-hero-cta-primary" style={{ background: "transparent", color: ACCENT, border: `1px solid ${ACCENT}`, padding: "16px 44px", fontFamily: FONT_INTER, fontSize: 12, fontWeight: 600, cursor: "pointer", textTransform: "uppercase", letterSpacing: 3, transition: "transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease", minWidth: 200 }}>Analisi Gratuita della Tua Pizzeria</button>
+          <button onClick={() => window.open(WHATSAPP_URL, "_blank", "noopener,noreferrer")} className="btn-primary btn-hero-cta-primary" style={{ background: "transparent", color: ACCENT, border: `1px solid ${ACCENT}`, padding: "16px 44px", fontFamily: FONT_INTER, fontSize: 12, fontWeight: 600, cursor: "pointer", textTransform: "uppercase", letterSpacing: 3, transition: "transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease", minWidth: 200 }}>Analisi Gratuita della Tua Attività</button>
           <button onClick={() => scrollToSection("portfolio")} className="btn-outline btn-hero-cta-secondary" style={{ background: "transparent", color: "rgba(255,255,255,0.8)", border: "1px solid rgba(255,255,255,0.12)", padding: "16px 44px", fontFamily: FONT_INTER, fontSize: 12, fontWeight: 600, cursor: "pointer", textTransform: "uppercase", letterSpacing: 3, transition: "transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease", minWidth: 200 }}>Vedi Esempi</button>
         </div>
         <div style={{ width: 1, height: 60, background: `linear-gradient(to bottom, transparent, ${ACCENT_RGBA(0.3)})`, margin: "56px auto 0" }} />
         <div className="hero-stats-wrap" style={{ display: "flex", gap: 56, justifyContent: "center", marginTop: 32, flexWrap: "wrap" }}>
-          {[["50+", "Pizzerie Online"], ["4.9", "Rating"], ["40", "Ordini Medi", true]].map(([num, label, isPercent]) => (
+          {[["50+", "Siti Online"], ["4.9", "Rating"], ["40", "Clienti in Più", true]].map(([num, label, isPercent]) => (
             <div key={label} style={{ textAlign: "center" }}>
               <span style={{ fontFamily: FONT_INTER, fontSize: 32, fontWeight: 800, color: ACCENT }}>
                 {isPercent ? <>+<CountUp value={num} duration={2000} />%</> : <CountUp value={num} duration={2000} />}
@@ -313,8 +313,8 @@ function BlueLine() {
 /* ───────── PROBLEM ───────── */
 function Problem() {
   const problems = [
-    { title: "Nessuno Ti Trova", desc: "Quando qualcuno cerca 'pizzeria [tua zona]' su Google, trova i tuoi concorrenti. Tu non ci sei. Ogni ricerca è un cliente perso che va da un'altra parte." },
-    { title: "Telefono Sempre Occupato", desc: "È venerdì sera, il telefono squilla a vuoto, i clienti rinunciano e ordinano altrove. Stai perdendo ordini perché non hai un sistema di prenotazione automatico." },
+    { title: "Nessuno Ti Trova", desc: "Quando i clienti cercano la tua attività su Google, trovano i tuoi concorrenti. Tu non ci sei. Ogni ricerca è un cliente perso che va da un'altra parte." },
+    { title: "Invisibile Online", desc: "Senza un sito web, per i clienti è come se non esistessi. Chi non ti conosce non sa dove trovarti, cosa offri, né come contattarti." },
     { title: "Solo Passaparola", desc: "Il passaparola funziona, ma non scala. Senza presenza online, i turisti, i nuovi residenti e chi non ti conosce vanno sempre dai concorrenti che trovano su Google." }
   ];
   return (
@@ -322,7 +322,7 @@ function Problem() {
       <div style={{ maxWidth: "min(1200px, 92vw)", width: "100%", margin: "0 auto", padding: "0 24px" }}>
         <div style={{ textAlign: "center", marginBottom: 64 }}>
           <div style={{ fontFamily: FONT_INTER, fontSize: 10, fontWeight: 600, color: ACCENT, textTransform: "uppercase", letterSpacing: 5, marginBottom: 20 }}>IL PROBLEMA</div>
-          <TextReveal text="La Tua Pizzeria Sta Perdendo Clienti Ogni Giorno" style={{ fontFamily: FONT_INTER, fontSize: "clamp(28px, 4.5vw, 46px)", fontWeight: 800, color: "#ffffff", marginBottom: 16 }} />
+          <TextReveal text="La Tua Attività Sta Perdendo Clienti Ogni Giorno" style={{ fontFamily: FONT_INTER, fontSize: "clamp(28px, 4.5vw, 46px)", fontWeight: 800, color: "#ffffff", marginBottom: 16 }} />
           <div style={{ width: 40, height: 1, background: ACCENT, margin: "0 auto" }} />
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 36 }}>
@@ -344,9 +344,9 @@ function Problem() {
 /* ───────── SOLUTION ───────── */
 function Solution() {
   const benefits = [
-    { title: "Sito che Converte", desc: "Non un sito vetrina. Un sito che fa venire fame, mostra il menù, fa prenotare il tavolo e ordinare l'asporto. Ogni visitatore diventa un cliente." },
-    { title: "Prenotazioni Automatiche", desc: "I clienti prenotano dal sito o da WhatsApp, 24/7, senza che tu debba rispondere al telefono. Le prenotazioni arrivano organizzate, zero confusione." },
-    { title: "Ordini Online", desc: "Asporto e delivery direttamente dal tuo sito. Il cliente sceglie le pizze, manda l'ordine, tu lo prepari. Niente telefonate, niente errori, più ordini." }
+    { title: "Sito che Converte", desc: "Non un sito vetrina. Un sito che presenta la tua attività, i tuoi servizi o prodotti, e fa sì che i clienti ti contattino. Ogni visitatore diventa un potenziale cliente." },
+    { title: "Visibilità su Google", desc: "I clienti che ti cercano su Google ti trovano. Ottimizziamo il sito per le ricerche locali: nome attività, servizio, zona. Più visibilità, più contatti." },
+    { title: "Semplice e Professionale", desc: "Design pulito, mobile-first, informazioni chiare. Orari, contatti, mappa, WhatsApp. Tutto quello che serve per farti trovare e contattare." }
   ];
   return (
     <section id="soluzione" className="section-padding" style={{ background: "#0C0C0C" }}>
@@ -355,7 +355,7 @@ function Solution() {
           <div style={{ fontFamily: FONT_INTER, fontSize: 10, fontWeight: 600, color: ACCENT, textTransform: "uppercase", letterSpacing: 5, marginBottom: 20 }}>LA SOLUZIONE</div>
           <h2 style={{ fontFamily: FONT_INTER, fontSize: "clamp(28px, 4.5vw, 46px)", fontWeight: 800, color: "#ffffff", marginBottom: 16 }}>
             Tutto Quello che Serve alla Tua{" "}
-            <span style={{ color: ACCENT, fontStyle: "italic" }}>Pizzeria</span>
+            <span style={{ color: ACCENT, fontStyle: "italic" }}>Attività</span>
           </h2>
           <div style={{ width: 40, height: 1, background: ACCENT, margin: "0 auto" }} />
         </div>
@@ -378,22 +378,22 @@ function Solution() {
 /* ───────── RESULTS (SOCIAL PROOF) ───────── */
 function Results() {
   const testimonials = [
-    { quote: "Da quando abbiamo il sito con il sistema ordini, gli asporti sono aumentati del 40%. Il venerdì sera non perdiamo più neanche un ordine.", author: "Marco R.", place: "Pizzeria Bella Napoli" },
-    { quote: "Il widget prenotazioni ci ha cambiato la vita. I clienti prenotano da soli, noi non dobbiamo più stare al telefono. Tutto organizzato.", author: "Laura B.", place: "Pizzeria Da Luigi" },
-    { quote: "Eravamo invisibili su Google. Ora siamo il primo risultato per 'pizzeria' nella nostra zona. I nuovi clienti arrivano ogni giorno.", author: "Giuseppe M.", place: "Pizza & Fantasia" }
+    { quote: "Da quando abbiamo il sito, i clienti ci trovano su Google. Prima eravamo invisibili. Ora arrivano contatti ogni settimana.", author: "Marco R.", place: "Pizzeria Bella Napoli" },
+    { quote: "Sito pulito, professionale. I clienti vedono subito cosa facciamo e ci contattano. Semplice ed efficace.", author: "Laura B.", place: "Pizzeria Da Luigi" },
+    { quote: "Eravamo invisibili su Google. Ora siamo il primo risultato nella nostra zona. I nuovi clienti arrivano ogni giorno.", author: "Giuseppe M.", place: "Pizza & Fantasia" }
   ];
   return (
     <section id="risultati" className="section-padding" style={{ background: "#0C0C0C" }}>
       <div style={{ maxWidth: "min(1000px, 92vw)", width: "100%", margin: "0 auto", padding: "0 24px" }}>
         <div style={{ textAlign: "center", marginBottom: 56 }}>
           <div style={{ fontFamily: FONT_INTER, fontSize: 10, fontWeight: 600, color: ACCENT, textTransform: "uppercase", letterSpacing: 5, marginBottom: 20 }}>RISULTATI</div>
-          <TextReveal text="Cosa Ottengono le Nostre Pizzerie" style={{ fontFamily: FONT_INTER, fontSize: "clamp(28px, 4.5vw, 46px)", fontWeight: 800, color: "#ffffff" }} />
+          <TextReveal text="Cosa Ottengono le Nostre Attività" style={{ fontFamily: FONT_INTER, fontSize: "clamp(28px, 4.5vw, 46px)", fontWeight: 800, color: "#ffffff" }} />
           <div style={{ width: 40, height: 1, background: ACCENT, margin: "20px auto 0" }} />
         </div>
         <div className="results-cards-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 28, alignItems: "stretch" }}>
           {testimonials.map((t, i) => (
             <ScrollReveal key={i} delay={i * 80} style={{ display: "flex" }}>
-              <div className="card-testimonial" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(239,68,68,0.2)", padding: "32px 28px", borderRadius: 12, transition: "transform 0.25s ease, border-color 0.25s ease", flex: 1, display: "flex", flexDirection: "column" }}>
+              <div className="card-testimonial" style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${ACCENT_RGBA(0.2)}`, padding: "32px 28px", borderRadius: 12, transition: "transform 0.25s ease, border-color 0.25s ease", flex: 1, display: "flex", flexDirection: "column" }}>
                 <p style={{ fontFamily: FONT_INTER, fontSize: 14, color: "rgba(255,255,255,0.85)", lineHeight: 1.8, margin: "0 0 20px", fontWeight: 400, fontStyle: "italic", flex: 1 }}>"{t.quote}"</p>
                 <div style={{ fontFamily: FONT_INTER, fontSize: 13, fontWeight: 600, color: ACCENT }}>{t.author}</div>
                 <div style={{ fontFamily: FONT_INTER, fontSize: 12, color: "rgba(255,255,255,0.45)", marginTop: 4 }}>{t.place}</div>
@@ -414,7 +414,7 @@ function Portfolio() {
         <div style={{ fontFamily: FONT_INTER, fontSize: 10, fontWeight: 600, color: ACCENT, textTransform: "uppercase", letterSpacing: 5, marginBottom: 20 }}>PORTFOLIO</div>
         <TextReveal text="I Nostri Progetti" style={{ fontFamily: FONT_INTER, fontSize: "clamp(28px, 4.5vw, 46px)", fontWeight: 800, color: "#ffffff", marginBottom: 16 }} />
         <div style={{ width: 40, height: 1, background: ACCENT, margin: "0 auto 24px" }} />
-        <p style={{ fontFamily: FONT_INTER, fontSize: 14, color: "rgba(255,255,255,0.6)", marginBottom: 40, lineHeight: 1.8, fontWeight: 400 }}>Siti e sistemi realizzati per le nostre pizzerie. Esempi concreti di cosa possiamo fare per te.</p>
+        <p style={{ fontFamily: FONT_INTER, fontSize: 14, color: "rgba(255,255,255,0.6)", marginBottom: 40, lineHeight: 1.8, fontWeight: 400 }}>Siti realizzati per attività locali: ristorazione, parrucchieri, artigiani. Esempi concreti di cosa possiamo fare per te.</p>
         <Link to="/portfolio" className="btn-outline" style={{ display: "inline-block", background: "transparent", color: ACCENT, border: `1px solid ${ACCENT}`, padding: "16px 44px", fontFamily: FONT_INTER, fontSize: 12, fontWeight: 600, cursor: "pointer", textTransform: "uppercase", letterSpacing: 3, transition: "transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease", textDecoration: "none" }}>Vedi tutti i progetti</Link>
       </div>
     </section>
@@ -424,9 +424,9 @@ function Portfolio() {
 /* ───────── SERVICES ───────── */
 function Services() {
   const services = [
-    { name: "Sito Web per Pizzerie", desc: "Sito professionale con il tuo menù, foto, orari, mappa e contatti. Ottimizzato per mobile (dove il 75% dei tuoi clienti ti cerca) e per Google (per farti trovare).", included: ["Menù interattivo", "Design personalizzato", "Mobile-first", "SEO locale", "Google Maps", "Bottone WhatsApp"] },
-    { name: "Sistema Prenotazioni", desc: "Widget di prenotazione tavoli sul tuo sito + bot WhatsApp che gestisce le prenotazioni automaticamente. I clienti prenotano 24/7, tu ricevi tutto organizzato.", included: ["Widget prenotazione sul sito", "Bot WhatsApp", "Conferma automatica", "Promemoria clienti", "Dashboard prenotazioni"] },
-    { name: "Ordini Online", desc: "Menù interattivo dove i clienti scelgono le pizze, personalizzano l'ordine e inviano tutto via WhatsApp. Asporto e delivery senza telefonate.", included: ["Menù digitale interattivo", "Carrello ordini", "Invio ordine WhatsApp", "Gestione asporto/delivery", "Nessuna commissione (è TUO, non di JustEat)"] }
+    { name: "Sito Web per Attività Locali", desc: "Sito professionale con i tuoi servizi o prodotti, foto, orari, mappa e contatti. Ottimizzato per mobile (dove il 75% dei clienti ti cerca) e per Google (per farti trovare).", included: ["Design personalizzato", "Mobile-first", "SEO locale", "Google Maps", "Bottone WhatsApp / Chiama", "Deploy e messa online"] },
+    { name: "Visibilità su Google", desc: "I clienti che cercano la tua attività su Google ti trovano. Ottimizziamo il sito per le ricerche locali: nome, servizio, zona.", included: ["SEO locale", "Google My Business", "Parole chiave zona", "Schema strutturato"] },
+    { name: "Semplice e Professionale", desc: "Design pulito, informazioni chiare. Niente fronzoli, solo quello che serve per farti trovare e contattare.", included: ["One-page o multi-pagina", "Orari e contatti", "Mappa integrata", "Bottone WhatsApp"] }
   ];
   return (
     <section id="servizi" className="section-padding" style={{ background: "#0C0C0C" }}>
@@ -463,21 +463,21 @@ function Services() {
 function Process() {
   const steps = [
     { title: "Analisi Gratuita", desc: "Guardiamo la tua situazione online: hai un sito? Come ti trovano i clienti? Cosa fanno i tuoi concorrenti? Ti mostriamo tutto in 15 minuti. Gratis." },
-    { title: "Creiamo il Tuo Sistema", desc: "Costruiamo il sito, il sistema prenotazioni e gli ordini online. Tu ci dai il menù e le foto, noi facciamo tutto il resto in 7 giorni." },
-    { title: "I Clienti Arrivano", desc: "Il sito va online, i clienti ti trovano su Google, prenotano e ordinano. Tu ti concentri sulla pizza, il sistema lavora per te." }
+    { title: "Creiamo il Tuo Sito", desc: "Tu ci dai le informazioni e le foto della tua attività, noi costruiamo il sito in 7 giorni. Design pulito, professionale, pronto per Google." },
+    { title: "I Clienti Arrivano", desc: "Il sito va online, i clienti che ti cercano su Google ti trovano. Tu ti concentri sul tuo lavoro, il sito lavora per te." }
   ];
   return (
     <section id="processo" className="section-padding" style={{ background: "#0C0C0C" }}>
       <div style={{ maxWidth: "min(1000px, 92vw)", width: "100%", margin: "0 auto", padding: "0 24px" }}>
         <div style={{ textAlign: "center", marginBottom: 64 }}>
           <div style={{ fontFamily: FONT_INTER, fontSize: 10, fontWeight: 600, color: ACCENT, textTransform: "uppercase", letterSpacing: 5, marginBottom: 20 }}>COME FUNZIONA</div>
-          <TextReveal text="3 Step per Riempire la Tua Pizzeria" style={{ fontFamily: FONT_INTER, fontSize: "clamp(28px, 4.5vw, 46px)", fontWeight: 800, color: "#ffffff" }} />
+          <TextReveal text="3 Step per Portare la Tua Attività Online" style={{ fontFamily: FONT_INTER, fontSize: "clamp(28px, 4.5vw, 46px)", fontWeight: 800, color: "#ffffff" }} />
           <div style={{ width: 40, height: 1, background: ACCENT, margin: "20px auto 0" }} />
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
           {steps.map((s, i) => (
             <ScrollReveal key={i} delay={i * 100}>
-              <div className="process-step" style={{ display: "flex", gap: 40, alignItems: "flex-start", padding: "40px 0", borderBottom: i < 2 ? "1px solid rgba(239,68,68,0.15)" : "none" }}>
+              <div className="process-step" style={{ display: "flex", gap: 40, alignItems: "flex-start", padding: "40px 0", borderBottom: i < 2 ? `1px solid ${ACCENT_RGBA(0.15)}` : "none" }}>
               <div className="process-step-num" style={{ fontFamily: FONT_INTER, fontSize: 52, fontWeight: 800, color: ACCENT_RGBA(0.2), lineHeight: 1, minWidth: 60, textAlign: "center" }}>{i + 1}</div>
               <div>
                 <h3 style={{ fontFamily: FONT_INTER, fontSize: 24, fontWeight: 800, color: "#ffffff", margin: "0 0 10px" }}>{s.title}</h3>
@@ -496,8 +496,7 @@ function Process() {
 function Pricing() {
   const offerFeatures = [
     "Sito professionale one-page",
-    "Menù completo con prezzi",
-    "Foto e descrizione pizze",
+    "Foto e descrizione servizi/prodotti",
     "Mobile-first responsive",
     "SEO locale (Google My Business)",
     "Mappa + orari + contatti",
@@ -517,8 +516,9 @@ function Pricing() {
         
         <div className="pricing-cards-wrapper" style={{ maxWidth: 440, margin: "0 auto 36px" }}>
           <ScrollReveal delay={0}>
-            <div className="card-pricing-rifacimento" style={{ position: "relative", background: "rgba(239,68,68,0.05)", border: "1.5px solid #EF4444", padding: "44px 32px", borderRadius: 12, display: "flex", flexDirection: "column", transition: "transform 0.25s ease, box-shadow 0.25s ease", boxShadow: "0 0 40px rgba(239,68,68,0.12)", overflow: "visible" }}>
-              <div style={{ fontFamily: FONT_INTER, fontSize: 10, fontWeight: 600, color: ACCENT, textTransform: "uppercase", letterSpacing: 4, marginBottom: 8 }}>Sito professionale per pizzerie</div>
+            <div className="card-pricing-rifacimento" style={{ position: "relative", background: ACCENT_RGBA(0.05), border: `1.5px solid ${ACCENT}`, padding: "44px 32px", borderRadius: 12, display: "flex", flexDirection: "column", transition: "transform 0.25s ease, box-shadow 0.25s ease", boxShadow: `0 0 40px ${ACCENT_RGBA(0.12)}`, overflow: "visible" }}>
+              <div style={{ position: "absolute", top: -14, left: "50%", transform: "translateX(-50%)", background: ACCENT, color: "#ffffff", fontFamily: FONT_INTER, fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: 2, padding: "6px 16px", borderRadius: 6 }}>A tempo limitato</div>
+              <div style={{ fontFamily: FONT_INTER, fontSize: 10, fontWeight: 600, color: ACCENT, textTransform: "uppercase", letterSpacing: 4, marginBottom: 8, marginTop: 8 }}>Sito professionale per attività locali</div>
               <div className="card-pricing-price" style={{ fontFamily: FONT_INTER, fontSize: 48, fontWeight: 300, color: "#ffffff", marginBottom: 8, lineHeight: 1 }}>
                 €197<span style={{ fontSize: 14, color: textMutedLight, fontWeight: 300, marginLeft: 4 }}>/una tantum</span>
               </div>
@@ -547,11 +547,11 @@ function FAQ() {
   const [open, setOpen] = useState(null);
   const faqs = [
     { q: "Quanto tempo ci vuole?", a: "Il sito è pronto in 7 giorni. Tempi garantiti." },
-    { q: "Devo fornire le foto?", a: "Se le hai, perfetto. Se non le hai, ti guidiamo su come fare foto perfette delle tue pizze con il telefono. Bastano 30 minuti." },
-    { q: "Offrite bot o prenotazioni automatiche?", a: "No. L'offerta è solo il sito professionale: menù, foto, orari, mappa, contatti. Niente bot WhatsApp, niente prenotazioni automatiche, niente ordini online." },
-    { q: "Posso iniziare col Base e aggiungere dopo?", a: "Assolutamente sì. Il sistema è modulare. Parti col sito, poi aggiungi prenotazioni e ordini quando vuoi. Upgrade facile." },
+    { q: "Devo fornire le foto?", a: "Se le hai, perfetto. Se non le hai, ti guidiamo su come fare foto professionali dei tuoi prodotti o servizi con il telefono. Bastano 30 minuti." },
+    { q: "Offrite bot o prenotazioni automatiche?", a: "No. L'offerta è solo il sito professionale: foto, servizi/prodotti, orari, mappa, contatti. Niente bot WhatsApp, niente prenotazioni automatiche, niente ordini online." },
+    { q: "È adatto per qualsiasi tipo di attività?", a: "Sì. Ristoranti, parrucchieri, artigiani, servizi. Qualsiasi attività locale che vuole essere trovata su Google." },
     { q: "E se non funziona?", a: "Garanzia rimborso: se non sei soddisfatto, ti rimborsiamo. Ma non è mai successo." },
-    { q: "È meglio di JustEat/Deliveroo?", a: "Sono cose diverse. JustEat ti porta visibilità ma prende il 15-30% su ogni ordine. Il nostro sistema è TUO — zero commissioni, i clienti restano tuoi." }
+    { q: "Perché serve un sito e non bastano i social?", a: "I social sono utili, ma quando i clienti cercano la tua attività su Google vogliono trovare un sito con orari, contatti, servizi. Un sito professionale fa la differenza." }
   ];
   return (
     <section id="faq" className="section-padding" style={{ background: "#0C0C0C" }}>
@@ -562,7 +562,7 @@ function FAQ() {
           <div style={{ width: 40, height: 1, background: ACCENT, margin: "20px auto 0" }} />
         </div>
         {faqs.map((f, i) => (
-          <div key={i} style={{ borderBottom: "1px solid rgba(239,68,68,0.15)" }}>
+          <div key={i} style={{ borderBottom: `1px solid ${ACCENT_RGBA(0.15)}` }}>
             <button onClick={() => setOpen(open === i ? null : i)} className="btn-faq btn-tap" style={{ width: "100%", background: "none", border: "none", cursor: "pointer", display: "flex", justifyContent: "space-between", alignItems: "center", padding: "24px 0", textAlign: "left", transition: "transform 0.2s ease" }}>
               <span className="faq-question" style={{ fontFamily: FONT_INTER, fontSize: 19, fontWeight: 600, color: "#ffffff" }}>{f.q}</span>
               <span style={{ fontSize: 16, color: ACCENT, transition: "transform .3s", transform: open === i ? "rotate(45deg)" : "none", flexShrink: 0, marginLeft: 20, fontFamily: FONT_INTER, fontWeight: 400 }}>+</span>
@@ -582,10 +582,10 @@ function FooterCTA() {
       <div style={{ position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)", width: 1, height: 80, background: `linear-gradient(to bottom, ${ACCENT_RGBA(0.3)}, transparent)` }} />
       <div style={{ maxWidth: "min(900px, 92vw)", width: "100%", margin: "0 auto", padding: "0 24px" }}>
         <div style={{ fontFamily: FONT_INTER, fontSize: 10, fontWeight: 600, color: ACCENT, textTransform: "uppercase", letterSpacing: 5, marginBottom: 24 }}>CONTATTI</div>
-        <h2 style={{ fontFamily: FONT_INTER, fontSize: "clamp(28px, 4.5vw, 46px)", fontWeight: 800, color: "#ffffff", marginBottom: 20 }}>Pronto a Riempire la Tua Pizzeria?</h2>
+        <h2 style={{ fontFamily: FONT_INTER, fontSize: "clamp(28px, 4.5vw, 46px)", fontWeight: 800, color: "#ffffff", marginBottom: 20 }}>Pronto a Portare la Tua Attività Online?</h2>
         <div style={{ width: 40, height: 1, background: ACCENT, margin: "0 auto 28px" }} />
         <p style={{ fontFamily: FONT_INTER, fontSize: 14, color: "rgba(255,255,255,0.6)", marginBottom: 44, lineHeight: 1.9, fontWeight: 400 }}>Prenota un'analisi gratuita di 15 minuti. Ti mostriamo esattamente come i tuoi clienti ti cercano online e cosa puoi fare per non perderli.</p>
-        <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn-primary cta-footer-btn" style={{ display: "inline-block", background: ACCENT, color: "#0C0C0C", border: "none", padding: "18px 52px", fontFamily: FONT_INTER, fontSize: 12, fontWeight: 600, cursor: "pointer", textTransform: "uppercase", letterSpacing: 3, transition: "transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease", maxWidth: 360, margin: "0 auto", textDecoration: "none" }}>Analisi Gratuita della Tua Pizzeria</a>
+        <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn-primary cta-footer-btn" style={{ display: "inline-block", background: ACCENT, color: "#ffffff", border: "none", padding: "18px 52px", fontFamily: FONT_INTER, fontSize: 12, fontWeight: 600, cursor: "pointer", textTransform: "uppercase", letterSpacing: 3, transition: "transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease", maxWidth: 360, margin: "0 auto", textDecoration: "none" }}>Analisi Gratuita della Tua Attività</a>
         <div className="footer-contacts-wrap" style={{ marginTop: 64, display: "flex", gap: 56, justifyContent: "center", flexWrap: "wrap" }}>
           {[["Telefono", "+39 366 440 0722"], ["Email", "info@ecfmedia.it"], ["Zona", "Italia"]].map(([label, text]) => (
             <div key={text} style={{ textAlign: "center" }}>
@@ -596,7 +596,7 @@ function FooterCTA() {
             </div>
           ))}
         </div>
-        <div style={{ marginTop: 64, paddingTop: 28, borderTop: "1px solid rgba(239,68,68,0.15)", fontFamily: FONT_INTER, fontSize: 11, color: "rgba(255,255,255,0.4)", letterSpacing: 1 }}>© 2026 ECF Media · Tutti i diritti riservati</div>
+        <div style={{ marginTop: 64, paddingTop: 28, borderTop: `1px solid ${ACCENT_RGBA(0.15)}`, fontFamily: FONT_INTER, fontSize: 11, color: "rgba(255,255,255,0.4)", letterSpacing: 1 }}>© 2026 ECF Media · Tutti i diritti riservati</div>
       </div>
     </section>
   );
@@ -754,7 +754,7 @@ export default function PremiumTemplate() {
         /* Text Reveal */
         .ecf-media-site .text-reveal-word { display: inline-block; opacity: 0; transform: translateY(12px); }
         .ecf-media-site .text-reveal-visible .text-reveal-word { animation: scrollRevealIn 0.5s ease forwards; }
-        .ecf-media-site .text-reveal-accent-last .text-reveal-word:last-child { font-style: italic; color: #EF4444; }
+        .ecf-media-site .text-reveal-accent-last .text-reveal-word:last-child { font-style: italic; color: ${ACCENT}; }
         .ecf-media-site .btn-primary,
         .ecf-media-site .btn-outline,
         .ecf-media-site .btn-nav,
@@ -770,15 +770,15 @@ export default function PremiumTemplate() {
         @media (hover: hover) {
           .ecf-media-site .btn-primary:hover {
             transform: scale(1.02);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 20px rgba(239,68,68,0.35);
-            background-color: #DC2626 !important;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 20px ${ACCENT_RGBA(0.35)};
+            background-color: #1D4ED8 !important;
           }
           .ecf-media-site .btn-primary:hover:active { transform: scale(0.98); }
           .ecf-media-site .btn-outline:hover,
           .ecf-media-site .btn-hero-cta-primary:hover {
             transform: scale(1.02);
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            background-color: rgba(239,68,68,0.08) !important;
+            background-color: ${ACCENT_RGBA(0.08)} !important;
           }
           .ecf-media-site .btn-hero-cta-secondary:hover {
             transform: scale(1.02);
@@ -790,15 +790,15 @@ export default function PremiumTemplate() {
           .ecf-media-site .btn-hero-cta-secondary:hover:active { transform: scale(0.98); }
           .ecf-media-site .btn-nav:hover {
             transform: scale(1.02);
-            color: #EF4444 !important;
+            color: ${ACCENT} !important;
           }
           .ecf-media-site .btn-nav-cta:hover {
             transform: scale(1.02);
-            background-color: #DC2626 !important;
+            background-color: #1D4ED8 !important;
             color: #ffffff !important;
           }
           .ecf-media-site .btn-nav-mobile-cta:hover {
-            background-color: #DC2626 !important;
+            background-color: #1D4ED8 !important;
             color: #ffffff !important;
           }
           .ecf-media-site .btn-nav:hover:active,
@@ -806,33 +806,33 @@ export default function PremiumTemplate() {
           .ecf-media-site .card-problema:hover {
             transform: translateY(-4px);
             box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-            border-color: rgba(239,68,68,0.2) !important;
+            border-color: ${ACCENT_RGBA(0.2)} !important;
           }
           .ecf-media-site .card-soluzione:hover {
             transform: translateY(-4px);
             box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-            border-color: rgba(239,68,68,0.4) !important;
+            border-color: ${ACCENT_RGBA(0.4)} !important;
           }
           .ecf-media-site .card-servizi:hover {
             transform: translateY(-4px);
             box-shadow: 0 8px 24px rgba(0,0,0,0.08) !important;
-            border-color: rgba(239,68,68,0.35) !important;
+            border-color: ${ACCENT_RGBA(0.35)} !important;
           }
           .ecf-media-site .card-pricing-starter:hover,
           .ecf-media-site .card-pricing-premium:hover {
             transform: translateY(-4px);
-            border-color: rgba(239,68,68,0.3) !important;
+            border-color: ${ACCENT_RGBA(0.3)} !important;
           }
           .ecf-media-site .card-pricing-rifacimento:hover {
             transform: translateY(-4px);
-            box-shadow: 0 0 50px rgba(239,68,68,0.12) !important;
+            box-shadow: 0 0 50px ${ACCENT_RGBA(0.12)} !important;
           }
           .ecf-media-site .btn-pricing-outline:hover {
-            border-color: #EF4444 !important;
-            color: #EF4444 !important;
+            border-color: ${ACCENT} !important;
+            color: ${ACCENT} !important;
           }
           .ecf-media-site .btn-pricing-filled:hover {
-            background-color: #DC2626 !important;
+            background-color: #1D4ED8 !important;
             transform: scale(1.02);
           }
           .ecf-media-site .btn-pricing-outline:hover:active,

@@ -26,11 +26,11 @@ html {
 
 a {
   font-weight: 500;
-  color: #EF4444;
+  color: #2563EB;
   text-decoration: inherit;
 }
 a:hover {
-  color: #DC2626;
+  color: #1D4ED8;
 }
 
 body {
@@ -74,11 +74,11 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #EF4444;
+  border-color: #2563EB;
 }
 button:focus,
 button:focus-visible {
-  outline: 2px solid #EF4444;
+  outline: 2px solid #2563EB;
   outline-offset: 2px;
 }
 

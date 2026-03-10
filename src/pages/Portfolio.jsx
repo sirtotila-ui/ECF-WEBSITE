@@ -2,10 +2,10 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
 const FONT_INTER = "'Inter', sans-serif";
-const ACCENT = "#EF4444";
-const ACCENT_RGBA = (o) => `rgba(239,68,68,${o})`;
+const ACCENT = "#2563EB";
+const ACCENT_RGBA = (o) => `rgba(37,99,235,${o})`;
 const WHATSAPP_NUMBER = "393664400722";
-const WHATSAPP_MSG = "Buongiorno, vorrei prenotare un'analisi gratuita della mia pizzeria.";
+const WHATSAPP_MSG = "Buongiorno, vorrei un'analisi gratuita per il sito della mia attività.";
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MSG)}`;
 
 /* ───────── SCROLL REVEAL ───────── */
@@ -97,24 +97,26 @@ function PortfolioHero() {
         <div className="portfolio-hero-label" style={{ fontFamily: FONT_INTER, fontSize: 10, fontWeight: 600, color: ACCENT, textTransform: "uppercase", letterSpacing: 5, marginBottom: 20 }}>PORTFOLIO</div>
         <TextReveal text="I Nostri Progetti" tag="h1" style={{ fontFamily: FONT_INTER, fontSize: "clamp(36px, 5vw, 56px)", fontWeight: 800, color: "#ffffff", margin: "0 0 16px", lineHeight: 1.1 }} />
         <div className="portfolio-hero-line" style={{ width: 40, height: 1, background: ACCENT, margin: "0 auto 24px" }} />
-        <p className="portfolio-hero-subtitle" style={{ fontFamily: FONT_INTER, fontSize: 16, color: "rgba(255,255,255,0.6)", lineHeight: 1.8, margin: 0, fontWeight: 400 }}>Siti e sistemi realizzati per le nostre pizzerie. Design, prenotazioni e ordini online che funzionano.</p>
+        <p className="portfolio-hero-subtitle" style={{ fontFamily: FONT_INTER, fontSize: 16, color: "rgba(255,255,255,0.6)", lineHeight: 1.8, margin: 0, fontWeight: 400 }}>Siti realizzati per attività locali: ristorazione, parrucchieri, artigiani. Design pulito e professionale.</p>
       </div>
     </section>
   );
 }
 
-/* Progetti Pizzerie */
-const PIZZERIE_PROJECTS = [
-  { id: 1, title: "Pizzeria", category: "Sito + Menù", desc: "Sito one-page per pizzeria con menù e ordini online.", url: "https://pizzeria-two-dun.vercel.app", image: null },
-  { id: 2, title: "Da Nonno Peppe", category: "Sito + Menù + Prenotazioni", desc: "Pizzeria artigianale a Rimini, dal 1985. Menù, storia, recensioni, prenotazioni e ordini WhatsApp.", url: "https://ecfnonnopeppe.vercel.app", image: null },
-  { id: 3, title: "Impasto", category: "Sito + Menù", desc: "Pizza fresca, ingredienti veri. Sito one-page con identità forte e menù digitale.", url: "https://ecfpizzeriaimpasto.vercel.app", image: null },
+/* Progetti Portfolio */
+const PORTFOLIO_PROJECTS = [
+  { id: 1, title: "Pizzeria", category: "Ristorazione", desc: "Sito one-page per pizzeria con menù e ordini online.", url: "https://pizzeria-two-dun.vercel.app", image: null },
+  { id: 2, title: "Da Nonno Peppe", category: "Ristorazione", desc: "Pizzeria artigianale a Rimini, dal 1985. Menù, storia, recensioni, prenotazioni e ordini WhatsApp.", url: "https://ecfnonnopeppe.vercel.app", image: null },
+  { id: 3, title: "Impasto", category: "Ristorazione", desc: "Pizza fresca, ingredienti veri. Sito one-page con identità forte e menù digitale.", url: "https://ecfpizzeriaimpasto.vercel.app", image: null },
+  { id: 4, title: "Lattoneria", category: "Artigianato", desc: "Sito per attività di lattoneria e lavorazione metalli.", url: "https://v0-lattoneria-hoti-website-git-v0-sirto-bfc528-totilas-projects.vercel.app/", image: null },
+  { id: 5, title: "Idraulico", category: "Servizi", desc: "Sito per impresa idraulica con servizi e contatti.", url: "https://plumber-example.vercel.app", image: null },
 ];
 
 function ProjectCard({ project }) {
   const hasLink = project.url && project.url !== "#";
   const cardContent = (
     <div className="portfolio-card" style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${ACCENT_RGBA(0.2)}`, borderRadius: 12, overflow: "hidden", height: "100%", display: "flex", flexDirection: "column" }}>
-      <div className="portfolio-card-preview" style={{ aspectRatio: "16/10", background: "rgba(239,68,68,0.08)", minHeight: 180, overflow: "hidden", position: "relative" }}>
+      <div className="portfolio-card-preview" style={{ aspectRatio: "16/10", background: "rgba(37,99,235,0.08)", minHeight: 180, overflow: "hidden", position: "relative" }}>
         {project.image ? (
           <img src={project.image} alt={project.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
         ) : hasLink ? (
@@ -156,7 +158,7 @@ function ProjectsSection() {
     <section className="portfolio-projects" style={{ padding: "0 24px 100px", background: "#0C0C0C" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <div className="portfolio-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))", gap: 28 }}>
-          {PIZZERIE_PROJECTS.map((p, i) => (
+          {PORTFOLIO_PROJECTS.map((p, i) => (
             <ScrollReveal key={p.id} delay={i * 80}>
               <ProjectCard project={p} />
             </ScrollReveal>
@@ -174,7 +176,7 @@ function PortfolioCTA() {
       <ScrollReveal delay={0}>
         <div style={{ maxWidth: 600, margin: "0 auto" }}>
           <h2 style={{ fontFamily: FONT_INTER, fontSize: "clamp(24px, 4vw, 36px)", fontWeight: 800, color: "#ffffff", marginBottom: 16 }}>Vuoi il tuo progetto qui?</h2>
-          <p style={{ fontFamily: FONT_INTER, fontSize: 14, color: "rgba(255,255,255,0.6)", lineHeight: 1.8, marginBottom: 32 }}>Prenota un'analisi gratuita e ti mostriamo come portare la tua pizzeria online.</p>
+          <p style={{ fontFamily: FONT_INTER, fontSize: 14, color: "rgba(255,255,255,0.6)", lineHeight: 1.8, marginBottom: 32 }}>Prenota un'analisi gratuita e ti mostriamo come portare la tua attività online.</p>
           <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", background: ACCENT, color: "#0C0C0C", padding: "16px 40px", fontFamily: FONT_INTER, fontSize: 12, fontWeight: 600, textTransform: "uppercase", letterSpacing: 3, textDecoration: "none", borderRadius: 8, transition: "background-color 0.2s, transform 0.2s" }}>Analisi Gratuita</a>
         </div>
       </ScrollReveal>
@@ -213,9 +215,9 @@ export default function PortfolioPage() {
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
         .portfolio-page { overflow-x: hidden; }
         .portfolio-nav a:hover { color: ${ACCENT} !important; }
-        .portfolio-nav a[style*="background"]:hover { background-color: #DC2626 !important; }
+        .portfolio-nav a[style*="background"]:hover { background-color: #1D4ED8 !important; }
         .portfolio-card-link { cursor: pointer; }
-        .portfolio-cta a:hover { background-color: #DC2626 !important; transform: scale(1.02); }
+        .portfolio-cta a:hover { background-color: #1D4ED8 !important; transform: scale(1.02); }
         @media (max-width: 768px) {
           .portfolio-grid { grid-template-columns: 1fr !important; }
           .portfolio-hero { padding-top: 120px !important; padding-bottom: 60px !important; }
